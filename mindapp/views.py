@@ -12,3 +12,4 @@ def index(request):
     #Config for activating contest active and inactive time
     config = Config.objects.all().first()
     return render(request, 'index.html')
+    
