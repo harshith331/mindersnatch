@@ -21,8 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('mindapp.urls')),
-    # path('',include('django.contrib.auth.urls',namespace='auth')),
-    # path('auth/',include('social_django.urls',namespace='social')),
+    path('auth/',include('social_django.urls',namespace='social')),
 ]
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
