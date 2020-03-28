@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content=""> 
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    
+<script src="{% static 'js/particle.js' %}"></script>
+
+
+    <title>MinderSnatch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/button.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/timer.css' %}" rel="stylesheet">    
+    
+    <link href="https://fonts.googleapis.com/css?family=Iceland&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Creepster|Droid+Sans|Merriweather|Montserrat" rel="stylesheet">
+  
+  </head>
+  
+  <body class="bodypad">
+    <nav class="navbar navbar-dark">
+      <div class="container1">
+        <div class="navbar-header">
+          <button style="background-color:#f5f5f5" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span9 class="icon-bar"></span9>
+            <span9 class="icon-bar"></span9>
+            <span9 class="icon-bar"></span9>
+          </button>
+          <a href="/" style="color:#f5f5f5" class="navbar-brand"><span92>🔍</span92><span91 style=" width:10px;height:10px;margin-left:10px;font-family: 'Iceland';font-size:25px;font-weight:20px;opacity: 0.8;">Online Treasure Hunt</span91>
+          </a>
+          <div class="navbar-brand" style="color:gray;font-family:'Capriola',sans-serif;" >Your Score :   <span style="font-weight:bold;color:rgb(8, 119, 8)">{{player.score}} points</span></div>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+    
+            <li><a style="font-family:'Capriola',sans-serif;font-size:20px" href="/rules">Rules</a></li>
+            <li><a style="font-family:'Capriola',sans-serif;font-size:20px" href="/lboard/">Leaderboard</a></li>
+            <li class="dropdown">
+              <button class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" style="margin-left:10px;background-color:#f5f5f5" >
+    
+    
+    
+              <span9 class="caret"></span9>
+              </button>
+              
+              <ul class="dropdown-menu">
+              </ul>
+             
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+     
+
+
+    {% block content %}
+    {% endblock %}
+    </div> <!-- /container -->
+
+    <br>
+  </body>
+</html>
