@@ -1,4 +1,4 @@
-Django==2.1.5
+Django==2.2.10
 python-decouple==3.1
 social-auth-app-django==3.1.0
 Pillow==6.2.0
