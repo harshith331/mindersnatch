@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {{ sitn.text }}
+    <form method="POST">
+        {% csrf_token %}
+        <p>{{ sitn.option_1.text }}</p>
+        <button value="{{ sitn.option_1.id }}" type="submit" name="op_no">Option 1</button>
+    </form>
+</div>
+{% endblock %}

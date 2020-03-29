@@ -44,7 +44,7 @@ class option(models.Model):
         return self.text
 
 class Situation(models.Model):
-    situation_no= models.IntegerField() 
+    situation_no= models.IntegerField(unique=True) 
     image = models.ImageField(upload_to = 'images',default='images/level1.jpg')
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')
     text = models.TextField()

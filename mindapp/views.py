@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import Config
 from . import models
+import datetime
+from time import timezone
 
 # Create your views here.
 
@@ -20,20 +22,23 @@ def index(request):
 def answer(request):
     if request.method == 'POST':
         op_no = request.POST.get('op_no')
-
-    player=models.player.objects.get(user_id=request.user.pk)
-    option=models.option.object.get(id=op_no)
-    if option.end==True:
-        #player is dead redirect to start node
-        return render(request, 'dead.html',{'player':player})
-
+        player=models.Player.objects.get(user=request.user)
+        option=models.option.objects.get(id=op_no)
+        if option.end:
+            #player is dead redirect to start node
+            return render(request, 'dead.html',{'player':player})
+        else:
+            #option is non terminating one player progresses to next level
+            player.current_sitn=option.next_sit
+            player.score+=1
+            player.timestamp = datetime.datetime.now()
+            sitn=models.Situation.objects.get(situation_no=player.current_sitn)
+            player.save()
+            return render(request , 'level.html' ,{'player':player,'sitn':sitn})
     else:
-        #option is non terminating one player progresses to next level
-        player.current_sitn=option.next_sitn
-        player.score+=1
-        player.timestamp = datetime.datetime.now(tz=timezone.utc)
-        sitn=models.Situation.object.get(situation_no=player.current_sitn)
-        player.save()
-        return render(request , 'level.html' ,{'player':player,'sitn':sitn})
+        player = models.Player.objects.get(user=request.user)
+        sitn = models.Situation.objects.get(situation_no=player.current_sitn)
+        return render(request,"level.html", {'player':player,'sitn':sitn})
+
 
 
