@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 # Create your models here.
 class Config(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
@@ -8,6 +9,18 @@ class Config(models.Model):
     def __str__(self):
         return "Start and End Time"
 
+class player(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    name = models.CharField(max_length=128)
+    current_sitn = models.IntegerField(default=1)
+    score = models.IntegerField(default=0)
+    rank = models.IntegerField(default=0)
+    timestamp = models.DateTimeField()
+
+
+    def __str__(self):
+        return self.name
+
 class option(models.Model):
     text=models.CharField(max_length=50)
     next_sit=models.IntegerField()
@@ -15,7 +28,7 @@ class option(models.Model):
     def __str__(self):
         return self.text
 
-class Situations(models.Model):
+class Situation(models.Model):
     situation_no= models.IntegerField() 
     image = models.ImageField(upload_to = 'images',default='images/level1.jpg')
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')

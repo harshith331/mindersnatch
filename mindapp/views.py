@@ -11,5 +11,9 @@ from . import models
 def index(request):
     #Config for activating contest active and inactive time
     config = Config.objects.all().first()
+    sit1 = models.Situation.objects.get(id=1)
+
+    print("-----------------------------")
+    print(sit1.option_1.id)
     return render(request, 'index.html')
-    
+
