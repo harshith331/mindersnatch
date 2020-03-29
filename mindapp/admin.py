@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(option)
 admin.site.register(Situation)
 admin.site.register(Config)
+admin.site.register(Player)
