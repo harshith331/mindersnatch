@@ -3,4 +3,8 @@
     {% block content %}
     <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
     <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+
+    {% if user.is_authenticated %}
+        {{ user.username}}
+    {% endif %}
     {%endblock%}

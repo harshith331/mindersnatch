@@ -1,0 +1,8 @@
+{% extends "base.html"}
+
+{% block content %}
+{% for player in players %}
+<p>{{ player.score }}</p>
+<p>{{ player.user.username }}</p>
+{% endfor %}
+{% endblock %}
