@@ -33,24 +33,51 @@ def index(request):
 @login_required
 def answer(request):
     if request.method == 'POST':
-        op_no = request.POST.get('op_no')
         player=Player.objects.get(user=request.user)
-        option=option.objects.get(id=op_no)
-        if option.end:
-            #player is dead redirect to start node
-            return render(request, 'dead.html',{'player':player})
+        past_sitn=Situation.objects.get(situation_no=player.current_sitn)
+
+        if past_sitn.sub==False:
+
+            op_no = request.POST.get('op_no')
+            option=option.objects.get(id=op_no)
+            if option.end:
+                #player is dead redirect to start node
+                return render(request, 'dead.html',{'player':player})
+            else:
+                #option is non terminating one player progresses to next level
+                player.current_sitn=option.next_sit
+                player.score+=1
+                player.timestamp = datetime.datetime.now()
+                player.save()
+                sitn=Situation.objects.get(situation_no=option.next_sit)
+                if sitn.sub==True:
+                    return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
+                else:
+                    return render(request , 'level.html' ,{'player':player,'sitn':sitn})
+
         else:
-            #option is non terminating one player progresses to next level
-            player.current_sitn=option.next_sit
-            player.score+=1
-            player.timestamp = datetime.datetime.now()
-            player.save()
-            sitn=Situation.objects.get(situation_no=option.next_sit)
-            return render(request , 'level.html' ,{'player':player,'sitn':sitn})
+            ans=""
+            ans=request.POST.get('ans')
+            if ans==past_sitn.ans:
+                player.current_sitn=past_sitn.next_sitn
+                player.score+=1
+                player.timrstamp=datetime.datetime.now()
+                player.save()
+                sitn=Situation.objects.get(situation_no=player.current_sitn)
+                if sitn.sub==True:
+                    return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
+                else:
+                    return render(request , 'level.html' ,{'player':player,'sitn':sitn})
+            else:
+                return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
+
     else:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
-        return render(request,"level.html", {'player':player,'sitn':sitn})
+        if sitn.sub==True:
+            return render(request,"level_sub.html", {'player':player,'sitn':sitn})
+        else:
+            return render(request,"level.html", {'player':player,'sitn':sitn})
 
 def leaderboard(request):
     players = Player.objects.all()

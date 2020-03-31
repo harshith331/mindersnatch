@@ -47,6 +47,11 @@ class Situation(models.Model):
     situation_no= models.IntegerField(unique=True) 
     image = models.ImageField(upload_to = 'images',default='images/level1.jpg')
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')
+    sub=models.BooleanField(default=False)
+    #for subjective sitn#
+    next_sitn=models.IntegerField(default=0)
+    ans=models.CharField(max_length=100,default='na')
+    #for objective sitn#
     text = models.TextField()
     option_1 = models.ForeignKey(option,related_name='option1',on_delete=models.CASCADE,default=1)
     option_2 = models.ForeignKey(option,related_name='option2',on_delete=models.CASCADE,default=1)
