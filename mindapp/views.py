@@ -5,9 +5,20 @@ from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
 import datetime
 from time import timezone
+from django.utils import timezone as t
 import csv
 from django.http import HttpResponse
 from decouple import config
+
+def activeTime():
+    configuration = Config.objects.all().first()
+    curr_time = t.now()
+    if curr_time < configuration.start_time:
+        return False
+    elif curr_time >= configuration.start_time and curr_time <= end_time:
+        return True
+    else:
+        return False
 
 def saveLeaderboard(request):
     if request.GET.get("password") == config('LEADERBOARD_PASSWORD',cast=str):
@@ -23,10 +34,14 @@ def saveLeaderboard(request):
 def index(request):
     #Config for activating contest active and inactive time
     #config = Config.objects.all().first()
-    if request.user:
-        if request.user.is_authenticated:
-            return render(request, 'index.html',{'user':request.user})
-    return render(request, 'index.html')
+    if activeTime():
+        if request.user:
+            if request.user.is_authenticated:
+                return render(request, 'index.html',{'user':request.user})
+        return render(request, 'index.html')
+    else:
+        #Replace this with contest timer or ending page
+        return HttpResponse("Contest Not active yet.")
 
 @login_required
 def answer(request):
@@ -38,11 +53,7 @@ def answer(request):
             option=option.objects.get(id=op_no)
             if option.end:
                 #player is dead redirect to start node
-                message=option.message
-                player.score=0
-                player.current_sitn=Situation.object.get(id=1).situation_no
-                player.save()
-                return render(request, 'dead.html',{'player':player,'message':message})
+                return render(request, 'dead.html',{'player':player})
             else:
                 #option is non terminating one player progresses to next level
                 player.current_sitn=option.next_sit
