@@ -14,11 +14,11 @@ def activeTime():
     configuration = Config.objects.all().first()
     curr_time = t.now()
     if curr_time < configuration.start_time:
-        return False
-    elif curr_time >= configuration.start_time and curr_time <= end_time:
-        return True
+        return 1 #Contest hasnt started
+    elif curr_time >= configuration.start_time and curr_time <= configuration.end_time:
+        return 2 #Contest Active
     else:
-        return False
+        return 3 #Contest Ended
 
 def saveLeaderboard(request):
     if request.GET.get("password") == config('LEADERBOARD_PASSWORD',cast=str):
@@ -34,14 +34,17 @@ def saveLeaderboard(request):
 def index(request):
     #Config for activating contest active and inactive time
     #config = Config.objects.all().first()
-    if activeTime():
+    if activeTime()==2:
         if request.user:
             if request.user.is_authenticated:
                 return render(request, 'index.html',{'user':request.user})
         return render(request, 'index.html')
-    else:
-        #Replace this with contest timer or ending page
+    elif activeTime()==1:
+        #Replace this with contest timer
         return HttpResponse("Contest Not active yet.")
+    else:
+        #Replace this with ended page
+        return HttpResponse("Contest ended.")
 
 @login_required
 def answer(request):
@@ -62,6 +65,7 @@ def answer(request):
                 player.save()
                 sitn=Situation.objects.get(situation_no=option.next_sit)
                 if sitn.sub==True:
+                    
                     return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
                 else:
                     return render(request , 'level.html' ,{'player':player,'sitn':sitn})
@@ -69,12 +73,16 @@ def answer(request):
             ans=""
             ans=request.POST.get('ans')
             if past_sitn.checkAnswer(ans):
+                timer = SituationTimer.objects.get_or_create(player=player,situation=past_sitn)
+                timer.end_time = datetime.datetime.now()
+                timer.save()
                 player.current_sitn=past_sitn.next_sitn
                 player.score+=1
                 player.timrstamp=datetime.datetime.now()
                 player.save()
                 sitn=Situation.objects.get(situation_no=player.current_sitn)
                 if sitn.sub==True:
+                    SituationTimer(player=player,situation=sitn,start_time=datetime.datetime.now()).save()
                     return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
                 else:
                     return render(request , 'level.html' ,{'player':player,'sitn':sitn})
@@ -84,7 +92,8 @@ def answer(request):
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
         if sitn.sub==True:
-            return render(request,"level_sub.html", {'player':player,'sitn':sitn})
+            timer = SituationTimer.objects.get_or_create(player=player,situtation=sitn)
+            return render(request,"level_sub.html", {'player':player,'sitn':sitn,'timepassed':timer.timepassed()})
         else:
             return render(request,"level.html", {'player':player,'sitn':sitn})
 

@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 
 # Create your models here.
 class Config(models.Model):
@@ -81,3 +82,18 @@ class Situation(models.Model):
                     return False
         else:
             pass
+
+class SituationTimer(models.Model):
+    player = models.ForeignKey(Player,on_delete=models.CASCADE)
+    situation = models.ForeignKey(Situation,on_delete=models.CASCADE)
+    start_time = models.DateTimeField(default=datetime.now, null=True)
+    end_time = models.DateTimeField(null=True)
+
+    def start_epoch(self):
+        return self.start_time.timestamp()
+
+    def end_epoch(self):
+        return self.end_time.timestamp()
+
+    def timepassed(self):
+        return int(datetime.timestamp()) - int(self.start_time.timestamp())
