@@ -38,7 +38,11 @@ def answer(request):
             option=option.objects.get(id=op_no)
             if option.end:
                 #player is dead redirect to start node
-                return render(request, 'dead.html',{'player':player})
+                message=option.message
+                player.score=0
+                player.current_sitn=Situation.object.get(id=1).situation_no
+                player.save()
+                return render(request, 'dead.html',{'player':player,'message':message})
             else:
                 #option is non terminating one player progresses to next level
                 player.current_sitn=option.next_sit

@@ -39,6 +39,7 @@ class option(models.Model):
     text=models.CharField(max_length=50)
     next_sit=models.IntegerField()
     end=models.BooleanField(default=False)
+    message=models.CharField(max_length=200,default='na')
 
     def __str__(self):
         return self.text
