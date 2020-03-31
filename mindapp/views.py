@@ -9,8 +9,6 @@ import csv
 from django.http import HttpResponse
 from decouple import config
 
-# Create your views here.
-
 def saveLeaderboard(request):
     if request.GET.get("password") == config('LEADERBOARD_PASSWORD',cast=str):
         response = HttpResponse(content_type="text/csv")
@@ -35,9 +33,7 @@ def answer(request):
     if request.method == 'POST':
         player=Player.objects.get(user=request.user)
         past_sitn=Situation.objects.get(situation_no=player.current_sitn)
-
         if past_sitn.sub==False:
-
             op_no = request.POST.get('op_no')
             option=option.objects.get(id=op_no)
             if option.end:
@@ -54,11 +50,10 @@ def answer(request):
                     return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
                 else:
                     return render(request , 'level.html' ,{'player':player,'sitn':sitn})
-
         else:
             ans=""
             ans=request.POST.get('ans')
-            if ans==past_sitn.ans:
+            if past_sitn.checkAnswer(ans):
                 player.current_sitn=past_sitn.next_sitn
                 player.score+=1
                 player.timrstamp=datetime.datetime.now()
@@ -69,8 +64,7 @@ def answer(request):
                 else:
                     return render(request , 'level.html' ,{'player':player,'sitn':sitn})
             else:
-                return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn})
-
+                return render(request , 'level_sub.html' ,{'player':player,'sitn':sitn, 'status':302})
     else:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
@@ -83,5 +77,8 @@ def leaderboard(request):
     players = Player.objects.all()
     context = {'players':players}
     return render(request,"leaderboard.html",context)
+
+def rules(request):
+    return render(request,"rules.html")
 
 

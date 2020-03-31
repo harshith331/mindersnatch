@@ -49,8 +49,8 @@ class Situation(models.Model):
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')
     sub=models.BooleanField(default=False)
     #for subjective sitn#
-    next_sitn=models.IntegerField(default=0)
-    ans=models.CharField(max_length=100,default='na')
+    next_sitn=models.IntegerField(default=1,help_text="Next situation number")
+    ans=models.CharField(max_length=100,default='NA',help_text="Answer for the subjective question")
     #for objective sitn#
     text = models.TextField()
     option_1 = models.ForeignKey(option,related_name='option1',on_delete=models.CASCADE,default=1)
@@ -58,5 +58,25 @@ class Situation(models.Model):
     option_3 = models.ForeignKey(option,related_name='option3',on_delete=models.CASCADE,default=1)
 
     def __str__(self):
-        return self.text
+        return str(self.situation_no) + " : " + self.text
 
+    def splitAnswer(self):
+        answers = self.ans
+        answers = answers.strip().split(',')
+        ans_array = []
+        for answer in answers:
+            ans_array.append(answer.strip().lower())
+        return ans_array
+
+    def checkAnswer(self, player_ans):
+        if self.sub:
+            answer = player_ans
+            answer.strip().lower()
+            correct_ans = self.splitAnswer()
+            for ans in correct_ans:
+                if answer == ans:
+                    return True
+                else:
+                    return False
+        else:
+            pass
