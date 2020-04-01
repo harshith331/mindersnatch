@@ -1,0 +1,1 @@
+web: gunicorn msntch.wsgi --log-file -
