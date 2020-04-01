@@ -134,9 +134,18 @@ def answer(request):
 def leaderboard(request):
     players = Player.objects.all()
     context = {'players':players}
+    if request.user:
+        if request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            context = {'user': player}
     return render(request,"leaderboard.html",context)
 
 def rules(request):
-    return render(request,"rules.html")
+    context = {}
+    if request.user:
+        if request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            context = {'user': player}
+    return render(request,"rules.html", context)
 
 
