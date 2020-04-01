@@ -18,6 +18,8 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     current_sitn = models.IntegerField(default=1)
+    email = models.CharField(max_length=100,blank=True)
+    image = models.CharField(max_length=200,blank=True)
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     timestamp = models.DateTimeField(default=datetime.now)
@@ -25,16 +27,16 @@ class Player(models.Model):
     def __str__(self):
         return self.name
 
-@receiver(post_save,sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Player.objects.create(
-            user=instance, name=instance.username
-        )
+# @receiver(post_save,sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Player.objects.create(
+#             user=instance, name=instance.username
+#         )
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.player.save()
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.player.save()
 
 class option(models.Model):
     text=models.CharField(max_length=50)

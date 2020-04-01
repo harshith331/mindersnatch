@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
 import datetime
+from . import models
 from time import timezone
 from django.utils import timezone as t
 import csv
@@ -19,6 +20,34 @@ def activeTime():
         return 2 #Contest Active
     else:
         return 3 #Contest Ended
+
+def save_profile(backend, user, response, *args, **kwargs):
+    if backend.name == 'google-oauth2':
+        profile = user
+        try:
+            player = models.Player.objects.get(user=profile)
+        except:
+            player = models.Player(user=profile)
+            player.timestamp = datetime.datetime.now()
+            player.name = response.get('name')
+            player.image = response.get('picture')
+            # print (response.)
+            player.email = response.get('email')
+            player.save()
+    elif backend.name == 'facebook':
+        profile = user
+        try:
+            player = models.Player.objects.get(user=profile)
+        except:
+            player = models.Player(user=profile)
+            player.name = response.get('first_name')+" "+response.get('last_name')
+            player.email = response.get('email')
+            # print(response)
+            player.image = "http://graph.facebook.com/%s/picture?type=large" \
+                                % response["id"]
+            player.timestamp=datetime.datetime.now()
+            player.save()
+
 
 def saveLeaderboard(request):
     if request.GET.get("password") == config('LEADERBOARD_PASSWORD',cast=str):
