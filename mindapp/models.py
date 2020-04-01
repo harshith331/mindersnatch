@@ -57,9 +57,9 @@ class Situation(models.Model):
     ans=models.CharField(max_length=100,default='NA',help_text="Answer for the subjective question")
     #for objective sitn#
     text = models.TextField()
-    option_1 = models.ForeignKey(option,related_name='option1',on_delete=models.CASCADE,default=1)
-    option_2 = models.ForeignKey(option,related_name='option2',on_delete=models.CASCADE,default=1)
-    option_3 = models.ForeignKey(option,related_name='option3',on_delete=models.CASCADE,default=1)
+    option_1 = models.ForeignKey(option,related_name='option1',on_delete=models.CASCADE,blank=True,null=True)
+    option_2 = models.ForeignKey(option,related_name='option2',on_delete=models.CASCADE,blank=True,null=True)
+    option_3 = models.ForeignKey(option,related_name='option3',on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return str(self.situation_no) + " : " + self.text
@@ -98,4 +98,4 @@ class SituationTimer(models.Model):
         return self.end_time.timestamp()
 
     def timepassed(self):
-        return int(datetime.timestamp()) - int(self.start_time.timestamp())
+        return (int(datetime.now().timestamp()) - int(self.start_time.timestamp()))

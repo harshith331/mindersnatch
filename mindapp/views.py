@@ -53,7 +53,7 @@ def saveLeaderboard(request):
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="leaderboards.csv"'
         writer = csv.writer(response)
-        for player in Player.objects.order_by("-score", "timestamp"):
+        for player in Player.objects.order_by("score", "timestamp"):
             writer.writerow([player.user.username, player.score])
         return response
     else:
@@ -65,7 +65,8 @@ def index(request):
     if activeTime()==2:
         if request.user:
             if request.user.is_authenticated:
-                return render(request, 'index.html',{'user':request.user})
+                player = Player.objects.get(user=request.user)
+                return render(request, 'index.html',{'user':player})
         return render(request, 'index.html')
     elif activeTime()==1:
         #Replace this with contest timer
@@ -123,9 +124,10 @@ def answer(request):
     else:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
+        print(player,sitn)
         if sitn.sub==True:
-            timer = SituationTimer.objects.get_or_create(player=player,situtation=sitn)
-            return render(request,"level_sub.html", {'player':player,'sitn':sitn,'timepassed':timer.timepassed()})
+            timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+            return render(request,"level_sub.html", {'player':player,'sitn':sitn,'timepassed':timer[0].timepassed()})
         else:
             return render(request,"level.html", {'player':player,'sitn':sitn})
 

@@ -3,6 +3,7 @@
 {% block content %}
 <div>
     {{ sitn.text }}
+    {{ timepassed }}
     <form id="ans" method="post" action="/answer/">
         {% csrf_token %}
         <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus/>
