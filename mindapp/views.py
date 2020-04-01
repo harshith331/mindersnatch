@@ -31,7 +31,6 @@ def save_profile(backend, user, response, *args, **kwargs):
             player.timestamp = datetime.datetime.now()
             player.name = response.get('name')
             player.image = response.get('picture')
-            # print (response.)
             player.email = response.get('email')
             player.save()
     elif backend.name == 'facebook':
@@ -85,7 +84,11 @@ def answer(request):
             option=option.objects.get(id=op_no)
             if option.end:
                 #player is dead redirect to start node
-                return render(request, 'dead.html',{'player':player})
+                player.current_sitn=sitn.objects.get(id=1).situation_no
+                player.score=0
+                player.save()
+                message=option.message
+                return render(request, 'dead.html',{'player':player,'message':message})
             else:
                 #option is non terminating one player progresses to next level
                 player.current_sitn=option.next_sit

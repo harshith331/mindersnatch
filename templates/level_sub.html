@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {{ sitn.text }}
+    <form id="ans" method="post" action="/answer/">
+        {% csrf_token %}
+        <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus/>
+        <br />
+
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit Answer" />
+    </form>
+</div>
+{% endblock %}
