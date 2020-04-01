@@ -66,7 +66,7 @@ class Situation(models.Model):
 
     def splitAnswer(self):
         answers = self.ans
-        answers = answers.strip().split(',')
+        answers = str(answers).strip().split(',')
         ans_array = []
         for answer in answers:
             ans_array.append(answer.strip().lower())
