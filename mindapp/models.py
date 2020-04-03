@@ -43,6 +43,7 @@ class option(models.Model):
     next_sit=models.IntegerField()
     end=models.BooleanField(default=False)
     message=models.CharField(max_length=200,default='na')
+    image = models.ImageField(upload_to="images")
 
     def __str__(self):
         return self.text
