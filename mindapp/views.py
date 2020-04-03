@@ -87,21 +87,22 @@ def answer(request):
         past_sitn = Situation.objects.get(situation_no=player.current_sitn)
         if past_sitn.sub == False:
             op_no = request.POST.get('op_no')
-            option = option.objects.get(id=op_no)
-            if option.end:
+            option_c = option.objects.get(id=op_no)
+            if option_c.end:
                 # player is dead redirect to start node
-                player.current_sitn = sitn.objects.get(id=1).situation_no
+                player.current_sitn = Situation.objects.get(id=1).situation_no
                 player.score = 0
                 player.save()
-                message = option.message
+                message = option_c.message
                 return render(request, 'dead.html', {'player': player, 'message': message})
             else:
                 # option is non terminating one player progresses to next level
-                player.current_sitn = option.next_sit
+                option_c = option.objects.get(id=op_no)
+                player.current_sitn = option_c.next_sit
                 player.score += 1
                 player.timestamp = datetime.datetime.now()
                 player.save()
-                sitn = Situation.objects.get(situation_no=option.next_sit)
+                sitn = Situation.objects.get(situation_no=option_c.next_sit)
                 if sitn.sub == True:
 
                     return render(request, 'level_sub.html', {'player': player, 'sitn': sitn})

@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     {{ sitn.text }}
-    <form method="POST" action="/answer/">
+    <form method="POST" action="/level">
         {% csrf_token %}
         <p>{{ sitn.option_1.text }}</p>
         <button value="{{ sitn.option_1.id }}" type="submit" name="op_no">{{sitn.option_1.text}}</button>
