@@ -2,14 +2,40 @@
 
 {% block content %}
 <div>
-    {{ sitn.text }}
-    {{ timepassed }}
+    <p>{{ sitn.text }}</p>
+    <p id="timer" hidden>{{ timepassed }}</p>
+    <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
     <form id="ans" method="post" action="/answer/">
         {% csrf_token %}
-        <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus/>
+        <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus />
         <br />
 
         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit Answer" />
     </form>
 </div>
+{% endblock %}
+{% block js %}
+<script>
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var hoursLabel = document.getElementById("hours");
+    var totalSeconds = parseInt(document.getElementById("timer").innerText);
+    setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60)%60);
+        hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
+    }
+
+    function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+</script>
 {% endblock %}
