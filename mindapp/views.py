@@ -114,17 +114,18 @@ def answer(request):
             if past_sitn.checkAnswer(ans):
                 timer = SituationTimer.objects.get_or_create(
                     player=player, situation=past_sitn)
-                timer.end_time = datetime.datetime.now()
-                timer.save()
+                timer[0].end_time = datetime.datetime.now()
+                timer[0].save()
+                timer[0].delete()
                 player.current_sitn = past_sitn.next_sitn
                 player.score += 1
                 player.timrstamp = datetime.datetime.now()
                 player.save()
                 sitn = Situation.objects.get(situation_no=player.current_sitn)
                 if sitn.sub == True:
-                    SituationTimer(player=player, situation=sitn,
-                                   start_time=datetime.datetime.now()).save()
-                    return render(request, 'level_sub.html', {'player': player, 'sitn': sitn})
+                    new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
+                                   start_time=datetime.datetime.now())
+                    return render(request, 'level_sub.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
                 else:
                     return render(request, 'level.html', {'player': player, 'sitn': sitn})
             else:
