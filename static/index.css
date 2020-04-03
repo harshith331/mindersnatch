@@ -4,7 +4,7 @@ body {
 
 svg {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -100%);
 }
@@ -12,12 +12,12 @@ svg {
 .ml11 {
   color: white;
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -100%);
   font-weight: 700;
   font-size: 2em;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .ml11 .text-wrapper {
@@ -38,8 +38,8 @@ svg {
   transform-origin: 0 50%;
 }
 
-.ml11 .line1 { 
-  top: 0; 
+.ml11 .line1 {
+  top: 0;
   left: 0;
 }
 
@@ -48,18 +48,71 @@ svg {
   line-height: 1em;
 }
 
-.row {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    margin-top: 20px;
-    transform: translateX(-50%);
-    display:flex;
-    flex-direction: row;
+.navbar {
+  display: flex;
+  justify-content: center;
 }
 
-a {
-    text-decoration: none !important;
+.underline {
+  border: none;
+  color: red;
+  background-color: red;
+  height: 3px;
+  width: 20%;
+  position: absolute;
+  left: -50%;
+  /*   left: 50%; */
+}
+
+.navbar ul li {
+  display: inline;
+  text-align: center;
+}
+
+.navbar a {
+  padding: 8px;
+  color: white;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  margin: 10px 5px;
+}
+
+.navbar a:hover {
+  text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.9);
+}
+
+.profile-container {
+  width: 100%;
+  position: absolute;
+  top: 68%;
+  color: white;
+}
+
+.profile-container span{
+  position: absolute;
+  margin-left: 10px;
+  left: 50%;
+  font-size: 2rem;
+  line-height: 70px;
+  z-index: -1;
+  font-family: "Roboto", sans-serif;
+}
+.profile {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  height: 70px;
+}
+
+.row {
+  width: 100%;
+  position: absolute;
+  top: 68%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 button.google {
@@ -68,13 +121,16 @@ button.google {
   width: 60px;
   color: white;
   border: none;
-  transition: width 0.9s linear;
+  border-radius: 7px;
+  transition: width 0.5s linear;
   
   height:50px;
-  margin:10px;
+  margin:25px;
+  border:none;
   border-radius:25px;
   padding: 10px 30px;
   background-color: #f2594f;
+  color: white;
   font-size: 0.9rem;
   line-height: 25px;
   font-family: 'Roboto', sans-serif;
@@ -85,10 +141,13 @@ button.facebook {
   white-space: nowrap;
   width: 50px;
   background-color: blue;
-  transition: width 0.9s linear;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  transition: width 0.5s linear;
   
   height:50px;
-  margin:10px;
+  margin:25px;
   border:none;
   border-radius:10px;
   padding: 10px 30px;
@@ -104,7 +163,7 @@ button span {
   margin-right: 10px;
   float:right;
   display: none;
-  transition: all 0.5s linear;
+  transition: all 1s linear;
 }
 
 button i {
@@ -127,3 +186,6 @@ button:hover span{
   display:block;
 }
 
+a {
+    text-decoration: none;
+}
