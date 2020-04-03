@@ -116,9 +116,9 @@ def answer(request):
             if past_sitn.checkAnswer(ans):
                 timer[0].end_time = datetime.datetime.now()
                 timer[0].save()
+                player.score += timer[0].timedifference()
                 timer[0].delete()
                 player.current_sitn = past_sitn.next_sitn
-                player.score += 1
                 player.timrstamp = datetime.datetime.now()
                 player.save()
                 sitn = Situation.objects.get(situation_no=player.current_sitn)

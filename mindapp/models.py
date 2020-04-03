@@ -93,10 +93,15 @@ class SituationTimer(models.Model):
     end_time = models.DateTimeField(null=True)
 
     def start_epoch(self):
-        return self.start_time.timestamp()
+        return int(self.start_time.timestamp())
 
     def end_epoch(self):
-        return self.end_time.timestamp()
+        return int(self.end_time.timestamp())
 
     def timepassed(self):
         return (int(datetime.now().timestamp()) - int(self.start_time.timestamp()))
+
+    def timedifference(self):
+        if (self.end_epoch() - self.start_epoch()) <= 300:
+            return 1
+        return 2
