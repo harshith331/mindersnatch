@@ -111,9 +111,9 @@ def answer(request):
         else:
             ans = ""
             ans = request.POST.get('ans')
-            if past_sitn.checkAnswer(ans):
-                timer = SituationTimer.objects.get_or_create(
+            timer = SituationTimer.objects.get_or_create(
                     player=player, situation=past_sitn)
+            if past_sitn.checkAnswer(ans):
                 timer[0].end_time = datetime.datetime.now()
                 timer[0].save()
                 timer[0].delete()
@@ -129,7 +129,7 @@ def answer(request):
                 else:
                     return render(request, 'level.html', {'player': player, 'sitn': sitn})
             else:
-                return render(request, 'level_sub.html', {'player': player, 'sitn': sitn, 'status': 302})
+                return render(request, 'level_sub.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
     else:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)

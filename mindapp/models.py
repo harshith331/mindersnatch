@@ -66,22 +66,22 @@ class Situation(models.Model):
 
     def splitAnswer(self):
         answers = self.ans
-        answers = str(answers).strip().split(',')
+        answers = answers.strip().split(',')
         ans_array = []
         for answer in answers:
             ans_array.append(answer.strip().lower())
+        print(ans_array)
         return ans_array
 
     def checkAnswer(self, player_ans):
         if self.sub:
             answer = player_ans
-            answer.strip().lower()
+            answer = answer.strip().lower()
             correct_ans = self.splitAnswer()
             for ans in correct_ans:
                 if answer == ans:
                     return True
-                else:
-                    return False
+            return False
         else:
             pass
 
