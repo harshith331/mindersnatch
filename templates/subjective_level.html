@@ -1,17 +1,23 @@
-{% extends "base.html" %} {% block content %}
-<div>
-    <p>{{ sitn.text }}</p>
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <title>Subjective - Mindersnatch</title>
+    <link rel="stylesheet" href="{% static 'subjective.css' %}">
+</head>
+
+<body>
+    <p style="font-family: Ubuntu;">{{ sitn.text }}</p>
     <p id="timer" hidden>{{ timepassed }}</p>
-    <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+    <small id="hours">00</small>:<small id="minutes">00</small>:<small id="seconds">00</small>
     <form id="ans" method="post" action="{% url 'situation' %}">
         {% csrf_token %}
-        <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus />
-        <br />
-
-        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit Answer" />
+        <input type="text" name="ans" class="question" id="nme" required autocomplete="off" />
+        <label for="nme"><span>Your answer</span></label>
+        <input type="submit" value="Submit!" />
     </form>
-</div>
-{% endblock %} {% block js %}
+</body>
+
 <script>
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
@@ -35,4 +41,3 @@
         }
     }
 </script>
-{% endblock %}

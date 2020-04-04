@@ -120,33 +120,34 @@
     text-transform: uppercase;
     display: inline-block;
   } */
-
+  
   @import "//fonts.googleapis.com/css?family=Bangers";
-body {
-  margin: 0;
-  background-color: black;
-}
-
-.wrap {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-          justify-content: center;
-  height: 100vh;
-  background: black;
-}
-
-.time-to {
-  text-align: center;
-  font-family: Bangers;
-  color: white;
-  font-size: 35px;
-  letter-spacing: 2px;
-}
-.time-to span {
-  display: block;
-  font-size: 80px;
-  color: red;
-}
+  body {
+      margin: 0;
+      background-color: black;
+  }
+  
+  .wrap {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      height: 100vh;
+      background: black;
+  }
+  
+  .time-to {
+      text-align: center;
+      font-family: Bangers;
+      color: white;
+      font-size: 35px;
+      letter-spacing: 2px;
+  }
+  
+  .time-to span {
+      display: block;
+      font-size: 80px;
+      color: red;
+  }
