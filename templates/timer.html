@@ -1,20 +1,54 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{%block content%}
-<div class="container_t">
-    <h3 class="text-center" style="color: white;">Online Treasure Hunt has finished. Thank you for your participation.</h3>
-
-    <h3 class="text-center" style="color: white;">Goes live on 8th February 2020 at 10.30pm</h3>
-    <br>
-    <p class="opentime" hidden>{{time}}</p>
-    <ul class="timer">
-      <li class="boxt"><span id="days"></span>days</li>
-      <li class="boxt"><span id="hours"></span>Hours</li>
-      <li class="boxt"><span id="minutes"></span>Minutes</li>
-      <li class="boxt"><span id="seconds"></span>Seconds</li>
-    </ul>
+{% block content %}
+<div id="countdown">
+  <div id='tiles'></div>
+  <div class="labels">
+    <li>Days</li>
+    <li>Hours</li>
+    <li>Mins</li>
+    <li>Secs</li>
   </div>
-
 </div>
 
-{%endblock%}
+<span id="timer" hidden>{{ time }}</span>
+{% endblock %}
+
+{% block js %}
+<script>
+  var target_date = parseInt(document.getElementById("timer").innerText) * 1000;
+  var days, hours, minutes, seconds;
+
+  var countdown = document.getElementById("tiles");
+
+  getCountdown();
+
+  setInterval(function () { getCountdown(); }, 1000);
+
+  function getCountdown() {
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+
+    days = pad(parseInt(seconds_left / 86400));
+    seconds_left = seconds_left % 86400;
+
+    hours = pad(parseInt(seconds_left / 3600));
+    seconds_left = seconds_left % 3600;
+
+    minutes = pad(parseInt(seconds_left / 60));
+    seconds = pad(parseInt(seconds_left % 60));
+
+    // format countdown string + set tag value
+    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
+  }
+
+  function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+</script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'timer.css' %}">
+{% endblock %}

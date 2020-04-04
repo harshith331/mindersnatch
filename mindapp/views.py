@@ -66,9 +66,7 @@ def saveLeaderboard(request):
 
 
 def index(request):
-    # Config for activating contest active and inactive time
-    #config = Config.objects.all().first()
-    config=Config.objects.get(id=1)
+    config=Config.objects.all().first()
     if activeTime(request) == 2:
         if request.user:
             if request.user.is_authenticated:
@@ -77,14 +75,13 @@ def index(request):
         return render(request, 'index.html')
     elif activeTime(request) == 1:
         # Replace this with contest timer
-        time=config.time
-        return render(request, 'timer.html',{'time':config.time})
+        return render(request, 'timer.html',{'time':config.start_time.timestamp()})
     else:
         # Replace this with ended page
         return HttpResponse("Contest ended.")
 
 
-@login_required
+@login_required(login_url="/")
 def answer(request):
     if request.method == 'POST':
         player = Player.objects.get(user=request.user)
