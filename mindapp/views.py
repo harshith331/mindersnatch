@@ -70,8 +70,11 @@ def index(request):
     if activeTime(request) == 2:
         if request.user:
             if request.user.is_authenticated:
-                player = Player.objects.get(user=request.user)
-                return render(request, 'index.html', {'user': player})
+                try : 
+                    player = Player.objects.get(user=request.user)
+                    return render(request, 'index.html', {'user': player})
+                except:
+                    return render(request,'404.html',{'message':"Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:
         # Replace this with contest timer
@@ -84,59 +87,74 @@ def index(request):
 @login_required(login_url="/")
 def answer(request):
     if request.method == 'POST':
-        player = Player.objects.get(user=request.user)
-        past_sitn = Situation.objects.get(situation_no=player.current_sitn)
-        if past_sitn.sub == False:
-            op_no = request.POST.get('op_no')
-            option_c = option.objects.get(id=op_no)
-            if option_c.end:
-                # player is dead redirect to start node
-                player.current_sitn = Situation.objects.get(id=1).situation_no
-                player.save()
-                message = option_c.message
-                return render(request, 'dead.html', {'player': player, 'message': message})
-            else:
-                # option is non terminating one player progresses to next level
-                player.current_sitn = option_c.next_sit
-                player.score += 1
-                player.timestamp = datetime.datetime.now()
-                player.save()
-                sitn = Situation.objects.get(situation_no=option_c.next_sit)
-                if sitn.sub == True:
-                    timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                    return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
+        try:
+            player = Player.objects.get(user=request.user)
+            try : 
+                past_sitn = Situation.objects.get(situation_no=player.current_sitn)
+                if past_sitn.sub == False:
+                    op_no = request.POST.get('op_no')
+                    try : 
+                        option_c = option.objects.get(id=op_no)
+                        if option_c.end:
+                            # player is dead redirect to start node
+                            player.current_sitn = Situation.objects.get(id=1).situation_no
+                            player.save()
+                            message = option_c.message
+                            return render(request, 'dead.html', {'player': player, 'message': message})
+                        else:
+                            # option is non terminating one player progresses to next level
+                            player.current_sitn = option_c.next_sit
+                            player.score += 1
+                            player.timestamp = datetime.datetime.now()
+                            player.save()
+                            sitn = Situation.objects.get(situation_no=option_c.next_sit)
+                            if sitn.sub == True:
+                                timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+                                return render(request, 'level_sub.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
+                            else:
+                                return render(request, 'level.html', {'player': player, 'sitn': sitn})
+                    except : 
+                        return render(request,'404.html',{'message':"Error getting Options!!"})
                 else:
-                    return render(request, 'level.html', {'player': player, 'sitn': sitn})
-        else:
-            ans = ""
-            ans = request.POST.get('ans')
-            timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
-            if past_sitn.checkAnswer(ans):
-                timer[0].end_time = datetime.datetime.now()
-                timer[0].save()
-                player.score += timer[0].timedifference()
-                timer[0].delete()
-                player.current_sitn = past_sitn.next_sitn
-                player.timestamp = datetime.datetime.now()
-                player.save()
+                    ans = ""
+                    ans = request.POST.get('ans')
+                    timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
+                    if past_sitn.checkAnswer(ans):
+                        timer[0].end_time = datetime.datetime.now()
+                        timer[0].save()
+                        player.score += timer[0].timedifference()
+                        timer[0].delete()
+                        player.current_sitn = past_sitn.next_sitn
+                        player.timestamp = datetime.datetime.now()
+                        player.save()
+                        sitn = Situation.objects.get(situation_no=player.current_sitn)
+                        if sitn.sub == True:
+                            new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
+                                       start_time=datetime.datetime.now())
+                            return render(request, 'level_sub.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
+                        else:
+                            return render(request, 'level.html', {'player': player, 'sitn': sitn})
+                    else:
+                        return render(request, 'level_sub.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
+            except : 
+                return render(request,'404.html',{'message':"Wait for new Situation!"})
+        except:
+            return render(request,'404.html',{'message':"Try Logging in Again!!"})
+    else:
+        try :
+            player = Player.objects.get(user=request.user)
+            try : 
                 sitn = Situation.objects.get(situation_no=player.current_sitn)
                 if sitn.sub == True:
-                    new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
-                                   start_time=datetime.datetime.now())
-                    return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
+                    timer = SituationTimer.objects.get_or_create(
+                        player=player, situation=sitn)
+                    return render(request, "level_sub.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                 else:
-                    return render(request, 'level.html', {'player': player, 'sitn': sitn})
-            else:
-                return render(request, 'subjective_level.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
-    else:
-        player = Player.objects.get(user=request.user)
-        sitn = Situation.objects.get(situation_no=player.current_sitn)
-        if sitn.sub == True:
-            timer = SituationTimer.objects.get_or_create(
-                player=player, situation=sitn)
-            return render(request, "subjective_level.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
-        else:
-            return render(request, "level.html", {'player': player, 'sitn': sitn})
+                    return render(request, "level.html", {'player': player, 'sitn': sitn})
+            except : 
+                return render(request,'404.html',{'message':"Wait for the new situation!!"})
+        except : 
+            return render(request,'404.html',{'message':"Try Logging in Again!!"})
 
 
 def leaderboard(request):
