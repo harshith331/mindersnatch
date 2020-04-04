@@ -9,6 +9,7 @@ from datetime import datetime
 class Config(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
     end_time = models.DateTimeField(default=datetime.now)
+    time = models.CharField(max_length=40,default='Apr 6, 2020 18:30:00')
 
     def __str__(self):
         return "Start and End Time"
@@ -43,6 +44,7 @@ class option(models.Model):
     next_sit=models.IntegerField()
     end=models.BooleanField(default=False)
     message=models.CharField(max_length=200,default='na')
+    image = models.ImageField(upload_to="images",default="https://source.unsplash.com/random")
 
     def __str__(self):
         return self.text
@@ -66,22 +68,23 @@ class Situation(models.Model):
 
     def splitAnswer(self):
         answers = self.ans
-        answers = str(answers).strip().split(',')
+        answers = answers.strip().split(',')
         ans_array = []
         for answer in answers:
             ans_array.append(answer.strip().lower())
+        print(ans_array)
         return ans_array
 
     def checkAnswer(self, player_ans):
         if self.sub:
-            answer = player_ans
-            answer.strip().lower()
-            correct_ans = self.splitAnswer()
-            for ans in correct_ans:
-                if answer == ans:
-                    return True
-                else:
-                    return False
+            if player_ans is not None:
+                answer = player_ans
+                answer = answer.strip().lower()
+                correct_ans = self.splitAnswer()
+                for ans in correct_ans:
+                    if answer == ans:
+                        return True
+            return False
         else:
             pass
 
@@ -92,10 +95,15 @@ class SituationTimer(models.Model):
     end_time = models.DateTimeField(null=True)
 
     def start_epoch(self):
-        return self.start_time.timestamp()
+        return int(self.start_time.timestamp())
 
     def end_epoch(self):
-        return self.end_time.timestamp()
+        return int(self.end_time.timestamp())
 
     def timepassed(self):
         return (int(datetime.now().timestamp()) - int(self.start_time.timestamp()))
+
+    def timedifference(self):
+        if (self.end_epoch() - self.start_epoch()) <= 300:
+            return 1
+        return 2

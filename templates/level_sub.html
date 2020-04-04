@@ -5,7 +5,7 @@
     <p>{{ sitn.text }}</p>
     <p id="timer" hidden>{{ timepassed }}</p>
     <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
-    <form id="ans" method="post" action="/answer/">
+    <form id="ans" method="post" action="{% url 'situation' %}">
         {% csrf_token %}
         <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus />
         <br />
