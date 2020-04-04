@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div class="container_t">
+    <h3 class="text-center" style="color: white;">Online Treasure Hunt has finished. Thank you for your participation.</h3>
+
+    <h3 class="text-center" style="color: white;">Goes live on 8th February 2020 at 10.30pm</h3>
+    <br>
+    <p class="opentime" hidden>{{time}}</p>
+    <ul class="timer">
+      <li class="boxt"><span id="days"></span>days</li>
+      <li class="boxt"><span id="hours"></span>Hours</li>
+      <li class="boxt"><span id="minutes"></span>Minutes</li>
+      <li class="boxt"><span id="seconds"></span>Seconds</li>
+    </ul>
+  </div>
+
+</div>
+
+{%endblock%}

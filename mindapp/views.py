@@ -12,9 +12,11 @@ from django.http import HttpResponse
 from decouple import config
 
 
-def activeTime():
+def activeTime(request):
     configuration = Config.objects.all().first()
     curr_time = t.now()
+    if  request.user.is_staff:
+        return 2  # for staff 
     if curr_time < configuration.start_time:
         return 1  # Contest hasnt started
     elif curr_time >= configuration.start_time and curr_time <= configuration.end_time:
@@ -66,15 +68,17 @@ def saveLeaderboard(request):
 def index(request):
     # Config for activating contest active and inactive time
     #config = Config.objects.all().first()
-    if activeTime() == 2:
+    config=Config.objects.get(id=1)
+    if activeTime(request) == 2:
         if request.user:
             if request.user.is_authenticated:
                 player = Player.objects.get(user=request.user)
                 return render(request, 'index.html', {'user': player})
         return render(request, 'index.html')
-    elif activeTime() == 1:
+    elif activeTime(request) == 1:
         # Replace this with contest timer
-        return HttpResponse("Contest Not active yet.")
+        time=config.time
+        return render(request, 'timer.html',{'time':config.time})
     else:
         # Replace this with ended page
         return HttpResponse("Contest ended.")
