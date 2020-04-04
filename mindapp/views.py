@@ -91,35 +91,32 @@ def answer(request):
             if option_c.end:
                 # player is dead redirect to start node
                 player.current_sitn = Situation.objects.get(id=1).situation_no
-                player.score = 0
                 player.save()
                 message = option_c.message
                 return render(request, 'dead.html', {'player': player, 'message': message})
             else:
                 # option is non terminating one player progresses to next level
-                option_c = option.objects.get(id=op_no)
                 player.current_sitn = option_c.next_sit
                 player.score += 1
                 player.timestamp = datetime.datetime.now()
                 player.save()
                 sitn = Situation.objects.get(situation_no=option_c.next_sit)
                 if sitn.sub == True:
-
-                    return render(request, 'level_sub.html', {'player': player, 'sitn': sitn})
+                    timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+                    return render(request, 'level_sub.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
                 else:
                     return render(request, 'level.html', {'player': player, 'sitn': sitn})
         else:
             ans = ""
             ans = request.POST.get('ans')
-            timer = SituationTimer.objects.get_or_create(
-                    player=player, situation=past_sitn)
+            timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
             if past_sitn.checkAnswer(ans):
                 timer[0].end_time = datetime.datetime.now()
                 timer[0].save()
                 player.score += timer[0].timedifference()
                 timer[0].delete()
                 player.current_sitn = past_sitn.next_sitn
-                player.timrstamp = datetime.datetime.now()
+                player.timestamp = datetime.datetime.now()
                 player.save()
                 sitn = Situation.objects.get(situation_no=player.current_sitn)
                 if sitn.sub == True:
@@ -133,7 +130,6 @@ def answer(request):
     else:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
-        print(player, sitn)
         if sitn.sub == True:
             timer = SituationTimer.objects.get_or_create(
                 player=player, situation=sitn)
