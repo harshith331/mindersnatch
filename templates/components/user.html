@@ -1,5 +1,5 @@
-{% if user.email %}
-    <li><span><img src="{{ user.image }}" class="rounded-circle" width="40" height="40" > {{ user.name }}</span></li>
+{% if user %}
+    <li><span><img src="{{ player.image }}" class="rounded-circle" width="40" height="40" > {{ player.name }}</span></li>
 {% else %}
     <li><a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google"></i> Login with Google</a></li>
     <li><a href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook-square"></i> Login with Facebook</a></li>
