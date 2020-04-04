@@ -76,12 +76,13 @@ class Situation(models.Model):
 
     def checkAnswer(self, player_ans):
         if self.sub:
-            answer = player_ans
-            answer = answer.strip().lower()
-            correct_ans = self.splitAnswer()
-            for ans in correct_ans:
-                if answer == ans:
-                    return True
+            if player_ans is not None:
+                answer = player_ans
+                answer = answer.strip().lower()
+                correct_ans = self.splitAnswer()
+                for ans in correct_ans:
+                    if answer == ans:
+                        return True
             return False
         else:
             pass
