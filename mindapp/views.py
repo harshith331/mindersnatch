@@ -75,7 +75,7 @@ def index(request):
         return render(request, 'index.html')
     elif activeTime(request) == 1:
         # Replace this with contest timer
-        return render(request, 'timer.html',{'time':config.start_time.timestamp()})
+        return render(request, 'timer.html',{'time':config.time})
     else:
         # Replace this with ended page
         return HttpResponse("Contest ended.")

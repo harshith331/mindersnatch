@@ -9,7 +9,7 @@ from datetime import datetime
 class Config(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
     end_time = models.DateTimeField(default=datetime.now)
-    time = models.CharField(max_length=40,default='Apr 6, 2020 18:30:00')
+    time = models.CharField(max_length=40,default='April 6, 2020 18:30:00')
 
     def __str__(self):
         return "Start and End Time"

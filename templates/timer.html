@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div id="countdown">
+<!-- <div id="countdown">
   <div id='tiles'></div>
   <div class="labels">
     <li>Days</li>
@@ -12,11 +12,19 @@
   </div>
 </div>
 
-<span id="timer" hidden>{{ time }}</span>
+<span id="timer" hidden>{{ time }}</span> -->
+
+<div class='wrap' ng-app='app'>
+  <div class='time-to'>
+    The world might end in...
+    <span countdown='' date='{{ time }}'>&nbsp;</span>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block js %}
-<script>
+<!-- <script>
   var target_date = parseInt(document.getElementById("timer").innerText) * 1000;
   var days, hours, minutes, seconds;
 
@@ -46,6 +54,57 @@
   function pad(n) {
     return (n < 10 ? '0' : '') + n;
   }
+</script> -->
+<script>
+(function () {
+  angular.module('app', []).directive('countdown', [
+  'Util',
+  '$interval',
+  function (Util,
+  $interval) {
+    return {
+      restrict: 'A',
+      scope: {
+        date: '@' },
+
+      link: function (scope,
+      element) {
+        var future;
+        future = new Date(scope.date);
+        $interval(function () {
+          var diff;
+          diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+          return element.text(Util.dhms(diff));
+        },
+        1000);
+      } };
+
+  }]).
+  factory('Util', [
+  function () {
+    return {
+      dhms: function (t) {
+        var days,
+        hours,
+        minutes,
+        seconds;
+        days = Math.floor(t / 86400);
+        t -= days * 86400;
+        hours = Math.floor(t / 3600) % 24;
+        t -= hours * 3600;
+        minutes = Math.floor(t / 60) % 60;
+        t -= minutes * 60;
+        seconds = t % 60;
+        return [days + 'd',
+        hours + 'h',
+        minutes + 'm',
+        seconds + 's'].join(' ');
+      } };
+
+  }]);
+
+
+}).call(this);
 </script>
 {% endblock %}
 

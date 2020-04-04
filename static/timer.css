@@ -1,75 +1,4 @@
-  /* .oth_header  {
-    font-weight: bolder;
-    font-size: 45px;
-  }
-  
- .boxt {
-    display: inline-block;
-    font-size: 1.5em;
-    list-style-type: none;
-    padding: 1em;
-    text-transform: uppercase;
-  }
-  
-  li span {
-    display: block;
-    font-size: 4.5rem;
-  }
-  .container_t {
-    color: #333;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .boxt{
-      border: 2px black thick;
-      font-size: 30px;
-      color: #ffffff;
-      background: linear-gradient(-45deg, #5511f7, #1f6eff, #4dadff, #13c49a);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      border-radius: 30px;
-      width: 190px;
-     
-  }
-
-  @media screen and (max-width:750px){
-    .boxt{
-        border: 2px black thick;
-        font-size: 15px;
-        color: rgb(8, 8, 8);
-        background: linear-gradient(-45deg, #5511f7, #1f6eff, #4dadff, #13c49a);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-        width: 100px;
-        margin: 5px;
-    }
-    .oth_header  {
-        font-weight: bolder;
-        font-size: 30px;
-        color: #fff2b1;
-      }
-
-  }
-  
-  .timer{
-      padding: 0px;
-
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  } */
-
-  body{ 
+  /* body{ 
     font: normal 13px/20px Arial, Helvetica, sans-serif; word-wrap:break-word;
     color: #eee;
     background: #353535;
@@ -190,4 +119,34 @@
     text-align: center;
     text-transform: uppercase;
     display: inline-block;
-  }
+  } */
+
+  @import "//fonts.googleapis.com/css?family=Bangers";
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.wrap {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  height: 100vh;
+  background: black;
+}
+
+.time-to {
+  text-align: center;
+  font-family: Bangers;
+  color: white;
+  font-size: 35px;
+  letter-spacing: 2px;
+}
+.time-to span {
+  display: block;
+  font-size: 80px;
+  color: red;
+}
