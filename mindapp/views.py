@@ -134,17 +134,17 @@ def answer(request):
                             ans = request.POST.get('ans')
                             timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
                             if past_sitn.checkAnswer(ans):
-                                timer[0].end_time = datetime.datetime.now()
-                                timer[0].save()
-                                player.score += timer[0].timedifference()
-                                timer[0].delete()
-                                player.current_sitn = past_sitn.next_sitn
-                                player.timestamp = datetime.datetime.now()
-                                sitn = Situation.objects.get(situation_no=player.current_sitn)
-                                player.level=sitn.level
-                                player.save()
                                 if player.level<= tot_level:
                                     if player.level <= cur_level:
+                                        timer[0].end_time = datetime.datetime.now()
+                                        timer[0].save()
+                                        player.score += timer[0].timedifference()
+                                        timer[0].delete()
+                                        player.current_sitn = past_sitn.next_sitn
+                                        player.timestamp = datetime.datetime.now()
+                                        sitn = Situation.objects.get(situation_no=player.current_sitn)
+                                        player.level=sitn.level
+                                        player.save()
                                         if sitn.sub == True:
                                             new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
                                             start_time=datetime.datetime.now())
