@@ -9,6 +9,7 @@
 	<title>MinderSnatch</title>
 	<link href="{% static 'timer.css' %}" rel="stylesheet">
 	<link href="{% static 'navbar.css' %}" rel="stylesheet">
+	<link href="{% static 'background.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block stylesheet %}
@@ -17,6 +18,7 @@
 
 <body class="bodypad">
 	{% include "components/navbar.html" %}
+	{% include "components/background.html" %}
 		{% block content %}
 		{% endblock %}
 	<br>
