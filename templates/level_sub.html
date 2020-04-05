@@ -6,8 +6,19 @@
 
 {% block content %}
 <p>{{ sitn.text }}</p>
+
+{% block msgblock %}
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert {% if message.tags %} alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %}"{% endif %} role="alert">{{ message }}</div>
+	{% endfor %}
+	{% endif %}
+	{% endblock %}
+	<div class="question">
+        
 <p id="timer" hidden>{{ timepassed }}</p>
 <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+
 
 <form id="ans" method="post" action="{% url 'situation' %}">
 {% csrf_token %}
