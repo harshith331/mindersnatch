@@ -1,17 +1,23 @@
-{% extends "base.html" %} {% block content %}
-<div>
-    <p>{{ sitn.text }}</p>
-    <p id="timer" hidden>{{ timepassed }}</p>
-    <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
-    <form id="ans" method="post" action="{% url 'situation' %}">
-        {% csrf_token %}
-        <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus />
-        <br />
+{% extends "base.html" %} 
 
-        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit Answer" />
-    </form>
-</div>
-{% endblock %} {% block js %}
+{% block stylesheet %}
+<link rel="stylesheet" href="static/subjective.css" />
+{% endblock %}
+
+{% block content %}
+<p>{{ sitn.text }}</p>
+<p id="timer" hidden>{{ timepassed }}</p>
+<label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+
+<form id="ans" method="post" action="{% url 'situation' %}">
+{% csrf_token %}
+		<input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+		<label for="nme"><span>Enter your answer</span></label>
+		<button type="submit" class="submit">SUBMIT</button>
+</form>
+{% endblock %}
+
+{% block js %}
 <script>
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
