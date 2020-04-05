@@ -17,6 +17,14 @@ html, body {
 body {
   display: grid;
   place-items: center;
+  color: white;
+}
+
+div.question {
+    text-align: center;
+    font-size: 2rem;
+    padding: 10px;
+    font-family: "Roboto", "sans-serif";
 }
 
 .page-content {
@@ -34,7 +42,7 @@ body {
 }
 @media (min-width: 800px) {
   .page-content {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -68,8 +76,6 @@ body {
   background-position: 0 0;
   -webkit-transition: -webkit-transform calc(var(--d) * 1.5) var(--e);
   transition: -webkit-transform calc(var(--d) * 1.5) var(--e);
-  transition: transform calc(var(--d) * 1.5) var(--e);
-  transition: transform calc(var(--d) * 1.5) var(--e), -webkit-transform calc(var(--d) * 1.5) var(--e);
   pointer-events: none;
 }
 .card:after {
@@ -87,8 +93,6 @@ body {
           transform: translateY(-50%);
   -webkit-transition: -webkit-transform calc(var(--d) * 2) var(--e);
   transition: -webkit-transform calc(var(--d) * 2) var(--e);
-  transition: transform calc(var(--d) * 2) var(--e);
-  transition: transform calc(var(--d) * 2) var(--e), -webkit-transform calc(var(--d) * 2) var(--e);
 }
 .card:nth-child(1):before {
   background-image: url(https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
@@ -116,8 +120,6 @@ body {
   padding: 1rem;
   -webkit-transition: -webkit-transform var(--d) var(--e);
   transition: -webkit-transform var(--d) var(--e);
-  transition: transform var(--d) var(--e);
-  transition: transform var(--d) var(--e), -webkit-transform var(--d) var(--e);
   z-index: 1;
 }
 .content > * + * {
@@ -171,10 +173,6 @@ body {
     opacity: 0;
     -webkit-transform: translateY(1rem);
             transform: translateY(1rem);
-    -webkit-transition: opacity var(--d) var(--e), -webkit-transform var(--d) var(--e);
-    transition: opacity var(--d) var(--e), -webkit-transform var(--d) var(--e);
-    transition: transform var(--d) var(--e), opacity var(--d) var(--e);
-    transition: transform var(--d) var(--e), opacity var(--d) var(--e), -webkit-transform var(--d) var(--e);
   }
 
   .card:hover,
