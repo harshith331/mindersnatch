@@ -8,7 +8,7 @@
   <h1>Leader Board</h1>
   <ul>
     {% for player in players %}
-    <li><span>{{ forloop.counter }}</span> <img src="{{ player.image }}" alt=""> <span>{{ player.name }}</span><span>{{ player.score }}</span></li>
+    <li><span>{{ forloop.counter }}</span> <img src="{{ player.image }}" alt=""> <span class="name">{{ player.name }}</span><span>{{ player.score }}</span></li>
     {% endfor %}
   </ul>
 </div>

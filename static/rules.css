@@ -1,36 +1,38 @@
 body {
-  font-family: "Century Gothic", 'Lato', sans-serif;
-  background-color: #c8c8c8;
+    padding: 0;
+    margin: 0;
 }
 
 a {
   text-decoration: none;
 }
 
-.et-hero-tabs, .et-slide {
+.et-hero-tabs,
+.et-slide {
+  font-family: "Century Gothic", 'Lato', sans-serif;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  justify-content: center;
+          justify-content: center;
   -webkit-box-align: center;
-  align-items: center;
-  height: 100vh;
+          align-items: center;
+  height: 90vh;
   position: relative;
-  background: #eee;
+  color: white;
   text-align: center;
-  padding: 0 2em;
-}
 
-.et-hero-tabs h1, .et-slide h1 {
+}
+.et-hero-tabs h1,
+.et-slide h1 {
   font-size: 2rem;
   margin: 0;
   letter-spacing: 1rem;
 }
-
-.et-hero-tabs h3, .et-slide h3 {
+.et-hero-tabs h3,
+.et-slide h3 {
   font-size: 1rem;
   letter-spacing: 0.3rem;
   opacity: 0.6;
@@ -41,40 +43,35 @@ a {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  flex-direction: row;
-  position: absolute;
+          flex-direction: row;
+  position: fixed;
+  z-index: 1;
   bottom: 0;
   width: 100%;
   height: 70px;
+  font-family: "Century Gothic", 'Lato', sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background: #fff;
-  z-index: 10;
-}
-
-.et-hero-tabs-container--top {
-  position: fixed;
-  top: 0;
 }
 
 .et-hero-tab {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
-  justify-content: center;
+          justify-content: center;
   -webkit-box-align: center;
-  align-items: center;
+          align-items: center;
   -webkit-box-flex: 1;
-  flex: 1;
+          flex: 1;
   color: #000;
   letter-spacing: 0.1rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   font-size: 0.8rem;
 }
-
 .et-hero-tab:hover {
   color: white;
-  background: #a2a2a3;
+  background: rgba(102, 177, 241, 0.8);
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -84,18 +81,21 @@ a {
   bottom: 0;
   width: 0;
   height: 6px;
-  background: gray;
+  background: #66B1F1;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
 }
 
 @media (min-width: 800px) {
-  .et-hero-tabs h1, .et-slide h1 {
+  .et-hero-tabs h1,
+  .et-slide h1 {
     font-size: 3rem;
   }
-  .et-hero-tabs h3, .et-slide h3 {
+  .et-hero-tabs h3,
+  .et-slide h3 {
     font-size: 1rem;
   }
+
   .et-hero-tab {
     font-size: 1rem;
   }

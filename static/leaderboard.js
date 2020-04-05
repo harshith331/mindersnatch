@@ -1,5 +1,5 @@
 anime({
-  targets: "ul li span",
+  targets: "ul li span.name",
   opacity: [0, 1],
   translateX: ["500%", "0%"],
   duration: 1000,
