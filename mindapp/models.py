@@ -10,7 +10,8 @@ class Config(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
     end_time = models.DateTimeField(default=datetime.now)
     time = models.CharField(max_length=40,default='April 6, 2020 18:30:00')
-
+    current_level=models.IntegerField(default=1)
+    total_level=models.IntegerField(default=1)
     def __str__(self):
         return "Start and End Time"
 
@@ -24,6 +25,7 @@ class Player(models.Model):
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     timestamp = models.DateTimeField(default=datetime.now)
+    level=models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
@@ -52,6 +54,7 @@ class option(models.Model):
 class Situation(models.Model):
     situation_no= models.IntegerField(unique=True) 
     image = models.ImageField(upload_to = 'images',default='images/level1.jpg')
+    level=models.IntegerField(default=1)
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')
     sub=models.BooleanField(default=False)
     #for subjective sitn#
