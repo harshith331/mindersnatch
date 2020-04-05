@@ -1,0 +1,119 @@
+body {
+  background-color: black;  
+  overflow: hidden;
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.underline {
+  border: none;
+  color: red;
+  background-color: red;
+  height: 3px;
+  width: 20%;
+  position: absolute;
+  left: -50%;
+}
+
+.navbar ul li {
+    z-index: 2;
+  display: inline;
+  text-align: center;
+}
+
+.navbar a {
+  padding: 8px;
+  color: white;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  margin: 10px 5px;
+}
+
+.navbar a:hover {
+  text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.9);
+}
+
+.navbar-icon {
+  display: none;
+  color: white;
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.navbar-icon:hover {
+  background: #000000 radial-gradient(circle, transparent 1%, #000000 1%) center/15000%;
+}
+
+.navbar-icon:active {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.navbar-icon i {
+  font-size: 2rem;
+  position: inherit;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navbar-icon:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-icon {
+    display: block;
+  }
+  .navbar ul{
+    display: none;
+  }
+  .underline {
+    display: none;
+  }
+}
+
+.overlay {
+  display: flex;
+  margin: auto;
+  background: blue;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  position: fixed;
+  align-content: space-around;
+  overflow: hidden;
+}
+
+.overlay ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  overflow: hidden;
+}
+
+.overlay ul li {
+   display: block;
+   list-style: none;
+   padding-top: 25px;
+  text-align: center;
+  flex: 1;
+}

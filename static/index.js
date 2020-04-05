@@ -1,6 +1,6 @@
 // //Svg Animation
 anime({
-  targets: 'path',
+  targets: 'svg.desktop path',
   strokeDashoffset: [anime.setDashoffset, 0],
   easing: 'easeInOutSine',
   duration: 1500,
@@ -8,10 +8,11 @@ anime({
 });
 
 anime({
-  targets: ".navbar ul li",
-  opacity: [0, 1],
-  scale: [0, 1],
-  easing: 'easeInOutQuad'
+  targets: 'svg.mobile path',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 1500,
+  delay: function(el, i) { return i * 250 }
 });
 
 // Subtitle Animation
@@ -52,19 +53,3 @@ anime.timeline()
   easing: 'easeInOutQuad',
   delay: 200
 });
- 
-
-// Navbar Animation
-$(".navbar li").mouseenter(function() {
-  anime({
-    targets: '.underline',
-    left: $(this).offset().left
-  })
-  $(".underline").css("width", $(this).width());
-}).mouseleave(function() {
- $(".underline").css("width", $(".active").width());
-  anime({
-    targets: '.underline',
-    left: $(".active").offset().left
-  })
-})
