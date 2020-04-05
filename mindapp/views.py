@@ -120,7 +120,7 @@ def answer(request):
                                         if player.level <= cur_level:
                                             if sitn.sub == True:
                                                 timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                                                return render(request, 'level_sub.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
+                                                return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
                                             else:
                                                 return render(request, 'level.html', {'player': player, 'sitn': sitn})
                                         else:
@@ -148,7 +148,7 @@ def answer(request):
                                         if sitn.sub == True:
                                             new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
                                             start_time=datetime.datetime.now())
-                                            return render(request, 'level_sub.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
+                                            return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
                                         else:
                                             return render(request, 'level.html', {'player': player, 'sitn': sitn})
                                     else:
@@ -156,7 +156,7 @@ def answer(request):
                                 else:
                                     return HttpResponse("player has won")
                             else:
-                                return render(request, 'level_sub.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
+                                return render(request, 'subjective_level.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
                     except : 
                         return render(request,'404.html',{'message':"Wait for new Situation!"})
                 except:
@@ -169,7 +169,7 @@ def answer(request):
                         if sitn.sub == True:
                             timer = SituationTimer.objects.get_or_create(
                                 player=player, situation=sitn)
-                            return render(request, "level_sub.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
+                            return render(request, "subjective_level.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                         else:
                             return render(request, "level.html", {'player': player, 'sitn': sitn})
                     except : 
