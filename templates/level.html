@@ -10,24 +10,30 @@
 	<form method="POST" action="/level">
 		{% csrf_token %}
 		<main class="page-content">
+			{% if sitn.option_1  %}
 			<div class="card">
 				<div class="content">
 					<h2 class="title">{{ sitn.option_1.text }}</h2>
 					<button class="btn" value="{{ sitn.option_1.id }}" type="submit" name="op_no">Submit Answer</button>
 				</div>
 			</div>
+			{%endif%}
+			{% if sitn.option_2  %}
 			<div class="card">
 				<div class="content">
 					<h2 class="title">{{ sitn.option_2.text }}</h2>
 					<button class="btn" value="{{ sitn.option_2.id }}" type="submit" name="op_no">Submit Answer</button>
 				</div>
 			</div>
+			{%endif%}
+			{% if sitn.option_3  %}
 			<div class="card">
 				<div class="content">
 					<h2 class="title">{{ sitn.option_3.text }}</h2>
 					<button class="btn" value="{{ sitn.option_3.id }}" type="submit" name="op_no">Submit Answer</button>
 				</div>
 			</div>
+			{%endif%}
 		</main>
 	</form>
 </div>

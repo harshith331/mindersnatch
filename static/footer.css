@@ -16,7 +16,6 @@ div.footer .row {
 .footer .row h1 {
     line-height: 50px;
     margin-left: 15px;
-    font-size: 1.5rem;
      color: white;
      text-align: center;
      font-family: "Roboto", "sans-serif";
@@ -28,3 +27,14 @@ div.footer .row {
     width: 50px;
     border-radius: 50%;
 }
+
+@media screen and (max-width: 750px) {
+    .footer{
+        margin: auto;
+        width: 20px;
+        font-size: 10px;
+    }
+    .row{
+        width: fit-content;
+    }
+    }
