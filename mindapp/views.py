@@ -193,7 +193,7 @@ def leaderboard(request):
     if request.user:
         if request.user.is_authenticated:
             player = Player.objects.get(user=request.user)
-            context = {'user': player}
+            context['user'] = player
     return render(request, "leaderboard.html", context)
 
 

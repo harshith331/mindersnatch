@@ -7,11 +7,9 @@
 <div class="container">
   <h1>Leader Board</h1>
   <ul>
-    <li><span>1.</span> <img src="https://lh3.googleusercontent.com/a-/AOh14GhY68NjJZEAe6eyD3DzPEZZ2wXOoJ9tnicHNmyCWQ" alt=""> <span>Lorem, ipsum.</span></li>
-    <li><span>2.</span><img src="https://lh3.googleusercontent.com/a-/AOh14GhY68NjJZEAe6eyD3DzPEZZ2wXOoJ9tnicHNmyCWQ" alt=""> <span>Lorem, ipsum.</span></li>
-    <li><span>1.</span><img src="https://lh3.googleusercontent.com/a-/AOh14GhY68NjJZEAe6eyD3DzPEZZ2wXOoJ9tnicHNmyCWQ" alt=""> <span>Lorem, ipsum.</span></li>
-    <li><span>3.</span><img src="https://lh3.googleusercontent.com/a-/AOh14GhY68NjJZEAe6eyD3DzPEZZ2wXOoJ9tnicHNmyCWQ" alt=""> <span>Lorem, ipsum.</span></li>
-    <li><span>4.</span><img src="https://lh3.googleusercontent.com/a-/AOh14GhY68NjJZEAe6eyD3DzPEZZ2wXOoJ9tnicHNmyCWQ" alt=""> <span>Lorem, ipsum.</span></li>
+    {% for player in players %}
+    <li><span>{{ forloop.counter }}</span> <img src="{{ player.image }}" alt=""> <span>{{ player.name }}</span><span>{{ player.score }}</span></li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}

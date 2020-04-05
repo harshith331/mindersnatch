@@ -1,152 +1,102 @@
-.page-content {
-    position: relative;
-    background: #fafafa;
-     width: 100%;
-  padding:15px 0px;
+body {
+  font-family: "Century Gothic", 'Lato', sans-serif;
+  background-color: #c8c8c8;
 }
 
-svg
-{
-  padding:10px;
-  background-color:white;
-      box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
-  border-radius:5px;
+a {
+  text-decoration: none;
 }
 
-.container{
-    width:80%;
-    }
-
-
-
-#l5
-{
-    cursor: pointer;
-    animation: swing ease-in-out 1.5s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tabs, .et-slide {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background: #eee;
+  text-align: center;
+  padding: 0 2em;
 }
 
-#leaf2
-{
-  cursor: pointer;
-    animation: swing ease-in-out 1.7s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tabs h1, .et-slide h1 {
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: 1rem;
 }
 
-#l3
-{
-  cursor: pointer;
-    animation: swingreverse ease-in-out 1.7s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tabs h3, .et-slide h3 {
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  opacity: 0.6;
 }
 
-#l4
-{
-  cursor: pointer;
-    animation: swingreverse ease-in-out 1.6s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tabs-container {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  z-index: 10;
 }
 
-#leaf1
-{
-  cursor: pointer;
-    animation: swingreverse ease-in-out 1.9s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tabs-container--top {
+  position: fixed;
+  top: 0;
 }
 
-#l1
-{
-  cursor: pointer;
-    animation: swingreverse ease-in-out 1.5s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tab {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  flex: 1;
+  color: #000;
+  letter-spacing: 0.1rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  font-size: 0.8rem;
 }
 
-#facemain
-{
-    cursor: pointer;
-    animation: girlface ease-in-out 1.8s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tab:hover {
+  color: white;
+  background: #a2a2a3;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-
-#book
-{
-  cursor: pointer;
-    animation: book ease-in-out 2.5s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
+.et-hero-tab-slider {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 6px;
+  background: gray;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
 }
 
-
-#dogt
-{
-  cursor: pointer;
-    animation: swingreverse ease-in-out 0.9s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
-}
-
-#oldhand
-{
-    cursor: pointer;
-    animation: oldhand ease-in-out 1.5s infinite alternate;
-    transform-origin: 34px bottom;
-    transform-box: fill-box;
-}
-
-#oldface12
-{
-  cursor: pointer;
-    animation: oldhand ease-in-out 1.3s infinite alternate;
-    transform-origin: bottom;
-    transform-box: fill-box;
-}
-
-
-@keyframes girlface
-{
-  0% {transform: rotate(2deg);}
-  100% { transform: rotate(-3deg); }
-}
-
-@keyframes oldhand {
-    0% { transform: rotate(5deg); }
-    100% { transform: rotate(-5deg); }
-}
-
-@keyframes swing {
-    0% { transform: rotate(5deg); }
-    100% { transform: rotate(-5deg); }
-}
-
-
-@keyframes swingreverse {
-    0% { transform: rotate(-6deg); }
-    100% { transform: rotate(6deg); }
-}
-
-
-@keyframes book {
-    0% { transform: rotate(-4deg); }
-    100% { transform: rotate(4deg); }
-}
-
-
-svg #Home {
-  stroke:#37233c;
-  stroke-width:1px;
-  fill:#fd1b0b;
-}
-
-
-#Vector_62, #Vector_61, #Vector_60, #Vector_59, #Vector_63, #Vector_64{
-  transform-box:fill-box;
-  transform-origin:center;
+@media (min-width: 800px) {
+  .et-hero-tabs h1, .et-slide h1 {
+    font-size: 3rem;
+  }
+  .et-hero-tabs h3, .et-slide h3 {
+    font-size: 1rem;
+  }
+  .et-hero-tab {
+    font-size: 1rem;
+  }
 }
