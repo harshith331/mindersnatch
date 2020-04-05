@@ -1,23 +1,28 @@
-{% load static %}
-<!DOCTYPE html>
+{% extends "base.html" %} 
 
-<head>
-    <title>Subjective - Mindersnatch</title>
-    <link rel="stylesheet" href="{% static 'subjective.css' %}">
-</head>
+{% block stylesheet %}
+<link rel="stylesheet" href="static/subjective.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap">
+{% endblock %}
 
-<body>
-    <p style="font-family: Ubuntu;">{{ sitn.text }}</p>
-    <p id="timer" hidden>{{ timepassed }}</p>
-    <small id="hours">00</small>:<small id="minutes">00</small>:<small id="seconds">00</small>
-    <form id="ans" method="post" action="{% url 'situation' %}">
-        {% csrf_token %}
-        <input type="text" name="ans" class="question" id="nme" required autocomplete="off" />
-        <label for="nme"><span>Your answer</span></label>
-        <input type="submit" value="Submit!" />
+{% block content %}
+<p id="timer" hidden>{{ timepassed }}</p>
+<p class="timer">
+    <span id="hours">00</span> : <span id="minutes">00</span> : <span id="seconds">00</span>
+    <!-- 20 : 30 : 05  -->
+</p>
+<div class="container">
+  <p class="question">{{ sitn.text }}</p>
+  <form id="ans" method="post" action="{% url 'situation' %}">
+  {% csrf_token %}
+  <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+		<label for="nme"><span>Enter your answer</span></label>
+		<input type="submit" value="SUBMIT" />
     </form>
-</body>
+</div>
+{% endblock %}
 
+{% block js %}
 <script>
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
@@ -41,3 +46,4 @@
         }
     }
 </script>
+{% endblock %}

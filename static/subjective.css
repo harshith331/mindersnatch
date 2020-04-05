@@ -1,29 +1,57 @@
 body {
-    color: gray;
+  background-color: black;
+  color: white;
+  font-family: "Roboto", "sans-serif";
+  height: 100%;
 }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 2.5%;
+.question {
+  font-size: 1.5rem;
+  padding-bottom: 15px;
 }
 
-button.submit {
-    background-color: red;
-    color: white;
-    padding: 15px;
-    border: none;
+div.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timer {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  position: absolute;
+    right: 5%;
+    bottom: 5%;
+    display: inline;
+}
+
+@media screen and (max-width: 500px) {
+  div.container {
+  transform: translate(-90%, -50%);
+}
+  .question {
+  font-size: 0.9rem;
+  padding-bottom: 10px;
+}
+  
+  div.timer {
+  font-size: 1rem;
+}
 }
 
 input,
-span,
+div.container span,
 label,
 textarea {
+  margin-top: 10px;
     font-family: 'Ubuntu', sans-serif;
     display: block;
     margin: 10px;
     padding: 5px;
     border: none;
     font-size: 22px;
+  color: white;
 }
 
 textarea:focus,
@@ -45,7 +73,13 @@ textarea.question {
     background: rgba(0, 0, 0, 0);
     transition: padding-top 0.2s ease, margin-top 0.2s ease;
     overflow-x: hidden;
-    /* Hack to make "rows" attribute apply in Firefox. */
+}
+
+@media screen and (max-width: 500px) {
+  input.question,
+textarea.question {
+  font-size: 30px; 
+  }
 }
 
 
@@ -118,6 +152,13 @@ textarea.question+label>span {
     transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
 }
 
+@media screen and (max-width: 500px) {
+  input.question+label>span,
+textarea.question+label>span {
+  font-size: 30px; 
+  }
+}
+
 input[type="submit"] {
     -webkit-transition: opacity 0.2s ease, background 0.2s ease;
     transition: opacity 0.2s ease, background 0.2s ease;
@@ -126,6 +167,8 @@ input[type="submit"] {
     margin: 10px 0 0 0;
     padding: 10px;
     cursor: pointer;
+  color: black;
+  font-family: "Roboto", "sans-serif";
 }
 
 input[type="submit"]:hover {
@@ -157,4 +200,8 @@ textarea.question:invalid~input[type="submit"] {
     100% {
         opacity: 1;
     }
+}
+
+div.timer span {
+    display: inline;
 }
