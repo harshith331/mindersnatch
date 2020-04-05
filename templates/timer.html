@@ -1,62 +1,26 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block content %}
-
-<!-- <div id="countdown">
-  <div id='tiles'></div>
-  <div class="labels">
-    <li>Days</li>
-    <li>Hours</li>
-    <li>Mins</li>
-    <li>Secs</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindersnatch</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+  <link rel="stylesheet" href="{% static 'timer.css' %}">
+</head>
+<body>
+  <div class='wrap' ng-app='app'>
+    <div class='time-to'>
+      The world might end in...
+      <span countdown='' date='{{ time }}'>&nbsp;</span>
+    </div>
   </div>
-</div>
+</body>
+</html>
 
-<span id="timer" hidden>{{ time }}</span> -->
-
-<div class='wrap' ng-app='app'>
-  <div class='time-to'>
-    The world might end in...
-    <span countdown='' date='{{ time }}'>&nbsp;</span>
-  </div>
-</div>
-
-
-{% endblock %}
-
-{% block js %}
-<!-- <script>
-  var target_date = parseInt(document.getElementById("timer").innerText) * 1000;
-  var days, hours, minutes, seconds;
-
-  var countdown = document.getElementById("tiles");
-
-  getCountdown();
-
-  setInterval(function () { getCountdown(); }, 1000);
-
-  function getCountdown() {
-    var current_date = new Date().getTime();
-    var seconds_left = (target_date - current_date) / 1000;
-
-    days = pad(parseInt(seconds_left / 86400));
-    seconds_left = seconds_left % 86400;
-
-    hours = pad(parseInt(seconds_left / 3600));
-    seconds_left = seconds_left % 3600;
-
-    minutes = pad(parseInt(seconds_left / 60));
-    seconds = pad(parseInt(seconds_left % 60));
-
-    // format countdown string + set tag value
-    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
-  }
-
-  function pad(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
-</script> -->
 <script>
 (function () {
   angular.module('app', []).directive('countdown', [
@@ -108,9 +72,5 @@
 
 }).call(this);
 </script>
-{% endblock %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'timer.css' %}">
-<link rel="stylesheet" href="static/index.css">
-{% endblock %}
+
