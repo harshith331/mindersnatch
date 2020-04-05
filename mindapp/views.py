@@ -156,6 +156,7 @@ def answer(request):
                                 else:
                                     return HttpResponse("player has won")
                             else:
+                                messages.error(request, "Wrong Answer!, Try Again")
                                 return render(request, 'subjective_level.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
                     except : 
                         return render(request,'404.html',{'message':"Wait for new Situation!"})
