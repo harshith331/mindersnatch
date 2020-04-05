@@ -169,7 +169,7 @@ def answer(request):
                         if sitn.sub == True:
                             timer = SituationTimer.objects.get_or_create(
                                 player=player, situation=sitn)
-                            return render(request, "level_sub.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
+                            return render(request, "subjective_level.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                         else:
                             return render(request, "level.html", {'player': player, 'sitn': sitn})
                     except : 
