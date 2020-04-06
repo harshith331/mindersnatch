@@ -187,7 +187,7 @@ def answer(request):
 
 
 def leaderboard(request):
-    players = Player.objects.order_by('level','-score','timestamp')
+    players = Player.objects.all().order_by('-level','score','timestamp')
     context = {'players': players}
     if request.user:
         if request.user.is_authenticated:
