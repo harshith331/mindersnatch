@@ -20,20 +20,20 @@
 		{% if sitn.option_1 %}
 		<form method="POST" action="{% url 'situation' %}">
 			{% csrf_token %}
-			<li class="nes-pointer"><button value="{{ sitn.option_1.id }}"
-					name="op_no">{{ sitn.option_1.text }}</button></li>
+			<li class="nes-pointer"><input type="submit" value="{{ sitn.option_1.id }}"
+					name="op_no" hi>{{ sitn.option_1.text }}</input ></li>
 		</form>
 		{% endif %}
 		{% if sitn.option_2 %}
 		<form method="POST" action="{% url 'situation' %}">
 			{% csrf_token %}
-			<li><button value="{{ sitn.option_2.id }}" name="op_no">{{ sitn.option_2.text }}</button></li>
+			<li><input type="submit" value="{{ sitn.option_2.id }}" name="op_no">{{ sitn.option_2.text }}</input></li>
 		</form>
 		{% endif %}
 		{% if sitn.option_3 %}
 		<form method="POST" action="{% url 'situation' %}">
 			{% csrf_token %}
-			<li><button value="{{ sitn.option_3.id }}" name="op_no">{{ sitn.option_3.text }}</button></li>
+			<li><input type="submit" value="{{ sitn.option_3.id }}" name="op_no">{{ sitn.option_3.text }}</input></li>
 		</form>
 		{% endif %}
 	</ul>
