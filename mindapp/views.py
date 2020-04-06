@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
@@ -203,6 +205,11 @@ def rules(request):
             player = Player.objects.get(user=request.user)
             context = {'user': player}
     return render(request, "rules.html", context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(index)
 
 def page_not_found_view(request, exception):
     return render(request, "404.html", status=404)

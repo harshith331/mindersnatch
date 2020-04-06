@@ -13,6 +13,11 @@ body {
   z-index: 1;
 }
 
+.logout_button{
+  float: right;
+  margin-left: 30%;
+}
+
 .navbar .navbar-list {
   display: flex;
   justify-content: center;
@@ -38,6 +43,7 @@ body {
   display: inline;
   text-align: center;
   margin: 10px 5px;
+  margin-left: 50px;
 }
 
 .navbar a {
@@ -137,3 +143,4 @@ body {
   text-align: center;
   flex: 1;
 }
+

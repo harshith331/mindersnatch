@@ -4,11 +4,17 @@
   </div>
     <ul class="navbar-list">
       <li>
-        <a href="/" class="active">HOME</a>
+        <a href="{% url 'index' %}" class="active">HOME</a>
       </li>
       <li>
-        <a href="/rules">RULE</a>
+        <a href="{% url 'rules' %}">RULE</a>
       </li>
-      <li><a href="/leaderboard">LEADERBOARD</a></li>
+      <li><a href="{% url 'leaderboard' %}">LEADERBOARD</a></li>
+      {%if request.user.is_authenticated%}
+      <li class="logout_button">
+        <a href="/logout">LOGOUT</a>
+      </li>
+      {%endif%}
     </ul>
+    
   </div>
