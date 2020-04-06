@@ -1,0 +1,40 @@
+/* div.footer {
+    position: inherit;
+    color: white;
+    width: 100vw;
+} */
+
+div.footer .row {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.footer .row h1 {
+    line-height: 50px;
+    margin-left: 15px;
+     color: white;
+     text-align: center;
+     font-family: "Roboto", "sans-serif";
+     margin: 0px !important;
+}
+
+.footer .row img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 750px) {
+    .footer{
+        margin: auto;
+        width: 20px;
+        font-size: 10px;
+    }
+    .row{
+        width: fit-content;
+    }
+    }

@@ -103,8 +103,8 @@ def answer(request):
                                 option_c = option.objects.get(id=op_no)
                                 if option_c.end:
                                     # player is dead redirect to start node
-                                    player.current_sitn = Situation.objects.get(id=1).situation_no
-                                    player.level=Situation.objects.get(id=1).level
+                                    player.current_sitn = Situation.objects.get(situation_no=1).situation_no
+                                    player.level=Situation.objects.get(situation_no=1).level
                                     player.save()
                                     message = option_c.message
                                     return render(request, 'dead.html', {'player': player, 'message': message})

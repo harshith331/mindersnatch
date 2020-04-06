@@ -64,7 +64,7 @@ div.container {
   height: 70px;
 }
 
-.row {
+.container .row {
   width: 100%;
   position: absolute;
   top: 68%;
