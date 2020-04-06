@@ -261,7 +261,7 @@
 {% if user.email %}
 <div class="profile-container">
 	<img class="profile" src="{{ user.image }}" alt="">
-	<span><a href="{% url 'situation' %}" style="text-decoration: none; color: white !important;">Start the game</a></span>
+	<span><a class="start_button" href="{% url 'situation' %}" style="text-decoration: none; color: white !important;">Start the game</a></span>
 </div>
 {% else %}
 <div class="row">

@@ -51,11 +51,25 @@ div.container {
 .profile-container span{
   position: absolute;
   margin-left: 10px;
-  left: 50%;
+  left: 45%;
   font-size: 2rem;
   line-height: 70px;
   z-index: -1;
   font-family: "Roboto", sans-serif;
+}
+@media screen and (max-width: 500px) {
+  .profile-container span{
+    position: absolute;
+    margin-left: 10px;
+    left: 40%;
+    font-size: 2rem;
+    line-height: 70px;
+    z-index: -1;
+    font-family: "Roboto", sans-serif;
+  }
+  .start_button{
+    font-size: 20px;
+  }
 }
 .profile {
   position: absolute;
