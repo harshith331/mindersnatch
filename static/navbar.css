@@ -37,6 +37,7 @@ body {
 
 .navbar ul {
   padding: 20px;
+  background: black;
 }
 
 .navbar ul li {

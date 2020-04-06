@@ -60,7 +60,7 @@ def saveLeaderboard(request):
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="leaderboards.csv"'
         writer = csv.writer(response)
-        for player in Player.objects.order_by("score", "timestamp"):
+        for player in Player.objects.order_by("-level","score", "timestamp"):
             writer.writerow([player.user.username, player.score])
         return response
     else:
@@ -88,10 +88,10 @@ def index(request):
 
 @login_required(login_url="/")
 def answer(request):
-    config=Config.objects.all().first()
-    cur_level=config.current_level
-    tot_level=config.total_level
-    player_check=Player.objects.get(user=request.user)
+    config = Config.objects.all().first()
+    cur_level = config.current_level
+    tot_level = config.total_level
+    player_check = Player.objects.get(user=request.user)
     if player_check.level <= tot_level:
         if player_check.level <=cur_level:
             if request.method == 'POST':

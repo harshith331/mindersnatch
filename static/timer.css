@@ -17,14 +17,14 @@
   
   .time-to {
       text-align: center;
-      font-family: Bangers;
+      font-family: "Press Start 2P";
       color: white;
-      font-size: 35px;
+      font-size: 25px;
       letter-spacing: 2px;
   }
   
   .time-to span {
       display: block;
-      font-size: 80px;
+      font-size: 60px;
       color: red;
   }
