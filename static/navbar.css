@@ -38,6 +38,7 @@ body {
   display: inline;
   text-align: center;
   margin: 10px 5px;
+  margin-left: 50px;
 }
 
 .navbar a {

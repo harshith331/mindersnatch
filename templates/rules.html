@@ -1,48 +1,64 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block stylesheet %}
-<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-<link rel="stylesheet" href="static/rules.css">
-{% endblock %}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rules</title>
+	<link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
+	<link rel="stylesheet" href="{% static 'rules.css' %}">
+	<link href="{% static 'navbar.css' %}" rel="stylesheet">
+	<link href="{% static 'background.css' %}" rel="stylesheet">
+</head>
 
-{% block content %}
-	  <section class="et-hero-tabs">
+<body class="bodypad">
+
+	{% include "components/navbar.html" %}
+	{% include "components/background.html" %}
+	<section class="et-hero-tabs">
 		<h1>RULES</h1>
-		<h3>Some ground rules how you can save all of us</h3>
+		<h3>How you can save all of us!!</h3>
 		<div class="et-hero-tabs-container">
-		  <a class="et-hero-tab" href="#tab-es6">Rule 1</a>
-		  <a class="et-hero-tab" href="#tab-flexbox">Rule 2</a>
-		  <a class="et-hero-tab" href="#tab-react">Rule 3</a>
-		  <a class="et-hero-tab" href="#tab-angular">Rule 4</a>
-		  <a class="et-hero-tab" href="#tab-other">Rule 5</a>
-		  <span class="et-hero-tab-slider"></span>
+			<a class="et-hero-tab" href="#tab-rule1">Rule 1</a>
+			<a class="et-hero-tab" href="#tab-rule2">Rule 2</a>
+			<a class="et-hero-tab" href="#tab-rule3">Rule 3</a>
+			<a class="et-hero-tab" href="#tab-rule4">Rule 4</a>
+			<a class="et-hero-tab" href="#tab-rule5">Rule 5</a>
+			<span class="et-hero-tab-slider"></span>
 		</div>
-	  </section>
-	
-	  <main class="et-main">
-		<section class="et-slide" id="tab-es6">
-		  <h1>Rule 1</h1>
-		  <h3><p>something about Rule 1</p></h3>
-		</section>
-		<section class="et-slide" id="tab-flexbox">
-		  <h1>Rule 2</h1>
-		  <h3>something about Rule 2</h3>
-		</section>
-		<section class="et-slide" id="tab-react">
-		  <h1>Rule 3</h1>
-		  <h3>something about it</h3>
-		</section>
-		<section class="et-slide" id="tab-angular">
-		  <h1>Rule 4</h1>
-		  <h3>something about it</h3>
-		</section>
-		<section class="et-slide" id="tab-other">
-		  <h1>Rule 5</h1>
-		  <h3>something about it</h3>
-		</section>
-	  </main>
-{% endblock %}
+	</section>
 
-{% block js %}
-<script src="static/rules.js"></script>
-{% endblock %}
+	<main class="et-main">
+		<section class="et-slide" id="tab-rule1">
+			<h1>Rule 1</h1>
+			<h3>
+				<p>Participants are to traverse through the mission choosing one option for a particular situation.</p>
+			</h3>
+		</section>
+		<section class="et-slide" id="tab-rule2">
+			<h1>Rule 2</h1>
+			<h3>In case you reach a dead node, you will be redirected to the 1st situation.
+			</h3>
+		</section>
+		<section class="et-slide" id="tab-rule3">
+			<h1>Rule 3</h1>
+			<h3>The situation could ask you to choose options, or it could be a subjective question to test your skills.</h3>
+		</section>
+		<section class="et-slide" id="tab-rule4">
+			<h1>Rule 4</h1>
+			<h3>You will be penalised based on the number of nodes you have traversed and the level you are on. For subjective questions, you get a penalty of +1 for solving it under 5 minutes and +2 otherwise.</h3>
+		</section>
+		<section class="et-slide" id="tab-rule5">
+			<h1>Rule 5</h1>
+			<h3>This game is totally fictitious and intended for fun only.</h3>
+		</section>
+	</main>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+	<script src="{% static 'rules.js' %}"></script>
+	<script src="{% static 'navbar.js' %}"></script>
+</body>
+</html>
