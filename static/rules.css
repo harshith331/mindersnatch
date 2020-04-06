@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+.navbar {
+    z-index: 1;
+}
+
 .et-hero-tabs,
 .et-slide {
   font-family: "Press Start 2P";

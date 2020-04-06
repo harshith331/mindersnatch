@@ -9,9 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div id='stars'></div>
-<div id='stars2'></div>
-<div id='stars3'></div>
+{% include "components/navbar.html" %}
 <small id="timepassed" hidden>{{ timepassed }}</small>
 <div class="timer">
     <span class="hours" id="hours">00</span> : <span class="minutes" id="minutes">00</span> : <span class="seconds"

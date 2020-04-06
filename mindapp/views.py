@@ -109,7 +109,7 @@ def answer(request):
                                     player.level=Situation.objects.get(situation_no=1).level
                                     player.save()
                                     message = option_c.message
-                                    return render(request, 'dead.html', {'player': player, 'message': message})
+                                    return render(request, 'dead.html', {'user': player, 'message': message})
                                 else:
                                     # option is non terminating one player progresses to next level
                                     player.current_sitn = option_c.next_sit
@@ -122,9 +122,9 @@ def answer(request):
                                         if player.level <= cur_level:
                                             if sitn.sub == True:
                                                 timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                                                return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
+                                                return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
                                             else:
-                                                return render(request, 'level.html', {'player': player, 'sitn': sitn})
+                                                return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                         else:
                                             return HttpResponse("daily limit exceeded")
                                     else:
@@ -150,16 +150,16 @@ def answer(request):
                                         if sitn.sub == True:
                                             new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
                                             start_time=datetime.datetime.now())
-                                            return render(request, 'subjective_level.html', {'player': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
+                                            return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
                                         else:
-                                            return render(request, 'level.html', {'player': player, 'sitn': sitn})
+                                            return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                     else:
                                         return HttpResponse("daily limit exceeded")
                                 else:
                                     return HttpResponse("player has won")
                             else:
                                 messages.error(request, "Wrong Answer!, Try Again")
-                                return render(request, 'subjective_level.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
+                                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
                     except : 
                         return render(request,'404.html')
                 except:
@@ -172,9 +172,9 @@ def answer(request):
                         if sitn.sub == True:
                             timer = SituationTimer.objects.get_or_create(
                                 player=player, situation=sitn)
-                            return render(request, "subjective_level.html", {'player': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
+                            return render(request, "subjective_level.html", {'user': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                         else:
-                            return render(request, "level.html", {'player': player, 'sitn': sitn})
+                            return render(request, "level.html", {'user': player, 'sitn': sitn})
                     except : 
                         return render(request,'404.html')
                 except : 

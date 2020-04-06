@@ -10,11 +10,22 @@
         <a href="{% url 'rules' %}">RULE</a>
       </li>
       <li><a href="{% url 'leaderboard' %}">LEADERBOARD</a></li>
-      {%if request.user.is_authenticated%}
+      <!-- {%if request.user.is_authenticated%}
       <li class="logout_button">
         <a href="/logout">LOGOUT</a>
       </li>
-      {%endif%}
+      {%endif%} -->
+      <li class="profile nes-pointer" onclick="document.getElementById('dialog-dark-rounded').showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
     </ul>
-    
   </div>
+
+  <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+    <form method="dialog">
+      <p class="title">Score: 70</p>
+      <p>Level: 20</p>
+      <menu class="dialog-menu">
+        <button class="nes-btn">Cancel</button>
+        <a class="nes-btn is-primary" href="/logout">Log out</a>
+      </menu>
+    </form>
+  </dialog>

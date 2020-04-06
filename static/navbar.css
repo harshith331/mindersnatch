@@ -10,7 +10,6 @@ body {
   position: fixed;
   top: 0%;
   width: 100%;
-  z-index: 1;
 }
 
 .logout_button{
@@ -44,7 +43,6 @@ body {
   display: inline;
   text-align: center;
   margin: 10px 5px;
-  margin-left: 50px;
 }
 
 .navbar a {
@@ -94,6 +92,9 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+    .navbar {
+        z-index: 1;
+    }
   .navbar-icon {
     display: block;
   }
@@ -101,6 +102,7 @@ body {
   .navbar .navbar-list {
     visibility: hidden;
     flex-direction: column;
+    background-color: #676767;
   }
   .underline {
     display: none;
@@ -112,36 +114,23 @@ body {
     visibility: visible;
     flex-direction: row;
   }
+
+  .navbar .navbar-list li {
+      margin-left: 50px;
+  }
 }
 
-.overlay {
-  display: flex;
-  margin: auto;
-  background: blue;
-  opacity: 0.6;
-  height: 100vh;
-  width: 100%;
-  z-index: 2;
-  align-content: space-around;
-  overflow: hidden;
+.navbar ul li.profile img {
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
 }
 
-.overlay ul {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
-  overflow: hidden;
+.navbar ul li.profile {
+    line-height: 26px;
+  font-size: 0.7rem;
+  color: white;
 }
 
-.overlay ul li {
-   display: block;
-   list-style: none;
-   padding-top: 25px;
-  text-align: center;
-  flex: 1;
-}
+
 
