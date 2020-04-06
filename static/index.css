@@ -52,6 +52,7 @@ div.container .ml11 .letter {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .profile-container span{
@@ -65,14 +66,6 @@ div.container .ml11 .letter {
   height: 70px;
   width: 70px;
 }
-
-/* .social-buttons {
-  width: 100%;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-} */
 
 a {
     text-decoration: none;
@@ -98,12 +91,13 @@ svg.mobile {
     }
 
     .profile-container span{
-        font-size: 1.5rem;
+        font-size: 0.9rem;
         line-height: 50px;
     }
 
     .profile-container .profile {
         height: 50px;
+        width: 50px;
     }
 
     div.container .ml11 {
