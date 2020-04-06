@@ -4,7 +4,6 @@ div.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 60vh;
     align-content: center;
 }
 
@@ -94,6 +93,8 @@ svg.mobile {
 
     svg.mobile {
         display: block;
+        width: 90%;
+        height: 200px;
     }
 
     .profile-container span{
@@ -104,6 +105,10 @@ svg.mobile {
     .profile-container .profile {
         height: 50px;
     }
+
+    div.container .ml11 {
+  font-size: 1em;
+}
 }
 
 @media screen and (min-width: 501px) {
@@ -117,13 +122,14 @@ svg.mobile {
 }
 
 .row {
-  width: 100%;
+  /* width: 100%;
   position: absolute;
-  top: 68%;
+  top: 68%; */
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .row .social-button {
