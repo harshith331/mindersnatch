@@ -40,16 +40,17 @@ anime.timeline()
     duration: 600,
     offset: '-=775',
     delay: (el, i) => 34 * (i+1)
-  }).add({
-  targets: ".profile-container img",
-  opacity: [0, 1],
-  translateX: ["-150%", "-200%"],
-  easing: 'easeInOutQuad',
-  delay: 200
-}).add({
-  targets: ".profile-container span",
-  opacity: [0, 1],
-  translateX: ["-70%", "-30%"],
-  easing: 'easeInOutQuad',
-  delay: 200
-});
+  })
+//   }).add({
+//   targets: ".profile-container img",
+//   opacity: [0, 1],
+//   translateX: ["-150%", "-200%"],
+//   easing: 'easeInOutQuad',
+//   delay: 200
+// }).add({
+//   targets: ".profile-container span",
+//   opacity: [0, 1],
+//   translateX: ["-70%", "-30%"],
+//   easing: 'easeInOutQuad',
+//   delay: 200
+// });

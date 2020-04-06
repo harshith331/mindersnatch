@@ -1,17 +1,25 @@
 body {
   background-color: black;  
+  color: white;
   overflow: hidden;
   margin: 0;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .navbar {
-    top: 0%;
-  display: flex;
-  justify-content: center;
-  z-index: 1;
+  position: fixed;
+  top: 0%;
+  width: 100%;
 }
 
-.underline {
+.navbar .navbar-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  visibility: visible;
+}
+
+/* .underline {
   border: none;
   color: red;
   background-color: red;
@@ -19,24 +27,27 @@ body {
   width: 20%;
   position: absolute;
   left: -50%;
+} */
+
+.navbar ul {
+  padding: 20px;
 }
 
 .navbar ul li {
-    z-index: 2;
   display: inline;
   text-align: center;
-}
-
-.navbar a {
-  padding: 8px;
-  color: white;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.3rem;
   margin: 10px 5px;
 }
 
+.navbar a {
+    color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
 .navbar a:hover {
+     color: white;
+  text-decoration: none;
   text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.9);
 }
 
@@ -44,12 +55,10 @@ body {
   display: none;
   color: white;
   position: absolute;
-  top: 5%;
   right: 10%;
-  cursor: pointer;
   border-radius: 50%;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 4rem;
+  width: 4rem;
   background-position: center;
   transition: background 0.8s;
 }
@@ -80,11 +89,20 @@ body {
   .navbar-icon {
     display: block;
   }
-  .navbar ul{
-    display: none;
+  
+  .navbar .navbar-list {
+    visibility: hidden;
+    flex-direction: column;
   }
   .underline {
     display: none;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  .navbar .navbar-list {
+    visibility: visible;
+    flex-direction: row;
   }
 }
 
@@ -92,10 +110,10 @@ body {
   display: flex;
   margin: auto;
   background: blue;
+  opacity: 0.6;
   height: 100vh;
   width: 100%;
-  z-index: 1;
-  position: fixed;
+  z-index: 2;
   align-content: space-around;
   overflow: hidden;
 }

@@ -1,27 +1,33 @@
 div.container {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 10%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+    align-content: center;
 }
 
-.ml11 {
-    text-align: center;
+div.container svg {
+    margin: 20px auto;
+}
+
+div.container .ml11 {
+text-align: center;
   color: white;
   font-weight: 700;
-  font-size: 2em;
-  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
 }
 
-.ml11 .text-wrapper {
+div.container .ml11 .text-wrapper {
   position: relative;
   display: inline-block;
-  padding-top: 0.1em;
+  /* padding-top: 0.1em; */
   padding-right: 0.05em;
   padding-bottom: 0.15em;
 }
 
-.ml11 .line {
+div.container .ml11 .line {
   opacity: 0;
   position: inherit;
   left: 0;
@@ -31,127 +37,43 @@ div.container {
   transform-origin: 0 50%;
 }
 
-.ml11 .line1 {
+div.container .ml11 .line1 {
   top: 0;
   left: 0;
 }
 
-.ml11 .letter {
+div.container .ml11 .letter {
   display: inline-block;
   line-height: 1em;
 }
 
 .profile-container {
   width: 100%;
-  position: absolute;
-  top: 68%;
-  color: white;
-}
-
-.profile-container span{
-  position: absolute;
-  margin-left: 10px;
-  left: 45%;
-  font-size: 2rem;
-  line-height: 70px;
-  z-index: -1;
-  font-family: "Roboto", sans-serif;
-}
-@media screen and (max-width: 500px) {
-  .profile-container span{
-    position: absolute;
-    margin-left: 10px;
-    left: 40%;
-    font-size: 2rem;
-    line-height: 70px;
-    z-index: -1;
-    font-family: "Roboto", sans-serif;
-  }
-  .start_button{
-    font-size: 20px;
-  }
-}
-.profile {
-  position: absolute;
-  left: 50%;
-  border-radius: 50%;
-  height: 70px;
-}
-
-.container .row {
-  width: 100%;
-  position: absolute;
-  top: 68%;
   color: white;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-button.google {
-  display:flex;
-  white-space: nowrap;
-  width: 60px;
-  transition: width 0.5s linear;
-  
-  height:50px;
-  margin:25px;
-  border:none;
-  border-radius:25px;
-  padding: 10px 30px;
-  background-color: #f2594f;
+.profile-container span{
+    margin-left: 10px;
+  font-size: 1rem;
+  line-height: 70px;
+}
+
+.profile-container .profile {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+/* .social-buttons {
+  width: 100%;
   color: white;
-  font-size: 0.9rem;
-  line-height: 25px;
-  font-family: 'Roboto', sans-serif;
-}
-
-button.facebook {
-  display:flex;
-  white-space: nowrap;
-  width: 50px;
-  background-color: blue;
-  transition: width 0.5s linear;
-  
-  height:50px;
-  margin:25px;
-  border:none;
-  border-radius:10px;
-  padding: 10px 30px;
-  color: white;
-  font-size: 0.9rem;
-  line-height: 25px;
-  font-family: 'Roboto', sans-serif;
-}
-
-button span {
-  overflow: hidden;
-  margin-left: 5px;
-  margin-right: 10px;
-  float:right;
-  display: none;
-  transition: all 1s linear;
-}
-
-button i {
-  line-height: 20px;
-  float:left;
-  margin-top:5px;
-  transform: translate(-50%, -10%);
-  font-size: 1.2rem;
-}
-
-button.facebook:hover {
-  width: 220px;
-}
-
-button.google:hover {
-  width: 210px;
-}
-
-button:hover span{
-  display:block;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
 
 a {
     text-decoration: none;
@@ -173,6 +95,15 @@ svg.mobile {
     svg.mobile {
         display: block;
     }
+
+    .profile-container span{
+        font-size: 1.5rem;
+        line-height: 50px;
+    }
+
+    .profile-container .profile {
+        height: 50px;
+    }
 }
 
 @media screen and (min-width: 501px) {
@@ -183,4 +114,18 @@ svg.mobile {
     svg.mobile {
         display: none;
     }
+}
+
+.row {
+  width: 100%;
+  position: absolute;
+  top: 68%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row .social-button {
+  margin: 20px auto;
 }

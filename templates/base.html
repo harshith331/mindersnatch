@@ -7,14 +7,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MinderSnatch</title>
-	<link href="{% static 'timer.css' %}" rel="stylesheet">
+	<!-- <link href="{% static 'timer.css' %}" rel="stylesheet"> -->
 	<link href="{% static 'navbar.css' %}" rel="stylesheet">
 	<link href="{% static 'footer.css' %}" rel="stylesheet">
 	<link href="{% static 'background.css' %}" rel="stylesheet">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	{% block stylesheet %}
-	{% endblock %}
+    <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
+    {% block stylesheet %}
+		{% endblock %}
 </head>
 
 <body class="bodypad">
@@ -23,12 +23,12 @@
 	{% block content %}
 	{% endblock %}
 	<br>
-	{% include "components/footer.html" %}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
-	<script src="{% static 'timer.js' %}"></script> 
-	<script src="{% static 'navbar.js' %}"></script>
-	{% block js %} {% endblock %}
+    {% include "components/footer.html" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+	<!-- <script src="{% static 'timer.js' %}"></script>  -->
+	<script src="{% static 'navbar.js' %}"></script> 
+    {% block js %} {% endblock %}
 </body>
 
 </html>
