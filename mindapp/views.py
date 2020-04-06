@@ -128,7 +128,7 @@ def answer(request):
                                     else:
                                         return HttpResponse("player has won")
                             except : 
-                                return render(request,'404.html',{'message':"Error getting Options!!"})
+                                return render(request,'404.html')
                         else:
                             ans = ""
                             ans = request.POST.get('ans')
@@ -159,9 +159,9 @@ def answer(request):
                                 messages.error(request, "Wrong Answer!, Try Again")
                                 return render(request, 'subjective_level.html', {'player': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
                     except : 
-                        return render(request,'404.html',{'message':"Wait for new Situation!"})
+                        return render(request,'404.html')
                 except:
-                    return render(request,'404.html',{'message':"Try Logging in Again!!"})
+                    return render(request,'404.html')
             else:
                 try :
                     player = Player.objects.get(user=request.user)
@@ -174,10 +174,9 @@ def answer(request):
                         else:
                             return render(request, "level.html", {'player': player, 'sitn': sitn})
                     except : 
-                        return render(request,'404.html',{'message':"Wait for the new situation!!"})
+                        return render(request,'404.html')
                 except : 
-                    return render(request,'404.html',{'message':"Try Logging in Again!!"})
-        
+                    return render(request,'404.html')
         else:
             # daily limit completed
             return HttpResponse("daily limit exceeded")
@@ -188,7 +187,7 @@ def answer(request):
 
 
 def leaderboard(request):
-    players = Player.objects.all()
+    players = Player.objects.order_by('level','-score','timestamp')
     context = {'players': players}
     if request.user:
         if request.user.is_authenticated:
