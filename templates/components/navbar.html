@@ -10,5 +10,11 @@
         <a href="{% url 'rules' %}">RULE</a>
       </li>
       <li><a href="{% url 'leaderboard' %}">LEADERBOARD</a></li>
+      {%if request.user.is_authenticated%}
+      <li class="logout_button">
+        <a href="/logout">LOGOUT</a>
+      </li>
+      {%endif%}
     </ul>
+    
   </div>
