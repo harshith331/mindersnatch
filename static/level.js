@@ -26,8 +26,14 @@ if (length > 2) {
     $("ul.options li").css("font-size", "0.6rem");
     $(".options").css("height", "100px");
     $("hr.upperline").css("bottom", "87px");
-
 }
+
+$(".options li").click(function() {
+    let id = $(this).data("id");
+
+    $("#main-form").val(id);
+    $("#form-main").submit();
+})
 /////////////////////////////////////////////////
 const $target = $('.thumb__image');
 const $thumb = $('.thumb');

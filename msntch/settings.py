@@ -192,3 +192,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'LOCATION': config('MEMCACHEDCLOUD_SERVERS'),
+        'OPTIONS': {
+            'username': config('MEMCACHEDCLOUD_USERNAME'),
+            'password': config('MEMCACHEDCLOUD_PASSWORD')
+        }
+    }
+}
