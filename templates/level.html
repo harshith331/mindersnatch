@@ -14,8 +14,8 @@
 	<div id="main"></div>
     <form method="POST" id="form-main" action="{% url 'situation' %}">
     {% csrf_token %}
-    <input type="submit" id="main-form" value="null"
-					name="op_no" hidden>
+    <input id="mainForm" type="text" value="hello" name="op_no" hidden>
+    <input type="submit" value="Submit" hidden>
     </form>
 	<p class="question">{{ sitn.text }}</p>
 	<a class="thumb" href="#" data-thumb>

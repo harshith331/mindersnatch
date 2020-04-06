@@ -30,8 +30,8 @@ if (length > 2) {
 
 $(".options li").click(function() {
     let id = $(this).data("id");
-
-    $("#main-form").val(id);
+    document.getElementById("mainForm").value = id;
+    console.log($("#mainForm").val());
     $("#form-main").submit();
 })
 /////////////////////////////////////////////////
