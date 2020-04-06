@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MinderSnatch</title>
+    <link href="{% static 'background.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body class="bodypad" style="background-color: black;">
+    {% include "components/background.html" %}
+    <div class="lboard">
+        <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a>
+        <h1 class="text-center" style="color: white;text-align: center;">Leaderboard</h1>
+        <br>
+            <div class="col-lg-8 col-lg-offset-2" style="margin:auto">
+            {% if players %}
+            <div class="container" style="margin: auto;">
+                <div style="border: none;" class="table-responsive">
+                <table  class="table table-hover table-striped"  style="font-weight:bold;box-shadow: 0px 0px 8px #000;margin: auto;">
+                    <tr style="background-color:#001933; color:#fff; font-size:18px"> 
+                        <th>#</th><th >Player Name</th><th>Level</th><th>Penalty</th>
+                    </tr>
+                    {% for player in players %}
+                    <tr style="color:white;">
+                        <td>{{forloop.counter }}</td><td>{{ player.name }}</td>    <td> {{player.level}} </td>    <td> {{player.score}}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <strong>There are no players present.</strong>
+                {% endif %}
+                </table>
+                </div>
+            </div>
+    <br>
+    <div class="footer">
+        <div class="footer">
+            <img style="width: 50px;"src="https://raw.githubusercontent.com/romitkarmakar/digitalfortress_frontend/master/src/images/glug.png" alt="">
+                <h1 class="footer_text">GNU Linux Users Group, Durgapur</h1>
+            </div>
+      <style>
+        .footer {
+           position: fixed;
+           left: 0;
+           bottom: 0;
+           width: 100%;
+           color: white;
+           text-align: center;
+           margin-bottom: 10px;
+        }
+        .footer_text{
+            size: 10px;
+        }
+        </style>      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+	
+	<script src="{% static 'timer.js' %}"></script> 
+    <script src="{% static 'navbar.js' %}"></script> 
+   
+
+</body>
+</html>

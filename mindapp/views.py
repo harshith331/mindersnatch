@@ -193,7 +193,7 @@ def leaderboard(request):
         if request.user.is_authenticated:
             player = Player.objects.get(user=request.user)
             context['user'] = player
-    return render(request, "leaderboard.html", context)
+    return render(request, "lboard.html", context)
 
 
 def rules(request):

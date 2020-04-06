@@ -65,3 +65,7 @@
     transform: translateY(-2000px);
   }
 }
+
+.lboard{
+  margin: auto;
+}
