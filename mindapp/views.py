@@ -204,12 +204,5 @@ def rules(request):
             context = {'user': player}
     return render(request, "rules.html", context)
 
-
-def options(request):
-    return render(request, "options.html")
-
-def subjective(request):
-    return render(request, "subjective.html")
-
 def page_not_found_view(request, exception):
     return render(request, "404.html", status=404)

@@ -1,40 +1,47 @@
-{% extends "base.html" %}
-{% block stylesheet %}
-<link rel="stylesheet" href="static/options.css">
-{% endblock %}
-{% block content %}
-<div>
-	<div class="question">
-		{{ sitn.text }}
-	</div>
-	<form method="POST" action="/level">
-		{% csrf_token %}
-		<main class="page-content">
-			{% if sitn.option_1  %}
-			<div class="card">
-				<div class="content">
-					<h2 class="title">{{ sitn.option_1.text }}</h2>
-					<button class="btn" value="{{ sitn.option_1.id }}" type="submit" name="op_no">Submit Answer</button>
-				</div>
-			</div>
-			{%endif%}
-			{% if sitn.option_2  %}
-			<div class="card">
-				<div class="content">
-					<h2 class="title">{{ sitn.option_2.text }}</h2>
-					<button class="btn" value="{{ sitn.option_2.id }}" type="submit" name="op_no">Submit Answer</button>
-				</div>
-			</div>
-			{%endif%}
-			{% if sitn.option_3  %}
-			<div class="card">
-				<div class="content">
-					<h2 class="title">{{ sitn.option_3.text }}</h2>
-					<button class="btn" value="{{ sitn.option_3.id }}" type="submit" name="op_no">Submit Answer</button>
-				</div>
-			</div>
-			{%endif%}
-		</main>
-	</form>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Situation</title>
+	<link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
+	<link rel="stylesheet" href="static/level.css">
+</head>
+
+<body>
+	<div id="main"></div>
+	<p class="question">{{ sitn.text }}</p>
+	<a class="thumb" href="#" data-thumb>
+		<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
+	</a>
+	<ul class="options">
+		{% if sitn.option_1 %}
+		<form method="POST" action="{% url 'situation' %}">
+			{% csrf_token %}
+			<li class="nes-pointer"><button value="{{ sitn.option_1.id }}"
+					name="op_no">{{ sitn.option_1.text }}</button></li>
+		</form>
+		{% endif %}
+		{% if sitn.option_2 %}
+		<form method="POST" action="{% url 'situation' %}">
+			{% csrf_token %}
+			<li><button value="{{ sitn.option_2.id }}" name="op_no">{{ sitn.option_2.text }}</button></li>
+		</form>
+		{% endif %}
+		{% if sitn.option_3 %}
+		<form method="POST" action="{% url 'situation' %}">
+			{% csrf_token %}
+			<li><button value="{{ sitn.option_3.id }}" name="op_no">{{ sitn.option_3.text }}</button></li>
+		</form>
+		{% endif %}
+	</ul>
+	<hr class="upperline" />
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+<script src="https://bathlamos.github.io/delaunay-triangulation/js/delaunay.js"></script>
+<script src="static/level.js"></script>
+
+</html>
