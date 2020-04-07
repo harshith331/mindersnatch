@@ -13,6 +13,7 @@
       justify-content: center;
       height: 80vh;
       background: black;
+      flex-direction: column;
   }
   
   .time-to {
@@ -27,4 +28,28 @@
       display: block;
       font-size: 60px;
       color: red;
+  }
+
+  .row {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+  }
+
+  .row a {
+      margin: 20px 0px;
+  }
+
+  @media screen and (max-width: 500px) {
+      .time-to span {
+          font-size: 40px;
+      }
+
+      .row {
+      margin-top: 10px;
+  }
+
+      .row a {
+      margin: 5px 0px;
+  }
   }
