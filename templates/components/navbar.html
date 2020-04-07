@@ -21,8 +21,8 @@
 
   <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
     <form method="dialog">
-      <p class="title">Score: 70</p>
-      <p>Level: 20</p>
+      <p class="title">Penalty: {{ user.score }}</p>
+      <p>Level: {{ user.level }}</p>
       <menu class="dialog-menu">
         <button class="nes-btn">Cancel</button>
         <a class="nes-btn is-primary" href="/logout">Log out</a>
