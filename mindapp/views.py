@@ -73,12 +73,17 @@ def index(request):
             if request.user.is_authenticated:
                 try : 
                     player = Player.objects.get(user=request.user)
+                    print(player)
                     return render(request, 'index.html', {'user': player})
                 except:
                     return render(request,'404.html',{'message':"Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:
         # Replace this with contest timer
+        if request.user:
+            if request.user.is_authenticated:
+                player = Player.objects.get(user=request.user)
+                return render(request, 'timer.html', {'time':config.time, 'user':player})
         return render(request, 'timer.html',{'time':config.time})
     else:
         # Replace this with ended page

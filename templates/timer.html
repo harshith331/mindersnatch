@@ -21,10 +21,10 @@
       <span countdown='' date='{{ time }}'>&nbsp;</span>
     </div>
    
-    {% if user.is_authenticated %}
+    {% if user.email %}
 	<div class="profile-container">
 		<img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
-		<span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{user.first_name}}</a></span>
+		<span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{ user.name }}</a></span>
 	</div>
 	{% else %}
     <div class="row">
