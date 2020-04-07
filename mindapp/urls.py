@@ -7,4 +7,5 @@ urlpatterns = [
     path('leaderboard',views.leaderboard,name="leaderboard"),
     path('rules',views.rules,name="rules"),
     path('logout',views.logout_view,name="logout"),
+    path('plswait',views.pls_wait,name="plswait")
 ]

@@ -125,7 +125,7 @@ def answer(request):
                                             else:
                                                 return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                         else:
-                                            return HttpResponse("daily limit exceeded")
+                                            return render(request,"pls_wait.html")
                                     else:
                                         return HttpResponse("player has won")
                             except : 
@@ -153,7 +153,7 @@ def answer(request):
                                         else:
                                             return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                     else:
-                                        return HttpResponse("daily limit exceeded")
+                                        return render(request,"pls_wait.html")
                                 else:
                                     return HttpResponse("player has won")
                             else:
@@ -179,7 +179,7 @@ def answer(request):
                     return render(request,'404.html')
         else:
             # daily limit completed
-            return HttpResponse("daily limit exceeded")
+            return render(request,"pls_wait.html")
     else:
         #all situations covered
         return HttpResponse("player has won")
@@ -211,3 +211,6 @@ def logout_view(request):
 
 def page_not_found_view(request, exception):
     return render(request, "404.html", status=404)
+
+def pls_wait(request):
+    return render(request,"pls_wait.html")
