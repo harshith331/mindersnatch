@@ -11,6 +11,11 @@
 {% block content %}
 <div class="profile-loading" ng-app="profileLoading" ng-controller="ProfileLoadingController as vm">
 
+    <div class="profile-loading__texts">
+        <h4 id="profile-loading__text-1" style="text-align: center;  margin-top: 30px; margin-bottom: 150px;">[[vm.title]]</h4>
+        <h4 id="profile-loading__text-2" style="text-align: center; margin-top: 30px; margin-bottom: 150px;">[[vm.message]]</h4>
+    </div>
+
     <svg class="clock-anim" width="131px" height="132px" viewBox="575 175 131 132" version="1.1"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
@@ -92,10 +97,6 @@
         </g>
     </svg>
 
-    <div class="profile-loading__texts">
-        <h4 id="profile-loading__text-1">{{vm.title}}</h4>
-        <h4 id="profile-loading__text-2">{{vm.message}}</h4>
-    </div>
 
 </div>
 <!--  /.profile-loading -->

@@ -1,12 +1,14 @@
 angular
-    .module('profileLoading', [])
+    .module('profileLoading', [],function($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    })
 
     .controller('ProfileLoadingController', function ($scope) {
         var vm = this;
 
-        vm.title = 'New questions will be added soon!';
-        vm.message = 'Please, be patient.';
-
+        vm.title = 'That\'s all for now! New questions will be added soon!';
+        vm.message = 'Please, be patient. Keep checking GLUG groups for more info!';
         var clockHand = document.getElementById('clock-hand'),
             text = document.getElementById('profile-loading__text');
 
