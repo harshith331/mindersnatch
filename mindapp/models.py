@@ -107,6 +107,9 @@ class SituationTimer(models.Model):
         return (int(datetime.now().timestamp()) - int(self.start_time.timestamp()))
 
     def timedifference(self):
-        if (self.end_epoch() - self.start_epoch()) <= 300:
+        diff=self.end_epoch() - self.start_epoch()
+        if diff <= 300:
             return 1
-        return 2
+        elif diff > 300 and diff <=600:
+            return 2
+        return 4

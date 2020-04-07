@@ -106,6 +106,7 @@ def answer(request):
                                     # player is dead redirect to start node
                                     player.current_sitn = Situation.objects.get(situation_no=1).situation_no
                                     player.level=Situation.objects.get(situation_no=1).level
+                                    player.score +=1
                                     player.save()
                                     message = option_c.message
                                     return render(request, 'dead.html', {'user': player, 'message': message})
@@ -157,7 +158,7 @@ def answer(request):
                                 else:
                                     return HttpResponse("player has won")
                             else:
-                                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302})
+                                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302,})
                     except : 
                         return render(request,'404.html')
                 except:
