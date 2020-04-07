@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
 import datetime
@@ -158,8 +157,7 @@ def answer(request):
                                 else:
                                     return HttpResponse("player has won")
                             else:
-                                messages.error(request, "Wrong Answer!, Try Again")
-                                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed()})
+                                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302})
                     except : 
                         return render(request,'404.html')
                 except:

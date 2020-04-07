@@ -17,6 +17,10 @@
 </div>
 
 <div class="container">
+    <div class="nes-container is-dark with-title" id="error">
+        <p class="title" style="color: red;">Game's Message:</p>
+        <p style="color: red;">You gave the wrong answer!!</p>
+    </div>
     <form id="ans" method="post" action="{% url 'situation' %}">
         {% csrf_token %}
         <div class="nes-field">
@@ -60,5 +64,11 @@
             delay: 200
         })
     })
+
+    var fade_out = function () {
+        $("#error").fadeOut().empty();
+    }
+
+    setTimeout(fade_out, 5000);
 </script>
 {% endblock %}
