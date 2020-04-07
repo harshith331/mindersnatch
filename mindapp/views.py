@@ -191,22 +191,30 @@ def answer(request):
 
 @login_required(login_url="/")
 def leaderboard(request):
-    players = Player.objects.all().order_by('-level','score','timestamp')
-    context = {'players': players}
-    if request.user:
-        if request.user.is_authenticated:
-            player = Player.objects.get(user=request.user)
-            context['user'] = player
-    return render(request, "lboard.html", context)
+    config = Config.objects.all().first()
+    if activeTime(request) == 2:
+        players = Player.objects.all().order_by('-level','score','timestamp')
+        context = {'players': players}
+        if request.user:
+            if request.user.is_authenticated:
+                player = Player.objects.get(user=request.user)
+                context['user'] = player
+        return render(request, "lboard.html", context)
+    else:
+        return render(request, 'timer.html',{'time':config.time})
 
 @login_required(login_url="/")
 def rules(request):
-    context = {}
-    if request.user:
-        if request.user.is_authenticated:
-            player = Player.objects.get(user=request.user)
-            context = {'user': player}
-    return render(request, "rules.html", context)
+    config = Config.objects.all().first()
+    if activeTime(request) == 2:
+        context = {}
+        if request.user:
+            if request.user.is_authenticated:
+                player = Player.objects.get(user=request.user)
+                context = {'user': player}
+        return render(request, "rules.html", context)
+    else:
+        return render(request, 'timer.html',{'time':config.time})
 
 def rule(request):
     return render(request, "rules_page.html")
