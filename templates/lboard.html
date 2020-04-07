@@ -8,15 +8,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MinderSnatch</title>
     <link href="{% static 'background.css' %}" rel="stylesheet">
+    <link href="{% static 'navbar.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-
+{% include "components/navbar.html" %}
 <body class="bodypad" style="background-color: black;">
+    
     {% include "components/background.html" %}
     <div class="lboard">
-        <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a>
+        <!-- <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a> -->
         <h1 class="text-center" style="color: white;text-align: center;">Leaderboard</h1>
         <br>
             <div class="col-lg-8 col-lg-offset-2" style="margin:auto;width: 100%;height: 100%;">
@@ -47,6 +51,9 @@
                 <h1 class="footer_text">GNU Linux Users Group, Durgapur</h1>
             </div>
       <style>
+          body{
+            font-family: 'Press Start 2P', cursive;
+          }
         .footer {
            position: relative;
            left: 0;
@@ -57,8 +64,29 @@
            margin-bottom: 10px;
         }
         .footer_text{
-            size: 10px;
+            font-size: small;
         }
+        .navbar ul li {
+            display: inline;
+            text-align: center;
+            margin: 10px 5px;
+        }
+        .navbar ul li {
+            display: inline;
+            text-align: center;
+            margin: 10px 5px;
+        }
+        .navbar a {
+         color: white;
+         text-decoration: none;
+         font-size: 1.75rem;
+        }
+        .navbar ul li.profile {
+         line-height: 26px;
+         font-size: 1.15rem;
+         color: white;
+        }
+
         </style>      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
