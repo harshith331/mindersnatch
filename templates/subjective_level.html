@@ -17,10 +17,12 @@
 </div>
 
 <div class="container">
+    {% if status %}
     <div class="nes-container is-dark with-title" id="error">
         <p class="title" style="color: red;">Game's Message:</p>
         <p style="color: red;">You gave the wrong answer!!</p>
     </div>
+    {% endif %}
     <form id="ans" method="post" action="{% url 'situation' %}">
         {% csrf_token %}
         <div class="nes-field">
@@ -69,6 +71,6 @@
         $("#error").fadeOut().empty();
     }
 
-    setTimeout(fade_out, 5000);
+    setTimeout(fade_out, 2500);
 </script>
 {% endblock %}
