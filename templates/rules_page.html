@@ -17,18 +17,16 @@
 <body class="bodypad">
 
 	<div class="navbar">
-    <div class="navbar-icon nes-pointer">
-      <i class="snes-jp-logo"></i>
-    </div>
-      <ul class="navbar-list">
-        <li>
-          <a href="{% url 'index' %}" class="active">HOME</a>
-        </li>
+		<div class="navbar-icon nes-pointer">
+			<i class="snes-jp-logo"></i>
+		</div>
+		<ul class="navbar-list">
+			<li>
+				<a href="{% url 'index' %}" class="active">HOME</a>
+			</li>
+		</ul>
+	</div>
 
-        <li class="profile nes-pointer" onclick="document.getElementById('dialog-dark-rounded').showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
-      </ul>
-    </div>
-  
 	{% include "components/background.html" %}
 	<section class="et-hero-tabs">
 		<h1>RULES</h1>
@@ -57,11 +55,14 @@
 		</section>
 		<section class="et-slide" id="tab-rule3">
 			<h1>Rule 3</h1>
-			<h3>The situation could ask you to choose options, or it could be a subjective question to test your skills.</h3>
+			<h3>The situation could ask you to choose options, or it could be a subjective question to test your skills.
+			</h3>
 		</section>
 		<section class="et-slide" id="tab-rule4">
 			<h1>Rule 4</h1>
-			<h3>You will be penalised based on the number of nodes you have traversed and the level you are on. For subjective questions, you get a penalty of +1 for solving it under 5 minutes and +2 otherwise.</h3>
+			<h3>You will be penalised based on the number of nodes you have traversed and the level you are on. For
+				subjective questions, you get a penalty of +1 for solving it under 5 minutes and +2 for under 10 and +4
+				otherwise.</h3>
 		</section>
 		<section class="et-slide" id="tab-rule5">
 			<h1>Rule 5</h1>
@@ -73,4 +74,5 @@
 	<script src="{% static 'rules.js' %}"></script>
 	<script src="{% static 'navbar.js' %}"></script>
 </body>
+
 </html>

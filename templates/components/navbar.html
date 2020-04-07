@@ -15,7 +15,7 @@
         <a href="/logout">LOGOUT</a>
       </li>
       {%endif%} -->
-      <li class="profile nes-pointer" onclick="document.getElementById('dialog-dark-rounded').showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
+      <li class="profile nes-pointer" onclick="$('#dialog-dark-rounded')[0].showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
     </ul>
   </div>
 
