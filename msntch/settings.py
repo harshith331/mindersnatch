@@ -27,7 +27,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ##For facebook oauth cancel authentication error just put debug to false. It solves the problem
+<<<<<<< HEAD
 DEBUG = config('DEBUG',cast=bool, default=False)
+=======
+DEBUG = "False"
+>>>>>>> 84e50db986ff1527ee1b423edd686a2f162ce5af
 
 ALLOWED_HOSTS = ['*']
 
@@ -83,7 +87,7 @@ WSGI_APPLICATION = 'msntch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-if DEBUG == "True":
+if config('DEBUG') == "True":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
