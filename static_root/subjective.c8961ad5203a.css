@@ -1,0 +1,45 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  height: 100%;
+  background-image: url(https://singularityhub.com/wp-content/uploads/2019/06/breaking-shattered-glass-on-black-science-fiction-shutterstock234840964-1068x601.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+}
+
+div.timer {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  position: absolute;
+    right: 5%;
+    bottom: 5%;
+}
+
+.nes-btn {
+  width: 200px;
+}
+
+@media screen and (max-width: 500px) {
+  .question {
+  font-size: 0.9rem;
+  padding-bottom: 10px;
+}
+  
+  div.timer {
+  font-size: 1rem;
+}
+  .nes-field label {
+    font-size: 0.8rem;
+  }
+}

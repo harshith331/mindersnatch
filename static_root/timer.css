@@ -1,0 +1,55 @@
+  @import "//fonts.googleapis.com/css?family=Bangers";
+  body {
+      margin: 0;
+      background-color: black;
+  }
+  
+  .wrap {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      height: 80vh;
+      background: black;
+      flex-direction: column;
+  }
+  
+  .time-to {
+      text-align: center;
+      font-family: "Press Start 2P";
+      color: white;
+      font-size: 25px;
+      letter-spacing: 2px;
+  }
+  
+  .time-to span {
+      display: block;
+      font-size: 60px;
+      color: red;
+  }
+
+  .row {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+  }
+
+  .row a {
+      margin: 20px 0px;
+  }
+
+  @media screen and (max-width: 500px) {
+      .time-to span {
+          font-size: 40px;
+      }
+
+      .row {
+      margin-top: 10px;
+  }
+
+      .row a {
+      margin: 5px 0px;
+  }
+  }

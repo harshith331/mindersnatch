@@ -1,0 +1,46 @@
+body {
+  background-color: black;
+  height: 100%;
+  font-family: "Roboto", "sans-serif";
+  overflow-x: hidden;
+}
+
+ul li {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  font-size: 2rem;
+  line-height: 50px;
+}
+
+ul li span {
+  line-height: 50px;
+  margin-left: 15px;
+}
+
+ul li img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+@media screen and (max-width: 600px) {
+}
+
+
+h1 {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}

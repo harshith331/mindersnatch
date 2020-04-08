@@ -1,0 +1,163 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
+body, html {
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+ul.options li {
+    list-style: none;
+    margin: auto;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+ul.options li:hover {
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+}
+
+ul.options {
+    height: 70px;
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    border-color: white;
+    border-top-width: 5px;
+    border-top-style: solid;
+    padding: 20px;
+    margin-bottom: 0;
+    background-color: black;
+}
+
+.question {
+    font-size: 0.8rem;
+    padding: 30px;
+    margin-top: 50px;
+    line-height: 1.6rem;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+#main {
+    position: relative;
+}
+
+#main:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    /*     filter: opacity(50%); */
+    z-index: -1;
+}
+
+hr.upperline {
+    position: absolute;
+    bottom: 57px;
+    height: 5px;
+    border: none;
+    background-color: red;
+    width: 33%;
+}
+
+@media screen and (max-width: 500px) {
+    .question {
+        font-size: 0.7rem;
+        line-height: 1.1rem;
+    }
+    ul.options li {
+        font-size: 0.7rem;
+    }
+}
+
+/* img {
+    display: flex;
+    height: 250px;
+    margin: auto;
+    border-radius: 10px;
+  } */
+
+/*  ///////////////////////////////////// */
+
+.thumb {
+    position: relative;
+    display: block;
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+    -webkit-perspective: 700px;
+    perspective: 700px;
+    overflow: hidden;
+}
+
+.thumb::after, .thumb::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    background: linear-gradient(20deg, rgba(0, 10, 17, 0.3) 10%, rgba(255, 250, 247, 0.2) 90%);
+    opacity: 0;
+    z-index: 100;
+    -webkit-transition: opacity 1.6s;
+    transition: opacity 1.6s;
+}
+
+.thumb::before {
+    background: #000;
+    opacity: 0;
+    z-index: -1;
+}
+
+.thumb:hover::after {
+    opacity: 1;
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.thumb:hover::before {
+    opacity: 0.3;
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.thumb img {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    z-index: -2;
+    max-height: 300px;
+}
+
+.thumb svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.thumb path {
+    -webkit-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from decouple import config
+from decouple import Config, RepositoryEnv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,11 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ##For facebook oauth cancel authentication error just put debug to false. It solves the problem
-<<<<<<< HEAD
-DEBUG = config('DEBUG',cast=bool, default=False)
-=======
-DEBUG = "False"
->>>>>>> 84e50db986ff1527ee1b423edd686a2f162ce5af
+DEBUG = config('DEBUG',cast=bool,default=False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -87,7 +84,7 @@ WSGI_APPLICATION = 'msntch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-if config('DEBUG') == "True":
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -171,7 +168,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
+STATIC_ROOT = os.path.join(BASE_DIR,"static_root")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

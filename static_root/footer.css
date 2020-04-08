@@ -1,0 +1,30 @@
+div.footer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.footer h1 {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: white;
+     text-align: center;
+         font-family: 'Press Start 2P', cursive;
+}
+
+.footer img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+    .footer .row h1 {
+        font-size: 0.9rem;
+    }
+}

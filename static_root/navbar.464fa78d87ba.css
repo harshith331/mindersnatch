@@ -1,0 +1,136 @@
+body {
+  background-color: black;  
+  color: white;
+  /* overflow: hidden; */
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.navbar {
+  position: fixed;
+  top: 0%;
+  width: 100%;
+}
+
+.logout_button{
+  float: right;
+  margin-left: 30%;
+}
+
+.navbar .navbar-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  visibility: visible;
+}
+
+/* .underline {
+  border: none;
+  color: red;
+  background-color: red;
+  height: 3px;
+  width: 20%;
+  position: absolute;
+  left: -50%;
+} */
+
+.navbar ul {
+  padding: 20px;
+  background: black;
+}
+
+.navbar ul li {
+  display: inline;
+  text-align: center;
+  margin: 10px 5px;
+}
+
+.navbar a {
+    color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.navbar a:hover {
+     color: white;
+  text-decoration: none;
+  text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.9);
+}
+
+.navbar-icon {
+  display: none;
+  color: white;
+  position: absolute;
+  right: 10%;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.navbar-icon:hover {
+  background: #000000 radial-gradient(circle, transparent 1%, #000000 1%) center/15000%;
+}
+
+.navbar-icon:active {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.navbar-icon i {
+  font-size: 2rem;
+  position: inherit;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navbar-icon:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 500px) {
+    .navbar {
+        z-index: 1;
+    }
+  .navbar-icon {
+    display: block;
+  }
+  
+  .navbar .navbar-list {
+    visibility: hidden;
+    flex-direction: column;
+    background-color: #676767;
+  }
+  .underline {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  .navbar .navbar-list {
+    visibility: visible;
+    flex-direction: row;
+  }
+
+  .navbar .navbar-list li {
+      margin-left: 50px;
+  }
+}
+
+.navbar ul li.profile img {
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+}
+
+.navbar ul li.profile {
+    line-height: 26px;
+  font-size: 0.7rem;
+  color: white;
+}
+
+
+
