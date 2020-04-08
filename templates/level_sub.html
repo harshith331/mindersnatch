@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="static/subjective.css" />
@@ -8,48 +8,53 @@
 <p>{{ sitn.text }}</p>
 
 {% block msgblock %}
-	{% if messages %}
-	{% for message in messages %}
-	<div class="alert {% if message.tags %} alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %}"{% endif %} role="alert">{{ message }}</div>
-	{% endfor %}
-	{% endif %}
-	{% endblock %}
-	<div class="question">
-        
-<p id="timer" hidden>{{ timepassed }}</p>
-<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-
-
-<form id="ans" method="post" action="{% url 'situation' %}">
-{% csrf_token %}
-		<input type="text" name="name" class="question" id="nme" required autocomplete="off" />
-		<label for="nme"><span>Enter your answer</span></label>
-		<button type="submit" class="submit">SUBMIT</button>
-</form>
+{% if messages %}
+{% for message in messages %}
+<div class="alert {% if message.tags %} alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %}"
+    {% endif %} role="alert">{{ message }}</div>
+{% endfor %}
+{% endif %}
 {% endblock %}
+<div class="question">
 
-{% block js %}
-<script>
-    var minutesLabel = document.getElementById("minutes");
-    var secondsLabel = document.getElementById("seconds");
-    var hoursLabel = document.getElementById("hours");
-    var totalSeconds = parseInt(document.getElementById("timer").innerText);
-    setInterval(setTime, 1000);
+    <p id="timer" hidden>{{ timepassed }}</p>
+    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
 
-    function setTime() {
-        ++totalSeconds;
-        secondsLabel.innerHTML = pad(totalSeconds % 60);
-        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60) % 60);
-        hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
-    }
 
-    function pad(val) {
-        var valString = val + "";
-        if (valString.length < 2) {
-            return "0" + valString;
-        } else {
-            return valString;
+    <form id="ans" method="post" action="{% url 'situation' %}">
+        {% csrf_token %}
+        <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+        <label for="nme"><span>Enter your answer</span></label>
+        <button type="submit" class="submit">SUBMIT</button>
+    </form>
+    {% endblock %}
+
+    {% block js %}
+    <script>
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var hoursLabel = document.getElementById("hours");
+        var totalSeconds = parseInt(document.getElementById("timer").innerText);
+        setInterval(setTime, 1000);
+
+        function setTime() {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds % 60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60) % 60);
+            hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
         }
-    }
-</script>
-{% endblock %}
+
+        function pad(val) {
+            var valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        }
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
+    {% endblock %}

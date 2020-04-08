@@ -8,36 +8,36 @@
 	<link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
 	<link rel="stylesheet" href="static/level.css">
-    <link href="static/navbar.css" rel="stylesheet">
+	<link href="static/navbar.css" rel="stylesheet">
 </head>
 
 <body>
-    {% include "components/navbar.html" %}
+	{% include "components/navbar.html" %}
 	<div id="main"></div>
-    <form method="POST" id="form-main" action="{% url 'situation' %}">
-    {% csrf_token %}
-    <input id="mainForm" type="text" value="hello" name="op_no" hidden>
-    <!-- <input type="submit" value="Submit" hidden> -->
-    </form>
+	<form method="POST" id="form-main" action="{% url 'situation' %}">
+		{% csrf_token %}
+		<input id="mainForm" type="text" value="hello" name="op_no" hidden>
+		<!-- <input type="submit" value="Submit" hidden> -->
+	</form>
 	<p class="question">{{ sitn.text }}</p>
 	<a class="thumb" href="#" data-thumb>
 		<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
 	</a>
 	<ul class="options">
 		{% if sitn.option_1 %}
-			<li class="nes-pointer" data-id="{{ sitn.option_1.id }}">
-                    {{ sitn.option_1.text }}
-            </li>
+		<li class="nes-pointer" data-id="{{ sitn.option_1.id }}">
+			{{ sitn.option_1.text }}
+		</li>
 		{% endif %}
 		{% if sitn.option_2 %}
-			<li class="nes-pointer" data-id="{{ sitn.option_2.id }}">
-                {{ sitn.option_2.text }}
-            </li>
+		<li class="nes-pointer" data-id="{{ sitn.option_2.id }}">
+			{{ sitn.option_2.text }}
+		</li>
 		{% endif %}
 		{% if sitn.option_3 %}
-			<li class="nes-pointer" data-id="{{ sitn.option_3.id }}">
-                {{ sitn.option_3.text }}
-            </li>
+		<li class="nes-pointer" data-id="{{ sitn.option_3.id }}">
+			{{ sitn.option_3.text }}
+		</li>
 		{% endif %}
 	</ul>
 	<hr class="upperline" />
@@ -46,6 +46,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 <script src="https://bathlamos.github.io/delaunay-triangulation/js/delaunay.js"></script>
 <script src="static/level.js"></script>
-<script src="static/navbar.js"></script> 
+<script src="static/navbar.js"></script>
+<script>
+	history.pushState(null, null, document.URL);
+	window.addEventListener('popstate', function () {
+		history.pushState(null, null, document.URL);
+	});
+</script>
 
 </html>

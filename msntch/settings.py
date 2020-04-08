@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ##For facebook oauth cancel authentication error just put debug to false. It solves the problem
-DEBUG = config('DEBUG',cast=str,default=True)
+DEBUG = config('DEBUG',cast=bool, default=False)
 
 ALLOWED_HOSTS = ['*']
 
