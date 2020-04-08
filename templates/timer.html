@@ -17,12 +17,12 @@
 <body>
   <div class='wrap' ng-app='app'>
     <div class='time-to'>
-      The Quest for survival begins in ...
+      The Quest for survival begins in ....
       <span countdown='' date='{{ time }}'>&nbsp;</span>
     </div>
    
     {% if user.email %}
-	<div class="profile-container">
+	<div class="profile-container"></div>
 		<img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
 		<span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{ user.name }}</a></span>
 	</div>
