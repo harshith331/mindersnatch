@@ -86,7 +86,7 @@ svg.mobile {
 
     svg.mobile {
         display: block;
-        width: 90%;
+        width: 80%;
         height: 200px;
     }
 
@@ -101,8 +101,11 @@ svg.mobile {
     }
 
     div.container .ml11 {
-  font-size: 1em;
+  font-size: .85em;
 }
+  .nes-pointer{
+    margin-left: 20px;
+  }
 }
 
 @media screen and (min-width: 501px) {
