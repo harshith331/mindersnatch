@@ -1,5 +1,5 @@
 angular
-    .module('profileLoading', [],function($interpolateProvider) {
+    .module('profileLoading', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     })
@@ -28,3 +28,7 @@ angular
 
     });
 
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+});

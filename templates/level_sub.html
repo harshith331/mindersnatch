@@ -56,5 +56,12 @@
         window.addEventListener('popstate', function () {
             history.pushState(null, null, document.URL);
         });
+
+        const url = window.location.protocol + window.location.hostname;
+        console.log("script ran", url);
+        if (sessionStorage.getItem('beenhere') === '1') {
+            window.location = url;
+        }
+        sessionStorage.setItem('beenhere', '1');
     </script>
     {% endblock %}

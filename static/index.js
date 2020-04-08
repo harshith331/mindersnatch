@@ -4,7 +4,7 @@ anime({
   strokeDashoffset: [anime.setDashoffset, 0],
   easing: 'easeInOutSine',
   duration: 1500,
-  delay: function(el, i) { return i * 250 }
+  delay: function (el, i) { return i * 250 }
 });
 
 anime({
@@ -12,7 +12,7 @@ anime({
   strokeDashoffset: [anime.setDashoffset, 0],
   easing: 'easeInOutSine',
   duration: 1500,
-  delay: function(el, i) { return i * 250 }
+  delay: function (el, i) { return i * 250 }
 });
 
 // Subtitle Animation
@@ -22,8 +22,8 @@ textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<
 anime.timeline()
   .add({
     targets: '.ml11 .line',
-    scaleY: [0,1],
-    opacity: [0.5,1],
+    scaleY: [0, 1],
+    opacity: [0.5, 1],
     easing: "easeOutExpo",
     duration: 700
   })
@@ -35,12 +35,17 @@ anime.timeline()
     delay: 100
   }).add({
     targets: '.ml11 .letter',
-    opacity: [0,1],
+    opacity: [0, 1],
     easing: "easeOutExpo",
     duration: 600,
     offset: '-=775',
-    delay: (el, i) => 34 * (i+1)
+    delay: (el, i) => 34 * (i + 1)
   })
+
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+  history.pushState(null, null, document.URL);
+});
 //   }).add({
 //   targets: ".profile-container img",
 //   opacity: [0, 1],

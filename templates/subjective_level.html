@@ -22,11 +22,14 @@
         <p class="title" style="color: red;">Game's Message:</p>
         <p style="color: red;">You gave the wrong answer!!</p>
     </div>
+    <script>
+        localStorage.setItem('unsolved', 1);
+    </script>
     {% endif %}
     <form id="ans" method="post" action="{% url 'situation' %}">
         {% csrf_token %}
         <div class="nes-field">
-            <label for="name_field">{{ sitn.text }}</label>
+            <label for="name_field" id="question-text">{{ sitn.text }}</label>
             <input name="ans" type="text" id="name_field" class="nes-input">
         </div>
         <button type="submit" class="nes-btn is-primary">Submit!</button>
@@ -72,5 +75,27 @@
     }
 
     setTimeout(fade_out, 2500);
+
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+
+    const url = document.location.origin;
+    if (localStorage.getItem('unsolved') != 1) {
+        if (localStorage.getItem('beenhere') === document.getElementById("question-text").innerText) {
+            localStorage.setItem('beenhere','');
+            localStorage.setItem('unsolved',1);
+            window.location = url;
+        }
+        else{
+            localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
+            localStorage.setItem('unsolved',0);
+        }
+    }
+    else {
+        localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
+        localStorage.setItem('unsolved',0);
+    }
 </script>
 {% endblock %}

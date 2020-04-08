@@ -13,3 +13,8 @@ anime({
   duration: 1000,
   delay: anime.stagger(1000)
 })
+
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+  history.pushState(null, null, document.URL);
+});
