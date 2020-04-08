@@ -19,7 +19,12 @@
 		<input id="mainForm" type="text" value="hello" name="op_no" hidden>
 		<!-- <input type="submit" value="Submit" hidden> -->
 	</form>
+<<<<<<< HEAD
 	<p class="question" id="question-text">{{ sitn.text }}</p>
+=======
+	<p class="question"> {{sitn.text}} </p>
+	<p class="name" hidden>{{user.name}}</p>
+>>>>>>> 51dcdecafe85ca0c0d600519fa186bd52aa679ab
 	<a class="thumb" href="#" data-thumb>
 		<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
 	</a>
@@ -52,6 +57,9 @@
 	window.addEventListener('popstate', function () {
 		history.pushState(null, null, document.URL);
 	});
+	var name=document.getElementsByClassName("name")[0].innerText;
+	var word= document.getElementsByClassName("question")[0].innerText.replace('{user}',name);
+	document.getElementsByClassName("question")[0].innerText=word;
 
 	const url = document.location.origin;
 
@@ -63,7 +71,6 @@
 	{
 	localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
 	}
-
 </script>
 
 </html>

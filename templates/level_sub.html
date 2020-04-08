@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<p>{{ sitn.text }}</p>
+<p class="question">{{ sitn.text }}</p>
+<p class="name" hidden>{{user.name}}</p>
 
 {% block msgblock %}
 {% if messages %}
@@ -57,11 +58,8 @@
             history.pushState(null, null, document.URL);
         });
 
-        const url = window.location.protocol + window.location.hostname;
-        console.log("script ran", url);
-        if (sessionStorage.getItem('beenhere') === '1') {
-            window.location = url;
-        }
-        sessionStorage.setItem('beenhere', '1');
+        var name=document.getElementsByClassName("name")[0].innerText;
+	    var word= document.getElementsByClassName("question")[0].innerText.replace('{user}',name);
+        document.getElementsByClassName("question")[0].innerText=word;
     </script>
     {% endblock %}

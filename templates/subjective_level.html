@@ -80,22 +80,25 @@
     window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);
     });
+    var name = document.getElementsByClassName("name")[0].innerText;
+    var word = document.getElementsByClassName("question")[0].innerText.replace('{user}', name);
+    document.getElementsByClassName("question")[0].innerText = word;
 
     const url = document.location.origin;
     if (localStorage.getItem('unsolved') != 1) {
         if (localStorage.getItem('beenhere') === document.getElementById("question-text").innerText) {
-            localStorage.setItem('beenhere','');
-            localStorage.setItem('unsolved',1);
+            localStorage.setItem('beenhere', '');
+            localStorage.setItem('unsolved', 1);
             window.location = url;
         }
-        else{
+        else {
             localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
-            localStorage.setItem('unsolved',0);
+            localStorage.setItem('unsolved', 0);
         }
     }
     else {
         localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
-        localStorage.setItem('unsolved',0);
+        localStorage.setItem('unsolved', 0);
     }
 </script>
 {% endblock %}
