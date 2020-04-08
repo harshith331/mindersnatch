@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<p>{{ sitn.text }}</p>
+<p class="question">{{ sitn.text }}</p>
+<p class="name" hidden>{{user.name}}</p>
 
 {% block msgblock %}
 {% if messages %}
@@ -56,5 +57,9 @@
         window.addEventListener('popstate', function () {
             history.pushState(null, null, document.URL);
         });
+
+        var name=document.getElementsByClassName("name")[0].innerText;
+	    var word= document.getElementsByClassName("question")[0].innerText.replace('{user}',name);
+	    document.getElementsByClassName("question")[0].innerText=word;
     </script>
     {% endblock %}
