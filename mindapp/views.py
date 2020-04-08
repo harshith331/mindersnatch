@@ -142,7 +142,6 @@ def answer(request):
                                 ans = request.POST.get('ans')
                                 timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
                                 if past_sitn.checkAnswer(ans):
-                                    print("---------------------------------------------")
                                     timer[0].end_time = datetime.datetime.now()
                                     timer[0].save()
                                     player.score += timer[0].timedifference()
@@ -194,7 +193,6 @@ def answer(request):
     else:
         return render(request, 'timer.html',{'time':config.time})
 
-
 @login_required(login_url="/")
 def leaderboard(request):
     config = Config.objects.all().first()
@@ -225,14 +223,12 @@ def rules(request):
 def rule(request):
     return render(request, "rules_page.html")
 
-
 def logout_view(request):
     logout(request)
     return redirect(index)
 
 def page_not_found_view(request, exception):
     return render(request, "404.html", status=404)
-
 
 def privacy_policy_fb(request):
     return render(request,"privacypolicy.html")
