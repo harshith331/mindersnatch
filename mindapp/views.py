@@ -132,7 +132,7 @@ def answer(request):
                                                 else:
                                                     return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                             else:
-                                                return render(request,"pls_wait.html")
+                                                return render(request,"pls_wait.html",{'user': player,})
                                         else:
                                             return HttpResponse("player has won")
                                 except : 
@@ -160,7 +160,7 @@ def answer(request):
                                             else:
                                                 return render(request, 'level.html', {'user': player, 'sitn': sitn})
                                         else:
-                                            return render(request,"pls_wait.html")
+                                            return render(request,"pls_wait.html",{'user': player,})
                                     else:
                                         return HttpResponse("player has won")
                                 else:
@@ -186,7 +186,7 @@ def answer(request):
                         return render(request,'404.html')
             else:
                 # daily limit completed
-                return render(request,"pls_wait.html")
+                return render(request,"pls_wait.html",{'user': player_check,})
         else:
             #all situations covered
             return HttpResponse("player has won")
