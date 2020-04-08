@@ -40,6 +40,7 @@ a {
   font-size: 0.65rem;
   letter-spacing: 0.13rem;
   opacity: 0.6;
+  margin: 0px 15px 0px 15px;
 }
 
 .et-hero-tabs-container {
@@ -98,6 +99,7 @@ a {
   .et-hero-tabs h3,
   .et-slide h3 {
     font-size: 1rem;
+    margin: 0px 25px 0px 25px;
   }
 
   .et-hero-tab {
