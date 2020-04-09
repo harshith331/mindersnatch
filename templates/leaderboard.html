@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block stylesheet %}
-<link rel="stylesheet" href="static/leaderboard.css">
+<link rel="stylesheet" href="{% static 'leaderboard.css' %}">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -15,5 +15,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="static/leaderboard.js"></script>
+<script src="{% static 'leaderboard.js' %}"></script>
 {% endblock %}

@@ -11,6 +11,7 @@ from django.utils import timezone as t
 import csv
 from django.http import HttpResponse
 from decouple import config
+import sys
 
 
 def activeTime(request):
@@ -75,7 +76,8 @@ def index(request):
                     player = Player.objects.get(user=request.user)
                     print(player)
                     return render(request, 'index.html', {'user': player})
-                except:
+                except Exception as e:
+                    print (e)
                     return render(request,'404.html',{'message':"Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:
