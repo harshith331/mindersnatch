@@ -1,25 +1,25 @@
-body{
-  background-image: url('https://manula.r.sizr.io/large/user/12518/img/tv-electrical-interference.gif');
-    background-size: cover;
-    height: 100vh;
-    padding:0;
-    margin:0;
+body {
+  background-size: cover;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 div.container {
-    margin-top: 10%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+  margin-top: 10%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
+
 div.container svg {
-    margin: 20px auto;
+  margin: 20px auto;
 }
 
 div.container .ml11 {
-text-align: center;
+  text-align: center;
   color: white;
   font-weight: 700;
   font-size: 1.5em;
@@ -62,8 +62,8 @@ div.container .ml11 .letter {
   margin-top: 40px;
 }
 
-.profile-container span{
-    margin-left: 10px;
+.profile-container span {
+  margin-left: 10px;
   font-size: 1rem;
   line-height: 70px;
 }
@@ -75,54 +75,49 @@ div.container .ml11 .letter {
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 svg.desktop {
-    width: 50vw;
+  width: 50vw;
 }
 
 svg.mobile {
-    width: 80vw;
+  width: 80vw;
 }
 
 @media screen and (max-width: 500px) {
-    svg.desktop {
-        display: none;
-    }
-
-    svg.mobile {
-        display: block;
-        width: 80%;
-        height: 200px;
-    }
-
-    .profile-container span{
-        font-size: 0.9rem;
-        line-height: 50px;
-    }
-
-    .profile-container .profile {
-        height: 50px;
-        width: 50px;
-    }
-
-    div.container .ml11 {
-  font-size: .85em;
-}
-  .nes-pointer{
+  svg.desktop {
+    display: none;
+  }
+  svg.mobile {
+    display: block;
+    width: 80%;
+    height: 200px;
+  }
+  .profile-container span {
+    font-size: 0.9rem;
+    line-height: 50px;
+  }
+  .profile-container .profile {
+    height: 50px;
+    width: 50px;
+  }
+  div.container .ml11 {
+    font-size: .85em;
+  }
+  .nes-pointer {
     margin-left: 20px;
   }
 }
 
 @media screen and (min-width: 501px) {
-    svg.desktop {
-        display: block;
-    }
-
-    svg.mobile {
-        display: none;
-    }
+  svg.desktop {
+    display: block;
+  }
+  svg.mobile {
+    display: none;
+  }
 }
 
 .row {
