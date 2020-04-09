@@ -136,7 +136,8 @@ def answer(request):
                                             else:
                                                 return render(request,"pls_wait.html",{'user': player,})
                                         else:
-                                            return HttpResponse("player has won")
+                                            messg=Situation.objects.get(situation_no=player.current_sitn).text
+                                            return render(request,"finish.html",{'user': player,'messg':messg})
                                 except : 
                                     return render(request,'404.html')
                             else:
@@ -164,7 +165,8 @@ def answer(request):
                                         else:
                                             return render(request,"pls_wait.html",{'user': player,})
                                     else:
-                                        return HttpResponse("player has won")
+                                        messg=Situation.objects.get(situation_no=player.current_sitn).text
+                                        return render(request,"finish.html",{'user': player,'messg':messg})
                                 else:
                                     return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302,})
                         except : 
@@ -191,7 +193,8 @@ def answer(request):
                 return render(request,"pls_wait.html",{'user': player_check,})
         else:
             #all situations covered
-            return HttpResponse("player has won")
+            messg=Situation.objects.get(situation_no=player_check.current_sitn).text
+            return render(request,"finish.html",{'user': player_check,'messg':messg})
     else:
         return render(request, 'timer.html',{'time':config.time})
 
