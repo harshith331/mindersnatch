@@ -1,3 +1,11 @@
+body{
+  background-image: url('https://manula.r.sizr.io/large/user/12518/img/tv-electrical-interference.gif');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
 div.container {
     margin-top: 10%;
     padding: 10px;
@@ -6,7 +14,6 @@ div.container {
     justify-content: center;
     align-content: center;
 }
-
 div.container svg {
     margin: 20px auto;
 }
