@@ -7,7 +7,7 @@ angular
     .controller('ProfileLoadingController', function ($scope) {
         var vm = this;
 
-        vm.title = 'That\'s all for now! New questions will be added soon!';
+        vm.title = 'That\'s all for now! Be prepared for more intense missions.';
         vm.message = 'Please, be patient. Keep checking GLUG groups for more info!';
         var clockHand = document.getElementById('clock-hand'),
             text = document.getElementById('profile-loading__text');
