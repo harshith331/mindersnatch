@@ -8,22 +8,28 @@
 <div class="container">
 	{% include "components/svg.desktop.html" %}
 	{% include "components/svg.mobile.html" %}
+	{% if frozen == True %}
+		<!-- Replace this with proper frozen message -->
+	{% endif %}
 	<h1 class="ml11">
 		<span class="text-wrapper">
-    <span class="line line1"></span>
-		<span class="letters">Find Your own ending!</span>
+			<span class="line line1"></span>
+			<span class="letters">Find Your own ending!</span>
 		</span>
 	</h1>
 	{% if user.name %}
 	<div class="profile-container">
 		<img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
-		<span class="nes-pointer"><a href="{% url 'situation' %}" style="text-decoration: none; color: white !important;">Start the game !</a></span>
+		<span class="nes-pointer"><a href="{% url 'situation' %}"
+				style="text-decoration: none; color: white !important;">Start the game !</a></span>
 	</div>
 	{% else %}
-    <div class="row">
-  <a type="button" href="{% url 'social:begin' 'facebook' %}" class="social-button nes-btn is-primary"><i class="nes-icon facebook is-small"></i> Login in with Facebook</a>
-  <a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"><i class="nes-icon google is-small"></i> Login in with Google</a>
-</div>
+	<div class="row">
+		<a type="button" href="{% url 'social:begin' 'facebook' %}" class="social-button nes-btn is-primary"><i
+				class="nes-icon facebook is-small"></i> Login in with Facebook</a>
+		<a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"><i
+				class="nes-icon google is-small"></i> Login in with Google</a>
+	</div>
 	{% endif %}
 </div>
 

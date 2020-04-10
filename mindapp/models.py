@@ -12,6 +12,7 @@ class Config(models.Model):
     time = models.CharField(max_length=40,default='April 6, 2020 18:30:00')
     current_level=models.IntegerField(default=1)
     total_level=models.IntegerField(default=1)
+    freeze_time = models.DateTimeField(default=datetime.now)
     def __str__(self):
         return "Start and End Time"
 
