@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="static/finish.css">
-<link rel="stylesheet" href="static/index.css">
+<link rel="stylesheet" href="{% static 'finish.css' %}">
+<link rel="stylesheet" href="{% static 'index.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
     
-    <h1>Congratulations !! <br />
+    <h1 style="color: white">Congratulations !! <br />
       You finished the game</h1>
       <div class="Message">
       <div class="nes-container is-dark with-title" id="error">
@@ -29,5 +30,5 @@
 </div>
 <i class="icon nes-mario"></i>
 {% block js %}
-<script src="static/finish.js"></script>
+<script src="{% static 'finish.js' %}"></script>
 {% endblock %}
