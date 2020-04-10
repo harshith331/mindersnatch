@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="static/finish.css">
+<link rel="stylesheet" href="static/index.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <h1>Congratulations !! <br />
+      You finished the game</h1>
+      <div class="Message">
+      <div class="nes-container is-dark with-title" id="error">
+        <p class="title" style="color: red;">Game's Message:</p>
+        <p>your final situation id. is : <span style="color: chartreuse;">{{user.current_sitn}}</span></p>
+        <p style="color:cadetblue">{{messg}}</p>
+      </div>
+    </div>
+    <a href="https://www.facebook.com/nitdgplug/" style="text-align: center;">
+    <button type="button" class="nes-btn is-primary"><i class="nes-icon is-small like"></i> Like us on Facebook</button>
+    </a>  
+  
+  <div class="bounce">
+  </div>
+  
+{% endblock %}
+
+</div>
+<i class="icon nes-mario"></i>
+{% block js %}
+<script src="static/finish.js"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+body {
+    background-color: black;
+    color: white;
+    background-image: url(https://wallpaperaccess.com/download/dark-geometric-desktop-1198741);
+    background-position: center;
+  }
+  .Message{
+      width: 70%;
+      margin: auto;
+  }
+  .container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .container i {
+    margin: 40px auto;  
+  }
+  
+  .container button {
+    margin: 40px auto;
+  }
+  
+  .container h1  {
+    text-align: center;
+
+  }
+  .container h3  {
+    text-align: center;
+    border: chartreuse 1px solid;
+    width: 50%;
+    margin: auto;
+  }
+  
+  .bounce {
+    position: absolute;
+    bottom: 0%;
+  }
+  
+  body {
+    overflow: hidden;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .container h1 {
+      font-size: 1.3rem;
+    }
+    .container button {
+      font-size: 0.9rem;
+    }
+  }
