@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=1093110114385829&autoLogAppEvents=1"></script>
 <div class="container">
     
     <h1 style="color: white">Congratulations !! <br />
@@ -18,9 +20,10 @@
         <p style="color:cadetblue">{{messg}}</p>
       </div>
     </div>
-    <a href="https://www.facebook.com/nitdgplug/" style="text-align: center;">
-    <button type="button" class="nes-btn is-primary"><i class="nes-icon is-small like"></i> Like us on Facebook</button>
-    </a>  
+    <br><br>
+    <div style="text-align: center;"> Like us on Facebook <br>
+        <div style="text-align: center;"class="fb-like" data-href="https://www.facebook.com/nitdgplug/" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="false"></div>
+    </div>  
   
   <div class="bounce">
   </div>
