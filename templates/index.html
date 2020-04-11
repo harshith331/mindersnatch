@@ -2,6 +2,7 @@
 {% load static %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'index.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -9,7 +10,7 @@
 	{% include "components/svg.desktop.html" %}
 	{% include "components/svg.mobile.html" %}
 	{% if frozen == True %}
-		<!-- Replace this with proper frozen message -->
+		<p style="width: 70%;margin: auto;text-align: center;border: 2px solid red;color: seashell;"  id="breathing-button">The Event has ended ,The Leaderboard has been frozen <br>However you can still explore the game:)</p>
 	{% endif %}
 	<h1 class="ml11">
 		<span class="text-wrapper">
