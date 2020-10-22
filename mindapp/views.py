@@ -1,29 +1,27 @@
+import sys
+import csv
+import datetime
+from . import models
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
-import datetime
-from . import models
 from time import timezone
 from django.utils import timezone as t
-import csv
 from django.http import HttpResponse
 from decouple import config
-import sys
 
 curr_leaderboard = None
 
 def activeTime(request):
     configuration = Config.objects.all().first()
     curr_time = t.now()
-    if  request.user.is_staff:
-        return 2  # for staff 
-    if curr_time < configuration.start_time:
+    if request.user.is_staff or curr_time >= configuration.start_time and curr_time <= configuration.end_time:
+        return 2  # for staff or Contest Active
+    elif curr_time < configuration.start_time:
         return 1  # Contest hasnt started
-    elif curr_time >= configuration.start_time and curr_time <= configuration.end_time:
-        return 2  # Contest Active
     else:
         return 3  # Contest Ended
 
@@ -76,28 +74,24 @@ def saveLeaderboard(request):
     else:
         return HttpResponse("Not Authorised. Bad user :(")
 
-
 def index(request):
     config=Config.objects.all().first()
     if activeTime(request) == 2:
-        if request.user:
-            if request.user.is_authenticated:
-                try : 
-                    frozen = isFrozen()
-                    player = Player.objects.get(user=request.user)
-                    return render(request, 'index.html', {'user': player, 'frozen' : frozen})
-                except Exception as e:
-                    return render(request,'404.html',{'message':"Try Logging Again!!"})
+        if request.user and request.user.is_authenticated:
+            try : 
+                frozen = isFrozen()
+                player = Player.objects.get(user=request.user)
+                return render(request, 'index.html', {'user': player, 'frozen' : frozen})
+            except Exception as e:
+                return render(request,'404.html',{'message':"Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:
-        if request.user:
-            if request.user.is_authenticated:
-                player = Player.objects.get(user=request.user)
-                return render(request, 'timer.html', {'time':config.time, 'user':player})
+        if request.user and request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            return render(request, 'timer.html', {'time':config.time, 'user':player})
         return render(request, 'timer.html',{'time':config.time})
     else:
         return render(request, 'cont_end.html')
-
 
 @login_required(login_url="/")
 def answer(request):
@@ -207,10 +201,8 @@ def answer(request):
             return render(request,"finish.html",{'user': player_check,'messg':messg})
     elif activeTime(request) == 1:
         return render(request, 'timer.html',{'time':config.time})
-    
     else:
         return render(request, 'cont_end.html')
-
 
 @login_required(login_url="/")
 def leaderboard(request):
@@ -218,10 +210,9 @@ def leaderboard(request):
     if activeTime(request) == 2 or activeTime(request) == 3:
         players = updateLeaderboard()
         context = {'players': players}
-        if request.user:
-            if request.user.is_authenticated:
-                player = Player.objects.get(user=request.user)
-                context['user'] = player
+        if request.user and request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            context['user'] = player
         return render(request, "lboard.html", context)
     else:
         return render(request, 'timer.html',{'time':config.time})
@@ -231,10 +222,9 @@ def rules(request):
     config = Config.objects.all().first()
     if activeTime(request) == 2 or activeTime(request) == 3:
         context = {}
-        if request.user:
-            if request.user.is_authenticated:
-                player = Player.objects.get(user=request.user)
-                context = {'user': player}
+        if request.user and request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            context = {'user': player}
         return render(request, "rules.html", context)
     else:
         return render(request, 'timer.html',{'time':config.time})

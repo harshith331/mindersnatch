@@ -17,7 +17,6 @@ class Config(models.Model):
         return "Start and End Time"
 
 class Player(models.Model):
-    # user = models.ForeignKey(User,on_delete=models.CASCADE)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     current_sitn = models.IntegerField(default=1)
@@ -30,17 +29,6 @@ class Player(models.Model):
 
     def __str__(self):
         return self.name
-
-# @receiver(post_save,sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Player.objects.create(
-#             user=instance, name=instance.username
-#         )
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.player.save()
 
 class option(models.Model):
     text=models.CharField(max_length=50)
