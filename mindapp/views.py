@@ -62,7 +62,6 @@ def save_profile(backend, user, response, *args, **kwargs):
             player.timestamp = datetime.datetime.now()
             player.save()
 
-
 def saveLeaderboard(request):
     if request.GET.get("password") == config('LEADERBOARD_PASSWORD', cast=str):
         response = HttpResponse(content_type="text/csv")
@@ -93,6 +92,96 @@ def index(request):
     else:
         return render(request, 'cont_end.html')
 
+def ans_post(request, cur_level, tot_level):
+    """ Handling Post requests while answering """
+
+    try :
+        player = Player.objects.get(user=request.user)
+        past_sitn = Situation.objects.get(situation_no=player.current_sitn)
+        if past_sitn.sub == False:
+            op_no = request.POST.get('op_no')
+            try : 
+                option_c = option.objects.get(id=op_no)
+                if option_c.end:
+                    # player is dead redirect to start node
+                    player.current_sitn = Situation.objects.get(situation_no=1).situation_no
+                    player.level=Situation.objects.get(situation_no=1).level
+                    player.score +=1
+                    player.save()
+                    updateLeaderboard()
+                    message = option_c.message
+                    return render(request, 'dead.html', {'user': player, 'message': message})
+                else:
+                    # option is non terminating one player progresses to next level
+                    player.current_sitn = option_c.next_sit
+                    player.score += 1
+                    player.timestamp = datetime.datetime.now()
+                    sitn = Situation.objects.get(situation_no=option_c.next_sit)
+                    player.level=sitn.level
+                    player.save()
+                    updateLeaderboard()
+                    if player.level<= tot_level:
+                        if player.level <= cur_level:
+                            if sitn.sub == True:
+                                timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+                                return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
+                            else:
+                                return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                        else:
+                            return render(request,"pls_wait.html",{'user': player,})
+                    else:
+                        messg=Situation.objects.get(situation_no=player.current_sitn).text
+                        return render(request,"finish.html",{'user': player,'messg':messg})
+            except : 
+                return render(request,'404.html')
+        else :
+            ans = ""
+            ans = request.POST.get('ans')
+            timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
+            if past_sitn.checkAnswer(ans):
+                timer[0].end_time = datetime.datetime.now()
+                timer[0].save()
+                player.score += timer[0].timedifference()
+                timer[0].delete()
+                player.current_sitn = past_sitn.next_sitn
+                player.timestamp = datetime.datetime.now()
+                sitn = Situation.objects.get(situation_no=player.current_sitn)
+                player.level=sitn.level
+                player.save()
+                updateLeaderboard()
+                if player.level<= tot_level:
+                    if player.level <= cur_level:
+                        if sitn.sub == True:
+                            new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
+                            start_time=datetime.datetime.now())
+                            return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
+                        else:
+                            return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                    else:
+                        return render(request,"pls_wait.html",{'user': player,})
+                else:
+                    messg=Situation.objects.get(situation_no=player.current_sitn).text
+                    return render(request,"finish.html",{'user': player,'messg':messg})
+            else:
+                return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302,})
+    except:
+        return render(request,'404.html')
+
+def ans_nonpost(request):
+    """ Handling requests other than post while answering """
+
+    try :
+        player = Player.objects.get(user=request.user)
+        sitn = Situation.objects.get(situation_no=player.current_sitn)
+        if sitn.sub == True:
+            timer = SituationTimer.objects.get_or_create(
+                player=player, situation=sitn)
+            return render(request, "subjective_level.html", {'user': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
+        else:
+            return render(request, "level.html", {'user': player, 'sitn': sitn})
+    except : 
+        return render(request,'404.html')
+
 @login_required(login_url="/")
 def answer(request):
     config = Config.objects.all().first()
@@ -101,97 +190,11 @@ def answer(request):
     player_check = Player.objects.get(user=request.user)
     if activeTime(request) == 2:
         if player_check.level <= tot_level:
-            if player_check.level <=cur_level:
+            if player_check.level <= cur_level:
                 if request.method == 'POST':
-                    try:
-                        player = Player.objects.get(user=request.user)
-                        try : 
-                            past_sitn = Situation.objects.get(situation_no=player.current_sitn)
-                            if past_sitn.sub == False:
-                                op_no = request.POST.get('op_no')
-                                try : 
-                                    option_c = option.objects.get(id=op_no)
-                                    if option_c.end:
-                                        # player is dead redirect to start node
-                                        player.current_sitn = Situation.objects.get(situation_no=1).situation_no
-                                        player.level=Situation.objects.get(situation_no=1).level
-                                        player.score +=1
-                                        player.save()
-                                        updateLeaderboard()
-                                        message = option_c.message
-                                        return render(request, 'dead.html', {'user': player, 'message': message})
-                                    else:
-                                        # option is non terminating one player progresses to next level
-                                        player.current_sitn = option_c.next_sit
-                                        player.score += 1
-                                        player.timestamp = datetime.datetime.now()
-                                        sitn = Situation.objects.get(situation_no=option_c.next_sit)
-                                        player.level=sitn.level
-                                        player.save()
-                                        updateLeaderboard()
-                                        if player.level<= tot_level:
-                                            if player.level <= cur_level:
-                                                if sitn.sub == True:
-                                                    timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                                                    return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
-                                                else:
-                                                    return render(request, 'level.html', {'user': player, 'sitn': sitn})
-                                            else:
-                                                return render(request,"pls_wait.html",{'user': player,})
-                                        else:
-                                            messg=Situation.objects.get(situation_no=player.current_sitn).text
-                                            return render(request,"finish.html",{'user': player,'messg':messg})
-                                except : 
-                                    return render(request,'404.html')
-                            else:
-                                ans = ""
-                                ans = request.POST.get('ans')
-                                timer = SituationTimer.objects.get_or_create(player=player, situation=past_sitn)
-                                if past_sitn.checkAnswer(ans):
-                                    timer[0].end_time = datetime.datetime.now()
-                                    timer[0].save()
-                                    player.score += timer[0].timedifference()
-                                    timer[0].delete()
-                                    player.current_sitn = past_sitn.next_sitn
-                                    player.timestamp = datetime.datetime.now()
-                                    sitn = Situation.objects.get(situation_no=player.current_sitn)
-                                    player.level=sitn.level
-                                    player.save()
-                                    updateLeaderboard()
-                                    if player.level<= tot_level:
-                                        if player.level <= cur_level:
-                                            if sitn.sub == True:
-                                                new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
-                                                start_time=datetime.datetime.now())
-                                                return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
-                                            else:
-                                                return render(request, 'level.html', {'user': player, 'sitn': sitn})
-                                        else:
-                                            return render(request,"pls_wait.html",{'user': player,})
-                                    else:
-                                        messg=Situation.objects.get(situation_no=player.current_sitn).text
-                                        return render(request,"finish.html",{'user': player,'messg':messg})
-                                else:
-                                    return render(request, 'subjective_level.html', {'user': player, 'sitn': past_sitn, 'timepassed':timer[0].timepassed(), 'status':302,})
-                        except : 
-                            return render(request,'404.html')
-                    except:
-                        return render(request,'404.html')
-                else:
-                    try :
-                        player = Player.objects.get(user=request.user)
-                        try : 
-                            sitn = Situation.objects.get(situation_no=player.current_sitn)
-                            if sitn.sub == True:
-                                timer = SituationTimer.objects.get_or_create(
-                                    player=player, situation=sitn)
-                                return render(request, "subjective_level.html", {'user': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
-                            else:
-                                return render(request, "level.html", {'user': player, 'sitn': sitn})
-                        except : 
-                            return render(request,'404.html')
-                    except : 
-                        return render(request,'404.html')
+                    ans_post(request, cur_level, tot_level)
+                else :
+                    ans_nonpost(request)
             else:
                 # daily limit completed
                 return render(request,"pls_wait.html",{'user': player_check,})

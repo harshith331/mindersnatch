@@ -13,6 +13,7 @@ class Config(models.Model):
     current_level=models.IntegerField(default=1)
     total_level=models.IntegerField(default=1)
     freeze_time = models.DateTimeField(default=datetime.now)
+    
     def __str__(self):
         return "Start and End Time"
 
