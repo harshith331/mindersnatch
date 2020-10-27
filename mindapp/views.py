@@ -100,40 +100,37 @@ def ans_post(request, cur_level, tot_level):
         past_sitn = Situation.objects.get(situation_no=player.current_sitn)
         if past_sitn.sub == False:
             op_no = request.POST.get('op_no')
-            try : 
-                option_c = option.objects.get(id=op_no)
-                if option_c.end:
-                    # player is dead redirect to start node
-                    player.current_sitn = Situation.objects.get(situation_no=1).situation_no
-                    player.level=Situation.objects.get(situation_no=1).level
-                    player.score +=1
-                    player.save()
-                    updateLeaderboard()
-                    message = option_c.message
-                    return render(request, 'dead.html', {'user': player, 'message': message})
-                else:
-                    # option is non terminating one player progresses to next level
-                    player.current_sitn = option_c.next_sit
-                    player.score += 1
-                    player.timestamp = datetime.datetime.now()
-                    sitn = Situation.objects.get(situation_no=option_c.next_sit)
-                    player.level=sitn.level
-                    player.save()
-                    updateLeaderboard()
-                    if player.level<= tot_level:
-                        if player.level <= cur_level:
-                            if sitn.sub == True:
-                                timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                                return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
-                            else:
-                                return render(request, 'level.html', {'user': player, 'sitn': sitn})
+            option_c = option.objects.get(id=op_no)
+            if option_c.end:
+                # player is dead redirect to start node
+                player.current_sitn = Situation.objects.get(situation_no=1).situation_no
+                player.level=Situation.objects.get(situation_no=1).level
+                player.score +=1
+                player.save()
+                updateLeaderboard()
+                message = option_c.message
+                return render(request, 'dead.html', {'user': player, 'message': message})
+            else:
+                # option is non terminating one player progresses to next level
+                player.current_sitn = option_c.next_sit
+                player.score += 1
+                player.timestamp = datetime.datetime.now()
+                sitn = Situation.objects.get(situation_no=option_c.next_sit)
+                player.level=sitn.level
+                player.save()
+                updateLeaderboard()
+                if player.level<= tot_level:
+                    if player.level <= cur_level:
+                        if sitn.sub == True:
+                            timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+                            return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
                         else:
-                            return render(request,"pls_wait.html",{'user': player,})
+                            return render(request, 'level.html', {'user': player, 'sitn': sitn})
                     else:
-                        messg=Situation.objects.get(situation_no=player.current_sitn).text
-                        return render(request,"finish.html",{'user': player,'messg':messg})
-            except : 
-                return render(request,'404.html')
+                        return render(request,"pls_wait.html",{'user': player,})
+                else:
+                    messg=Situation.objects.get(situation_no=player.current_sitn).text
+                    return render(request,"finish.html",{'user': player,'messg':messg})
         else :
             ans = ""
             ans = request.POST.get('ans')
@@ -189,15 +186,14 @@ def answer(request):
     tot_level = config.total_level
     player_check = Player.objects.get(user=request.user)
     if activeTime(request) == 2:
-        if player_check.level <= tot_level:
-            if player_check.level <= cur_level:
-                if request.method == 'POST':
-                    ans_post(request, cur_level, tot_level)
-                else :
-                    ans_nonpost(request)
-            else:
-                # daily limit completed
-                return render(request,"pls_wait.html",{'user': player_check,})
+        if player_check.level <= tot_level and player_check.level <= cur_level:
+            if request.method == 'POST':
+                ans_post(request, cur_level, tot_level)
+            else :
+                ans_nonpost(request)
+        elif player_check.level <= tot_level and player_check.level > cur_level:
+            # daily limit completed
+            return render(request,"pls_wait.html",{'user': player_check,})
         else:
             #all situations covered
             messg=Situation.objects.get(situation_no=player_check.current_sitn).text
