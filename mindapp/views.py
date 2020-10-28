@@ -119,15 +119,14 @@ def ans_post(request, cur_level, tot_level):
                 player.level=sitn.level
                 player.save()
                 updateLeaderboard()
-                if player.level<= tot_level:
-                    if player.level <= cur_level:
-                        if sitn.sub == True:
-                            timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
-                            return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
-                        else:
-                            return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                if player.level <= tot_level and player.level <= cur_level:
+                    if sitn.sub == True:
+                        timer = SituationTimer.objects.get_or_create(player=player,situation=sitn)
+                        return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed':timer[0].timepassed()})
                     else:
-                        return render(request,"pls_wait.html",{'user': player,})
+                        return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                elif player.level <= tot_level and player.level > cur_level:
+                    return render(request,"pls_wait.html",{'user': player})
                 else:
                     messg=Situation.objects.get(situation_no=player.current_sitn).text
                     return render(request,"finish.html",{'user': player,'messg':messg})
@@ -146,16 +145,15 @@ def ans_post(request, cur_level, tot_level):
                 player.level=sitn.level
                 player.save()
                 updateLeaderboard()
-                if player.level<= tot_level:
-                    if player.level <= cur_level:
-                        if sitn.sub == True:
-                            new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
-                            start_time=datetime.datetime.now())
-                            return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
-                        else:
-                            return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                if player.level<= tot_level and player.level <= cur_level:
+                    if sitn.sub == True:
+                        new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
+                        start_time=datetime.datetime.now())
+                        return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn ,'timepassed': new_timer[0].timepassed()})
                     else:
-                        return render(request,"pls_wait.html",{'user': player,})
+                        return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                elif player.level<= tot_level and player.level > cur_level:
+                    return render(request,"pls_wait.html",{'user': player,})
                 else:
                     messg=Situation.objects.get(situation_no=player.current_sitn).text
                     return render(request,"finish.html",{'user': player,'messg':messg})
