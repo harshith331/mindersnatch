@@ -15,6 +15,7 @@ from decouple import config
 
 curr_leaderboard = None
 
+# Helper functions -------------/
 def activeTime(request):
     configuration = Config.objects.all().first()
     curr_time = t.now()
@@ -72,25 +73,6 @@ def saveLeaderboard(request):
         return response
     else:
         return HttpResponse("Not Authorised. Bad user :(")
-
-def index(request):
-    config=Config.objects.all().first()
-    if activeTime(request) == 2:
-        if request.user and request.user.is_authenticated:
-            try : 
-                frozen = isFrozen()
-                player = Player.objects.get(user=request.user)
-                return render(request, 'index.html', {'user': player, 'frozen' : frozen})
-            except Exception as e:
-                return render(request,'404.html',{'message':"Try Logging Again!!"})
-        return render(request, 'index.html')
-    elif activeTime(request) == 1:
-        if request.user and request.user.is_authenticated:
-            player = Player.objects.get(user=request.user)
-            return render(request, 'timer.html', {'time':config.time, 'user':player})
-        return render(request, 'timer.html',{'time':config.time})
-    else:
-        return render(request, 'cont_end.html')
 
 def ans_post(request, cur_level, tot_level):
     """ Handling Post requests while answering """
@@ -176,6 +158,26 @@ def ans_nonpost(request):
             return render(request, "level.html", {'user': player, 'sitn': sitn})
     except : 
         return render(request,'404.html')
+
+# Page functions -------------/
+def index(request):
+    config=Config.objects.all().first()
+    if activeTime(request) == 2:
+        if request.user and request.user.is_authenticated:
+            try : 
+                frozen = isFrozen()
+                player = Player.objects.get(user=request.user)
+                return render(request, 'index.html', {'user': player, 'frozen' : frozen})
+            except Exception as e:
+                return render(request,'404.html',{'message':"Try Logging Again!!"})
+        return render(request, 'index.html')
+    elif activeTime(request) == 1:
+        if request.user and request.user.is_authenticated:
+            player = Player.objects.get(user=request.user)
+            return render(request, 'timer.html', {'time':config.time, 'user':player})
+        return render(request, 'timer.html',{'time':config.time})
+    else:
+        return render(request, 'cont_end.html')
 
 @login_required(login_url="/")
 def answer(request):
