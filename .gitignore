@@ -3,3 +3,4 @@
 */**/__pychache__/*
 db.sqlite3
 .env
+env/
