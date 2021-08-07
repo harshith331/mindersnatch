@@ -27,6 +27,13 @@
 		<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
 	</a>
 	<ul class="options">
+		{% for option in options %}
+			<li class="nes-pointer" data-id="{{ option.id }}">
+				{{ option.text }}
+			</li>
+		{% endfor %}
+	</ul>
+	<!-- <ul class="options">
 		{% if sitn.option_1 %}
 		<li class="nes-pointer" data-id="{{ sitn.option_1.id }}">
 			{{ sitn.option_1.text }}
@@ -42,7 +49,7 @@
 			{{ sitn.option_3.text }}
 		</li>
 		{% endif %}
-	</ul>
+	</ul> -->
 	<hr class="upperline" />
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

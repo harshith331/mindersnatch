@@ -6,55 +6,69 @@ from django.dispatch import receiver
 from datetime import datetime
 
 # Create your models here.
+
+
 class Config(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
     end_time = models.DateTimeField(default=datetime.now)
-    time = models.CharField(max_length=40,default='April 6, 2020 18:30:00')
-    current_level=models.IntegerField(default=1)
-    total_level=models.IntegerField(default=1)
+    time = models.CharField(max_length=40, default='April 6, 2020 18:30:00')
+    current_level = models.IntegerField(default=1)
+    total_level = models.IntegerField(default=1)
     freeze_time = models.DateTimeField(default=datetime.now)
-    
+
     def __str__(self):
         return "Start and End Time"
+
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     current_sitn = models.IntegerField(default=1)
-    email = models.CharField(max_length=100,blank=True)
-    image = models.CharField(max_length=200,blank=True)
+    email = models.CharField(max_length=100, blank=True)
+    image = models.CharField(max_length=200, blank=True)
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     timestamp = models.DateTimeField(default=datetime.now)
-    level=models.IntegerField(default=1)
+    level = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
 
+
 class option(models.Model):
-    text=models.CharField(max_length=50)
-    next_sit=models.IntegerField()
-    end=models.BooleanField(default=False)
-    message=models.CharField(max_length=200,default='na')
-    image = models.ImageField(upload_to="images",default="https://source.unsplash.com/random")
+    text = models.CharField(max_length=50)
+    next_sit = models.IntegerField()
+    end = models.BooleanField(default=False)
+    message = models.CharField(max_length=200, default='na')
+    image = models.ImageField(
+        upload_to="images", default="https://source.unsplash.com/random")
 
     def __str__(self):
         return self.text
 
+
 class Situation(models.Model):
-    situation_no= models.IntegerField(unique=True) 
-    image = models.ImageField(upload_to = 'images',default='images/level1.jpg')
-    level=models.IntegerField(default=1)
+    situation_no = models.IntegerField(unique=True)
+    image = models.ImageField(upload_to='images', default='images/level1.jpg')
+    level = models.IntegerField(default=1)
     # audio = models.FileField(upload_to = 'audio',default='audios/default.mp3')
-    sub=models.BooleanField(default=False)
+    sub = models.BooleanField(default=False)
+
     #for subjective sitn#
-    next_sitn=models.IntegerField(default=1,help_text="Next situation number")
-    ans=models.CharField(max_length=100,default='NA',help_text="Answer for the subjective question")
+    next_sitn = models.IntegerField(
+        default=1, help_text="Next situation number")
+    ans = models.CharField(max_length=100, default='NA',
+                           help_text="Answer for the subjective question")
+
     #for objective sitn#
     text = models.TextField()
-    option_1 = models.ForeignKey(option,related_name='option1',on_delete=models.CASCADE,blank=True,null=True)
-    option_2 = models.ForeignKey(option,related_name='option2',on_delete=models.CASCADE,blank=True,null=True)
-    option_3 = models.ForeignKey(option,related_name='option3',on_delete=models.CASCADE,blank=True,null=True)
+    options = models.ManyToManyField(option, blank=True)
+    # option_1 = models.ForeignKey(
+    #     option, related_name='option1', on_delete=models.CASCADE, blank=True, null=True)
+    # option_2 = models.ForeignKey(
+    #     option, related_name='option2', on_delete=models.CASCADE, blank=True, null=True)
+    # option_3 = models.ForeignKey(
+    #     option, related_name='option3', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return str(self.situation_no) + " : " + self.text
@@ -81,9 +95,10 @@ class Situation(models.Model):
         else:
             pass
 
+
 class SituationTimer(models.Model):
-    player = models.ForeignKey(Player,on_delete=models.CASCADE)
-    situation = models.ForeignKey(Situation,on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    situation = models.ForeignKey(Situation, on_delete=models.CASCADE)
     start_time = models.DateTimeField(default=datetime.now, null=True)
     end_time = models.DateTimeField(null=True)
 
@@ -97,9 +112,9 @@ class SituationTimer(models.Model):
         return (int(datetime.now().timestamp()) - int(self.start_time.timestamp()))
 
     def timedifference(self):
-        diff=self.end_epoch() - self.start_epoch()
+        diff = self.end_epoch() - self.start_epoch()
         if diff <= 300:
             return 1
-        elif diff > 300 and diff <=600:
+        elif diff > 300 and diff <= 600:
             return 2
         return 4
