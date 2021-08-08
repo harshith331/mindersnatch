@@ -31,6 +31,9 @@ class Player(models.Model):
     timestamp = models.DateTimeField(default=datetime.now)
     level = models.IntegerField(default=1)
 
+    completed_or_dead = models.BooleanField(default=False)
+    visited_nodes = models.CharField(max_length=1000, default="")
+
     def __str__(self):
         return self.name
 

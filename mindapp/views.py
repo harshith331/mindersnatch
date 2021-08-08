@@ -92,12 +92,16 @@ def ans_post(request, cur_level, tot_level):
         if past_sitn.sub == False:
             op_no = request.POST.get('op_no')
             option_c = option.objects.get(id=op_no)
+
             if option_c.end:
                 # player is dead redirect to start node
                 player.current_sitn = Situation.objects.get(
                     situation_no=1).situation_no
                 player.level = Situation.objects.get(situation_no=1).level
                 player.score += 1
+
+                # Activate the graph feature
+                player.completed_or_dead = True
                 player.save()
                 updateLeaderboard()
                 message = option_c.message
@@ -109,6 +113,10 @@ def ans_post(request, cur_level, tot_level):
                 player.timestamp = datetime.datetime.now()
                 sitn = Situation.objects.get(situation_no=option_c.next_sit)
                 player.level = sitn.level
+
+                # Appending the next situation to the visited string
+                player.visited += f"{sitn.situation_no} "
+
                 player.save()
                 updateLeaderboard()
                 if player.level <= tot_level and player.level <= cur_level:
@@ -138,6 +146,10 @@ def ans_post(request, cur_level, tot_level):
                 player.timestamp = datetime.datetime.now()
                 sitn = Situation.objects.get(situation_no=player.current_sitn)
                 player.level = sitn.level
+
+                # Appending the next situation to the visited string
+                player.visited += f"{sitn.situation_no} "
+
                 player.save()
                 updateLeaderboard()
                 if player.level <= tot_level and player.level <= cur_level:
@@ -268,3 +280,10 @@ def page_not_found_view(request, exception):
 
 def privacy_policy_fb(request):
     return render(request, "privacypolicy.html")
+
+
+@login_required(login_url="/")
+def graph_and_player_path(request):
+    player = Player.objects.get(user=request.user)
+    visited = player.visited.split(" ")[0: -1]
+    pass
