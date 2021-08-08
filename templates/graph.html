@@ -11,6 +11,7 @@
 <style>
   .link {
     stroke: #ccc;
+    stroke-width: 3;
   }
 
   .node text {
@@ -29,103 +30,133 @@
   const getGraphData = async () => {
     const response = await fetch("/adj");
     const { visited, graph } = await response.json();
-    const graphData = {}
+    console.log(visited, graph)
+    const graphData = {
+      nodes: [],
+      links: []
+    }
+    var s = new Set();
+    for (list in graph) {
+      graphData.nodes.push({ name: parseInt(list)});
+      console.log(list, ': ', graph[list])
+      graph[list].forEach(element => {
+        if(!s.has(`${element}_${list}`) && !s.has(`${list}_${element}`)){
+          graphData.links.push({source: parseInt(element) , target: parseInt(list)});
+          s.add(`${element}_${list}`)
+        }
+      });
+    }
+    console.log('reached here')
+    console.log(graphData);
+
+    return graphData;
   }
 
-  getGraphData();
+  const constructGraph = async() => {
+    const y = await getGraphData()
+    const z = getData()
+    const graphData = await getGraphData();
+    // console.log('recieved graphData', z)
+    console.log('recieved graphData', y)
+    var width = "1800",
+    height = "800";
 
-  var width = "1000",
-    height = "1000";
+    var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-  var svg = d3
-    .select("body")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    // // var json = getData();
 
-  var json = getData();
+      var force = d3.layout
+          .force()
+          .gravity(.02)
+          .charge(-500)
+          .friction(.9)
+          // .theta(0.9)
+          .distance(200)
+          .size([width, height])
+          .nodes(graphData.nodes)
+          .links(graphData.links)
+          .start();
 
-  var force = d3.layout
-    .forceSimulation(json.nodes)
-    .force("charge", d3.forceManyBody().strength(-1000))
-    .distance(200)
-    .charge(-100)
-    .size([width, height])
-    .nodes(json.nodes)
-    .links(json.links)
-    .start();
+    // var link = svg
+    //     .selectAll(".link")
+    //     .data(graphData.links)
+    //     .enter()
+    //     .append("line")
+    //     .attr("class", "link");
 
-  var link = svg
-    .selectAll(".link")
-    .data(json.links)
-    .enter()
-    .append("line")
-    .attr("class", "link");
+    // var node = svg
+    //     .selectAll(".node")
+    //     .data(graphData.nodes)
+    //     .enter()
+    //     .append("g")
+    //     .attr("class", "node")
+    //     .call(force.drag);
+    // var x = 0;
+    // node.append("image")
+    //     .attr("xlink:href", function (d) {
+    //     var rnd = Math.floor(Math.random() * 64 + 1);
+    //     var imagePath =
+    //         "http://www.bigbiz.com/bigbiz/icons/ultimate/Comic/Comic" +
+    //         rnd.toString() +
+    //         ".gif";
+    //     // console.log(imagePath);
+    //     if (x > 3) {
+    //         imagePath =
+    //         "https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs=";
+    //     }
+    //     x++;
+    //     return imagePath;
+    //     })
+    //     .attr("x", -8)
+    //     .attr("y", -8)
+    //     .attr("width", 30)
+    //     .attr("height", 30);
 
-  var node = svg
-    .selectAll(".node")
-    .data(json.nodes)
-    .enter()
-    .append("g")
-    .attr("class", "node")
-    .call(force.drag);
-  var x = 0;
-  node.append("image")
-    .attr("xlink:href", function (d) {
-      var rnd = Math.floor(Math.random() * 64 + 1);
-      var imagePath =
-        "http://www.bigbiz.com/bigbiz/icons/ultimate/Comic/Comic" +
-        rnd.toString() +
-        ".gif";
-      // console.log(imagePath);
-      if (x > 3) {
-        imagePath =
-          "https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs=";
-      }
-      x++;
-      return imagePath;
-    })
-    .attr("x", -8)
-    .attr("y", -8)
-    .attr("width", 30)
-    .attr("height", 30);
+    // node.append("text")
+    //     .attr("dx", 12)
+    //     .attr("dy", ".35em")
+    //     .text(function (d) {
+    //     return d.name;
+    //     });
 
-  node.append("text")
-    .attr("dx", 12)
-    .attr("dy", ".35em")
-    .text(function (d) {
-      return d.name;
-    });
+    // node.append("a")
+    //     .attr("xlink:href", "http://google.com")
+    //     .append("rect")
+    //     .attr("height", 20)
+    //     .attr("width", 20)
+    //     .style("opacity", "0")
+    //     .attr("rx", 10)
+    //     .attr("ry", 10);
 
-  node.append("a")
-    .attr("xlink:href", "http://google.com")
-    .append("rect")
-    .attr("height", 20)
-    .attr("width", 20)
-    .style("opacity", "0")
-    .attr("rx", 10)
-    .attr("ry", 10);
+    // force.on("tick", function () {
+    //     link.attr("x1", function (d) {
+    //     return d.source.x;
+    //     })
+    //     .attr("y1", function (d) {
+    //         return d.source.y;
+    //     })
+    //     .attr("x2", function (d) {
+    //         return d.target.x;
+    //     })
+    //     .attr("y2", function (d) {
+    //         return d.target.y;
+    //     });
 
-  force.on("tick", function () {
-    link.attr("x1", function (d) {
-      return d.source.x;
-    })
-      .attr("y1", function (d) {
-        return d.source.y;
-      })
-      .attr("x2", function (d) {
-        return d.target.x;
-      })
-      .attr("y2", function (d) {
-        return d.target.y;
-      });
+    //     node.attr("transform", function (d) {
+    //     return "translate(" + d.x + "," + d.y + ")";
+    //     });
+    // });
+  }
 
-    node.attr("transform", function (d) {
-      return "translate(" + d.x + "," + d.y + ")";
-    });
-  });
+  constructGraph();
+
+  
   function getData() {
-    return {
+    const x =  {
       nodes: [
         { name: 0 },
         { name: 1 },
@@ -146,6 +177,8 @@
         { source: 5, target: 6 },
       ],
     };
+    console.log(x)
+    return x;
   }
 </script>
 
