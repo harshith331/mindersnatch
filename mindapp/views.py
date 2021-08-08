@@ -1,6 +1,7 @@
 import sys
 import csv
 import datetime
+from django.http.response import JsonResponse
 
 from django.urls.conf import path
 from . import models
@@ -115,7 +116,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                player.visited += f"{sitn.situation_no} "
+                player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -148,7 +149,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                player.visited += f"{sitn.situation_no} "
+                player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -285,5 +286,41 @@ def privacy_policy_fb(request):
 @login_required(login_url="/")
 def graph_and_player_path(request):
     player = Player.objects.get(user=request.user)
-    visited = player.visited.split(" ")[0: -1]
-    pass
+
+    # visited nodes of the current player
+    visited = player.visited_nodes.split(" ")[0: -1]
+
+    # creating the graph based on the database
+    situations = Situation.objects.all()
+    graph = {}
+
+    for situation in situations:
+        graph[situation.situation_no] = []
+
+    for situation in situations:
+        if situation.sub == True:
+            # Situation has a subjective answer
+            graph[situation.situation_no].append(situation.next_sitn)
+            graph[situation.next_sitn].append(situation.situation_no)
+
+        else:
+            # There are options to choose from
+            options = situation.options.all()
+            for option in options:
+                graph[situation.situation_no].append(option.next_sit)
+                graph[option.next_sit].append(situation.situation_no)
+
+    data = {
+        'visited': visited,
+        'graph': graph,
+    }
+
+    response = JsonResponse(data)
+
+    print(response.content)
+
+    return JsonResponse(data)
+
+
+def graph(request):
+    return render(request, "graph.html")
