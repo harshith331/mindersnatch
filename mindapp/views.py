@@ -1,8 +1,6 @@
 import sys
 import csv
-import datetime
 from django.http.response import JsonResponse
-
 from django.urls.conf import path
 from . import models
 from django.shortcuts import render
@@ -51,7 +49,7 @@ def save_profile(backend, user, response, *args, **kwargs):
             player = models.Player.objects.get(user=profile)
         except:
             player = models.Player(user=profile)
-            player.timestamp = datetime.datetime.now()
+            player.timestamp = t.now()
             player.name = response.get('name')
             player.image = response.get('picture')
             player.email = response.get('email')
@@ -68,7 +66,7 @@ def save_profile(backend, user, response, *args, **kwargs):
             # print(response)
             player.image = "http://graph.facebook.com/%s/picture?type=large" \
                 % response["id"]
-            player.timestamp = datetime.datetime.now()
+            player.timestamp = t.now()
             player.save()
 
 
@@ -111,7 +109,7 @@ def ans_post(request, cur_level, tot_level):
                 # option is non terminating one player progresses to next level
                 player.current_sitn = option_c.next_sit
                 player.score += 1
-                player.timestamp = datetime.datetime.now()
+                player.timestamp = t.now()
                 sitn = Situation.objects.get(situation_no=option_c.next_sit)
                 player.level = sitn.level
 
@@ -139,12 +137,12 @@ def ans_post(request, cur_level, tot_level):
             timer = SituationTimer.objects.get_or_create(
                 player=player, situation=past_sitn)
             if past_sitn.checkAnswer(ans):
-                timer[0].end_time = datetime.datetime.now()
+                timer[0].end_time = t.now()
                 timer[0].save()
                 player.score += timer[0].timedifference()
                 timer[0].delete()
                 player.current_sitn = past_sitn.next_sitn
-                player.timestamp = datetime.datetime.now()
+                player.timestamp = t.now()
                 sitn = Situation.objects.get(situation_no=player.current_sitn)
                 player.level = sitn.level
 
@@ -156,7 +154,7 @@ def ans_post(request, cur_level, tot_level):
                 if player.level <= tot_level and player.level <= cur_level:
                     if sitn.sub == True:
                         new_timer = SituationTimer.objects.get_or_create(player=player, situation=sitn,
-                                                                         start_time=datetime.datetime.now())
+                                                                         start_time=t.now())
                         return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed': new_timer[0].timepassed()})
                     else:
                         return render(request, 'level.html', {'user': player, 'sitn': sitn})
