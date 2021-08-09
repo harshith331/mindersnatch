@@ -29,8 +29,12 @@
 
     .svg {
       position: absolute;
-
     }
+
+    .visited {
+      stroke: red !important;
+    }
+    
   </style>
 
 </head>
@@ -131,7 +135,9 @@
         .append("line")
         .attr("stroke-width", function (d) {
           return 5;
-        });
+        })
+        .attr("edge", (d) => `${d.source.name} ${d.target.name}`) // storing the information of the edge
+        .attr("class", "edge");
 
       var node = svg
         .append("g")
@@ -203,6 +209,7 @@
       }
 
       const nodes = document.getElementsByClassName("node-img");
+      const edges = document.getElementsByClassName("edge");
 
       for (let i = 0; i < nodes.length; i++) {
         nodes[i].addEventListener("mouseover", () => {
@@ -213,6 +220,15 @@
       visited.forEach(situation => {
         nodes[situation].setAttribute("href", visitedImageURL)
       })
+
+      for (let i = 0; i < visited.length - 1; i++) {
+        let currentEdge = `${visited[i]} ${visited[i + 1]}`;
+        for (let j = 0; j < edges.length; j++) {
+          if (edges[j].getAttribute("edge") === currentEdge) {
+            edges[j].classList.add("visited");
+          }
+        }
+      }
     }
 
 
