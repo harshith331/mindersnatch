@@ -2,7 +2,6 @@ import sys
 import csv
 from django.http.response import JsonResponse
 from django.urls.conf import path
-from . import models
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -46,9 +45,9 @@ def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == 'google-oauth2':
         profile = user
         try:
-            player = models.Player.objects.get(user=profile)
+            player = Player.objects.get(user=profile)
         except:
-            player = models.Player(user=profile)
+            player = Player(user=profile)
             player.timestamp = t.now()
             player.name = response.get('name')
             player.image = response.get('picture')
