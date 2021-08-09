@@ -66,12 +66,6 @@ class Situation(models.Model):
     #for objective sitn#
     text = models.TextField()
     options = models.ManyToManyField(option, blank=True)
-    # option_1 = models.ForeignKey(
-    #     option, related_name='option1', on_delete=models.CASCADE, blank=True, null=True)
-    # option_2 = models.ForeignKey(
-    #     option, related_name='option2', on_delete=models.CASCADE, blank=True, null=True)
-    # option_3 = models.ForeignKey(
-    #     option, related_name='option3', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return str(self.situation_no) + " : " + self.text

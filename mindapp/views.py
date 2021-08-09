@@ -53,6 +53,18 @@ def save_profile(backend, user, response, *args, **kwargs):
             player.image = response.get('picture')
             player.email = response.get('email')
             player.save()
+
+    elif backend.name == 'github':
+        profile = user
+        try:
+            player = Player.objects.get(user=profile)
+        except:
+            player = Player(user=profile)
+            player.timestamp = t.now()
+            player.name = response.get('name')
+            player.image = response.get('avatar_url')
+            player.save()
+
     elif backend.name == 'facebook':
         profile = user
         try:
