@@ -5,15 +5,9 @@ body {
   margin: 0;
 }
 
-@font-face {
-  font-family: Zekton;
-  src: url("./fonts/zekton_rg.ttf");
-}
-
-h1.ml11{
+h1.ml11 {
   font-family: Zekton !important;
 }
-
 
 div.container {
   margin-top: 10%;
@@ -115,7 +109,7 @@ svg.mobile {
     width: 50px;
   }
   div.container .ml11 {
-    font-size: .85em;
+    font-size: 0.85em;
   }
   .nes-pointer {
     margin-left: 20px;
@@ -156,58 +150,55 @@ svg.mobile {
   color: seashell;
   -webkit-font-smoothing: antialiased;
   border-radius: 2px;
-  text-align: center;   
+  text-align: center;
   width: 70%;
-  border: 2px solid red; 
-  }
-
+  border: 2px solid red;
+}
 
 @-webkit-keyframes breathing {
-0% {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
-}
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-25% {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 
-60% {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
-}
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-100% {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 }
-}
-
 
 @keyframes breathing {
-0% {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
- 
-}
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-25% {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-}
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
 
-60% {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
-}
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-100% {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
-}
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 }

@@ -1,9 +1,10 @@
 body {
-  background-color: black;  
+  background-color: black;
   color: white;
   /* overflow: hidden; */
   margin: 0;
-  font-family: 'Press Start 2P', cursive;
+  /* font-family: "Press Start 2P", cursive; */
+  font-family: "Zekton", cursive;
 }
 
 .navbar {
@@ -12,7 +13,7 @@ body {
   width: 100%;
 }
 
-.logout_button{
+.logout_button {
   float: right;
   margin-left: 30%;
 }
@@ -46,13 +47,13 @@ body {
 }
 
 .navbar a {
-    color: white;
+  color: white;
   text-decoration: none;
   font-size: 1.1rem;
 }
 
 .navbar a:hover {
-     color: white;
+  color: white;
   text-decoration: none;
   text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.9);
 }
@@ -70,7 +71,8 @@ body {
 }
 
 .navbar-icon:hover {
-  background: #000000 radial-gradient(circle, transparent 1%, #000000 1%) center/15000%;
+  background: #000000 radial-gradient(circle, transparent 1%, #000000 1%)
+    center/15000%;
 }
 
 .navbar-icon:active {
@@ -92,13 +94,13 @@ body {
 }
 
 @media screen and (max-width: 500px) {
-    .navbar {
-        z-index: 1;
-    }
+  .navbar {
+    z-index: 1;
+  }
   .navbar-icon {
     display: block;
   }
-  
+
   .navbar .navbar-list {
     visibility: hidden;
     flex-direction: column;
@@ -116,7 +118,7 @@ body {
   }
 
   .navbar .navbar-list li {
-      margin-left: 50px;
+    margin-left: 50px;
   }
 }
 
@@ -127,10 +129,7 @@ body {
 }
 
 .navbar ul li.profile {
-    line-height: 26px;
+  line-height: 26px;
   font-size: 0.7rem;
   color: white;
 }
-
-
-
