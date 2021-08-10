@@ -1,5 +1,5 @@
 * {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Gill Sans', cursive;
 }
 
 body, html {
@@ -11,9 +11,17 @@ body, html {
 ul.options li {
     list-style: none;
     margin: auto;
-    font-size: 0.8rem;
+    font-size: 20px !important;
     text-align: center;
+    font-weight: bold;
+    color: white;
+    
 }
+
+/* li{
+    font-size: 50px !important;
+    color: white;
+} */
 
 ul.options li:hover {
     text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
@@ -27,9 +35,6 @@ ul.options {
     justify-content: center;
     position: fixed;
     bottom: 0;
-    border-color: white;
-    border-top-width: 5px;
-    border-top-style: solid;
     padding: 20px;
     margin-bottom: 0;
     background-color: black;
@@ -37,9 +42,9 @@ ul.options {
 
 .question {
     font-size: 0.8rem;
-    padding: 30px;
-    margin-top: 50px;
-    line-height: 1.6rem;
+    /* padding: 30px; */
+    /* margin-top: 50px; */
+    line-height: 2rem;
 }
 
 html, body {
@@ -68,11 +73,12 @@ html, body {
 
 hr.upperline {
     position: absolute;
-    bottom: 57px;
+    bottom: 55px;
     height: 5px;
     border: none;
-    background-color: red;
+    background-color: #5FD85F;
     width: 33%;
+    
 }
 
 @media screen and (max-width: 500px) {
@@ -81,7 +87,7 @@ hr.upperline {
         line-height: 1.1rem;
     }
     ul.options li {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
 }
 
@@ -127,7 +133,7 @@ hr.upperline {
     z-index: -1;
 }
 
-.thumb:hover::after {
+/* .thumb:hover::after {
     opacity: 1;
     -webkit-transition-delay: 0.4s;
     transition-delay: 0.4s;
@@ -137,7 +143,7 @@ hr.upperline {
     opacity: 0.3;
     -webkit-transition-delay: 0.4s;
     transition-delay: 0.4s;
-}
+} */
 
 .thumb img {
     position: relative;
@@ -161,3 +167,12 @@ hr.upperline {
     -webkit-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+p#question-text.question{
+    position: relative;
+    color: white;
+    font-size: 20px;
+    /* filter:brightness(200%); */
+}
+
+

@@ -13,7 +13,7 @@ a {
 
 .et-hero-tabs,
 .et-slide {
-  font-family: "Press Start 2P";
+  font-family: "Gill Sans";
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -31,13 +31,13 @@ a {
 }
 .et-hero-tabs h1,
 .et-slide h1 {
-  font-size: 1rem;
+  font-size: 20px;
   margin: 0;
   letter-spacing: 0.3rem;
 }
 .et-hero-tabs h3,
 .et-slide h3 {
-  font-size: 0.65rem;
+  font-size: 20px;
   letter-spacing: 0.13rem;
   opacity: 0.6;
   margin: 0px 15px 0px 15px;
@@ -54,7 +54,8 @@ a {
   bottom: 0;
   width: 100%;
   height: 70px;
-  font-family: "Press Start 2P";
+  font-family: "Gill Sans";
+  font-weight: bold;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background: #fff;
 }
@@ -72,11 +73,11 @@ a {
   letter-spacing: 0.1rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .et-hero-tab:hover {
-  color: white;
-  background: rgba(102, 177, 241, 0.8);
+  color: black;
+  background: #A9EAA9;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -86,7 +87,7 @@ a {
   bottom: 0;
   width: 0;
   height: 6px;
-  background: #66B1F1;
+  background: #CEF3CE;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
 }
@@ -94,15 +95,15 @@ a {
 @media (min-width: 800px) {
   .et-hero-tabs h1,
   .et-slide h1 {
-    font-size: 1rem;
+    font-size: 20px;
   }
   .et-hero-tabs h3,
   .et-slide h3 {
-    font-size: 1rem;
+    font-size: 20px;
     margin: 0px 25px 0px 25px;
   }
 
   .et-hero-tab {
-    font-size: 1rem;
+    font-size: 20px;
   }
 }

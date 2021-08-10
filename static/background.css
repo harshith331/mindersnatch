@@ -1,8 +1,17 @@
 body {
-    background-color: black!important;
-    font-family: 'Press Start 2P', cursive;
+    /* background-color: black!important; */
+    background-image: url("https://miro.medium.com/focal/1200/1200/51/50/0*C__knszvhJ6NCa11") !important;
+    /* background-image: url("media/images/pic.jpg"); */
+    font-family: 'Gill Sans', cursive !important;
+    animation: breath 60s linear infinite;
     background-size: cover;
-    height: 100vh;
+    /* height: 100vh; */
     padding:0;
     margin:0;
 }
+
+@keyframes breath {
+    0%   { background-size: 100% auto; }
+    50% { background-size: 140% auto; }
+    100% { background-size: 100% auto; }
+  }

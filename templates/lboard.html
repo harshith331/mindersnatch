@@ -1,4 +1,41 @@
 {% load static %}
+<style>
+    tbody{
+        border: 1px solid grey;
+        
+    }
+
+    body {
+    background-color: black!important;
+    font-family: "Gill Sans",sans-serif;
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+    background-image: url("background.jpeg");
+    
+ 
+}
+
+.jumbotron h2 {margin-top:0;}
+.jumbotron {
+  position:relative;
+  padding-top:50px;
+  
+  padding-bottom:50px;
+}
+.jumbotron .container {
+  position:relative;
+  z-index:2;
+}
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,29 +47,35 @@
     <link href="{% static 'background.css' %}" rel="stylesheet">
     <link href="{% static 'navbar.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 </head>
 {% include "components/navbar.html" %}
 <body class="bodypad" style="background-color: black;">
-    
-    {% include "components/background.html" %}
+    <div class="bg">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    </div>
+
     <div class="lboard">
         <!-- <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a> -->
         <h1 class="text-center" style="color: white;text-align: center;">Leaderboard</h1>
         <br>
+        
             <div class="col-lg-8 col-lg-offset-2" style="margin:auto;width: 100%;height: 100%;">
             {% if players %}
             <div class="container" style="margin: auto;">
+                <div class="jumbotron" style="background: rgba(92,86,86,0.5);">
                 <div style="border: none;" class="table-responsive">
                 <table  class="table  "  style="font-weight:bold;box-shadow: 0px 0px 8px #000;margin: auto;">
                     <tr style="background-color:#001933; color:#fff; font-size:18px"> 
                         <th>#</th><th >Player Name</th><th>Level</th><th>Penalty</th>
                     </tr>
                     {% for player in players %}
-                    <tr style="color:white;">
+                    <tr style="color:#A9EAA9;">
                         <td>{{forloop.counter }}</td><td>{{ player.name }}</td>    <td> {{player.level}} </td>    <td> {{player.score}}</td>
                     </tr>
                     {% endfor %}
@@ -44,6 +87,9 @@
             </div>
             </div>
             </div>
+            </div>
+
+    
     <br>
     <div class="footer">
         <div class="footer">

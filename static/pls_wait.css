@@ -1,5 +1,5 @@
 body {
-  background: #eee;
+  background: black !important;
   font-family: 'Press Start 2P';
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 30px;
   color: grey;
 }
 
