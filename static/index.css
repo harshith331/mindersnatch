@@ -5,6 +5,16 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: Zekton;
+  src: url("./fonts/zekton_rg.ttf");
+}
+
+h1.ml11{
+  font-family: Zekton !important;
+}
+
+
 div.container {
   margin-top: 10%;
   padding: 10px;
@@ -174,12 +184,13 @@ svg.mobile {
 }
 }
 
+
 @keyframes breathing {
 0% {
   -webkit-transform: scale(0.9);
   -ms-transform: scale(0.9);
   transform: scale(0.9);
-  border: ;
+ 
 }
 
 25% {
