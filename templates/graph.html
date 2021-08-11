@@ -8,7 +8,7 @@
   <title>Document</title>
   <style>
     .links line {
-      stroke: #222 !important;
+      stroke: #222;
       stroke-opacity: 0.8;
     }
 
@@ -34,7 +34,6 @@
     .visited {
       stroke: red !important;
     }
-    
   </style>
 
 </head>
@@ -66,7 +65,7 @@
 
         graph[node].forEach(neighbor => {
           graphData.links.push({ source: node, target: neighbor });
-          graphData.links.push({ source: neighbor, target: node })
+          // graphData.links.push({ source: neighbor, target: node })
         });
       }
       console.log('reached here')
@@ -77,6 +76,8 @@
 
     const constructGraph = async () => {
       const { graph, visited } = await getGraphData();
+
+      console.log("graph: ", graph, "visited:", visited);
       // const visited = [];
       // let graph = {
       //   nodes: [
@@ -106,6 +107,7 @@
 
       const unvisitedImgURL = "https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs=";
       const visitedImageURL = "https://previews.123rf.com/images/tawhy/tawhy1801/tawhy180100231/92778095-treasure-chest-with-magnifying-glass-isolated-on-white-background.jpg"
+      const startImageURL = "https://cdn3.vectorstock.com/i/thumb-large/03/12/start-flag-in-retro-design-vector-17070312.jpg";
 
       var svg = d3
         .select("body")
@@ -136,7 +138,7 @@
         .attr("stroke-width", function (d) {
           return 5;
         })
-        .attr("edge", (d) => `${d.source.name} ${d.target.name}`) // storing the information of the edge
+        .attr("edge", (d) => `${d.source.name} ${d.target.name}`) // storing the information of the node
         .attr("class", "edge");
 
       var node = svg
@@ -211,20 +213,29 @@
       const nodes = document.getElementsByClassName("node-img");
       const edges = document.getElementsByClassName("edge");
 
+      console.log("nodes", nodes)
+
       for (let i = 0; i < nodes.length; i++) {
         nodes[i].addEventListener("mouseover", () => {
           console.log(nodes[i].getAttribute("situation"))
         })
       }
 
-      visited.forEach(situation => {
-        nodes[situation].setAttribute("href", visitedImageURL)
+      visited.forEach((situation, index) => {
+        if (index == 0) {
+          nodes[situation - 1].setAttribute("href", startImageURL);
+        }
+        else {
+          nodes[situation - 1].setAttribute("href", visitedImageURL);
+        }
       })
 
       for (let i = 0; i < visited.length - 1; i++) {
         let currentEdge = `${visited[i]} ${visited[i + 1]}`;
+        console.log(currentEdge);
         for (let j = 0; j < edges.length; j++) {
           if (edges[j].getAttribute("edge") === currentEdge) {
+            console.log("match found");
             edges[j].classList.add("visited");
           }
         }

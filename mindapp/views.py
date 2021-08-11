@@ -310,14 +310,14 @@ def graph_and_player_path(request):
         if situation.sub == True:
             # Situation has a subjective answer
             graph[situation.situation_no].append(situation.next_sitn)
-            graph[situation.next_sitn].append(situation.situation_no)
+            # graph[situation.next_sitn].append(situation.situation_no)
 
         else:
             # There are options to choose from
             options = situation.options.all()
             for option in options:
                 graph[situation.situation_no].append(option.next_sit)
-                graph[option.next_sit].append(situation.situation_no)
+                # graph[option.next_sit].append(situation.situation_no)
 
     data = {
         'visited': visited,
