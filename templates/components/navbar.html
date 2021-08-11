@@ -10,12 +10,9 @@
         <a href="{% url 'rules' %}">RULES</a>
       </li>
       <li><a href="{% url 'leaderboard' %}">LEADERBOARD</a></li>
-      <!-- {%if request.user.is_authenticated%}
-      <li class="logout_button">
-        <a href="/logout">LOGOUT</a>
-      </li>
-      {%endif%} -->
+      {% if user.name %}
       <li class="profile nes-pointer" onclick="$('#dialog-dark-rounded')[0].showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
+      {% endif %}
     </ul>
   </div>
 

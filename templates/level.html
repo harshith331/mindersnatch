@@ -15,16 +15,33 @@
 </head>
 <style>
 	body{
-		background-image: url("https://miro.medium.com/focal/1200/1200/51/50/0*C__knszvhJ6NCa11") !important;
+		background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
 		font-family: 'Gill Sans', cursive !important;
 		background-repeat: no-repeat;
 		background-size: cover;
 
 	}
+	@media screen and (max-width: 500px){
+		.jumbotron{
+			height: 300px!important;
+			overflow: auto !important;
+		}
+	}
+	
+	label#question-text{
+		font-weight: bold;
+	}
+	div.navbar{
+		padding: 0px 0px !important;
+		width: 100% !important;
+	  }
+	  ul.navbar-list{
+		width: 100% !important;
+	  }
 </style>
 <body>
-
-	<br><br><br><br>
+	{% include "components/navbar.html" %}
+	<!-- <br><br><br><br> -->
 	<div id="main"></div>
 	<form method="POST" id="form-main" action="{% url 'situation' %}">
 		{% csrf_token %}
@@ -32,8 +49,8 @@
 		<!-- <input type="submit" value="Submit" hidden> -->
 	</form>
 	<div class="container">
-		<div class="jumbotron" style="background: rgba(92,86,86,0.5);color: white">
-			<p class="question" id="question-text" style="opacity: 1;"> {{sitn.text}}</p>
+		<div class="jumbotron" style="background: rgba(1,1,1,0.4);color: white">
+			<p class="question" id="question-text" style="opacity: 1; text-align: center;"> {{sitn.text}}</p>
 		<p class="name" hidden>{{user.name}}</p>
 		<a class="thumb" href="#" data-thumb>
 			<img src="{{ sitn.image.url }}" class="thumb__image" alt="">

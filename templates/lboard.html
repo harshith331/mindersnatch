@@ -4,18 +4,20 @@
         border: 1px solid grey;
         
     }
+    @font-face {
+        font-family: Zekton;
+        src: url("../static/zekton_rg.ttf");
+      }
 
     body {
-    background-color: black!important;
-    font-family: "Gill Sans",sans-serif;
-    background-size: cover;
-    height: 100vh;
-    padding:0;
-    margin:0;
-    background-image: url("background.jpeg");
-    
- 
-}
+        /* background-color: black!important; */
+        background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
+        font-family: "Zekton" !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0;
+        margin: 0;
+      }
 
 .jumbotron h2 {margin-top:0;}
 .jumbotron {
@@ -35,6 +37,49 @@
     padding-bottom:20px;
   }
 }
+div.footer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+  
+  a{
+    font-size: 17px !important;
+  }
+  li.profile.nes-pointer{
+    font-size: 17px !important;
+  }
+  .footer h1 {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 22.4px !important;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    /* font-family: "Press Start 2P", cursive; */
+    font-family: "Zekton";
+  }
+  
+  .footer img {
+    height: 70px;
+    width: auto;
+    /* width: 50px; */
+    border-radius: 50%;
+    margin: auto;
+  }
+
+@media screen and (max-width: 500px) {
+.footer .row h1 {
+font-size: 0.9rem;
+}
+}
+
+
+
+
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,8 +89,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MinderSnatch</title>
-    <link href="{% static 'background.css' %}" rel="stylesheet">
     <link href="{% static 'navbar.css' %}" rel="stylesheet">
+    <link href="{% static 'footer.css' %}" rel="stylesheet">
+
     <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -54,11 +100,7 @@
 </head>
 {% include "components/navbar.html" %}
 <body class="bodypad" style="background-color: black;">
-    <div class="bg">
-    <div id='stars'></div>
-    <div id='stars2'></div>
-    <div id='stars3'></div>
-    </div>
+  
 
     <div class="lboard">
         <!-- <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a> -->
@@ -68,7 +110,7 @@
             <div class="col-lg-8 col-lg-offset-2" style="margin:auto;width: 100%;height: 100%;">
             {% if players %}
             <div class="container" style="margin: auto;">
-                <div class="jumbotron" style="background: rgba(92,86,86,0.5);">
+                <div class="jumbotron" style="background: rgba(1,1,1,0.5);">
                 <div style="border: none;" class="table-responsive">
                 <table  class="table  "  style="font-weight:bold;box-shadow: 0px 0px 8px #000;margin: auto;">
                     <tr style="background-color:#001933; color:#fff; font-size:18px"> 
@@ -91,49 +133,13 @@
 
     
     <br>
+   
     <div class="footer">
-        <div class="footer">
-            <img style="width: 50px;"src="https://raw.githubusercontent.com/romitkarmakar/digitalfortress_frontend/master/src/images/glug.png" alt="">
-                <h1 class="footer_text">GNU Linux Users Group, Durgapur</h1>
-            </div>
-      <style>
-          body{
-            font-family: 'Press Start 2P', cursive;
-          }
-        .footer {
-           position: relative;
-           left: 0;
-           bottom: 0;
-           width: 100%;
-           color: white;
-           text-align: center;
-           margin-bottom: 10px;
-        }
-        .footer_text{
-            font-size: small;
-        }
-        .navbar ul li {
-            display: inline;
-            text-align: center;
-            margin: 10px 5px;
-        }
-        .navbar ul li {
-            display: inline;
-            text-align: center;
-            margin: 10px 5px;
-        }
-        .navbar a {
-         color: white;
-         text-decoration: none;
-         font-size: 1.75rem;
-        }
-        .navbar ul li.profile {
-         line-height: 26px;
-         font-size: 1.15rem;
-         color: white;
-        }
-
-        </style>      
+        <a href="https://nitdgplug.org/" target="_blank" style="text-align: center;"><img
+                src="https://raw.githubusercontent.com/romitkarmakar/digitalfortress_frontend/master/src/images/glug.png"
+                alt=""></a>
+        <h1>GNU Linux Users' Group, NIT Durgapur</h1>
+    </div>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 	

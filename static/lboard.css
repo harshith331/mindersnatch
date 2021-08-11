@@ -1,0 +1,24 @@
+tbody{
+    border: 1px solid grey;
+    
+}
+
+.jumbotron h2 {margin-top:0;}
+.jumbotron {
+position:relative;
+padding-top:50px;
+
+padding-bottom:50px;
+}
+.jumbotron .container {
+position:relative;
+z-index:2;
+}
+
+@media screen and (max-width: 768px) {
+.jumbotron {
+padding-top:20px;
+padding-bottom:20px;
+}
+}
+

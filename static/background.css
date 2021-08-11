@@ -6,12 +6,11 @@
 body {
   /* background-color: black!important; */
   background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
-  /* background-image: url("media/images/pic.jpg"); */
-  /* font-family: "Gill Sans", cursive !important; */
   font-family: "Zekton" !important;
-  animation: breath 60s linear infinite;
-  background-size: cover;
-  /* height: 100vh; */
+  /* animation: breath 60s linear infinite; */
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
 }

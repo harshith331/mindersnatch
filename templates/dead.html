@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block stylesheet %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="{% static 'index.css' %}">
+<link rel="stylesheet" href="{% static 'end.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -9,14 +11,14 @@
 	<h1 class="ml11">
 		<span class="text-wrapper">
     <span class="line line1"></span>
-		<span class="letters" style="color: crimson;size: 100px;">GAME OVER!</span>
-        </span>
+   <p class="over">Game Over</p>
         <br><br>
     </h1>
-    <span class="nes-pointer" style="text-decoration: none; color: white !important;text-align: center;margin-bottom: 30px;">MESSAGE-</span>
-    <span class="nes-pointer" style="text-decoration: none; color: white !important;text-align: center;">{{message}}</span>
+    <span class="nes-pointer" style="text-decoration: none; color: white !important;text-align: center;margin-bottom: 50px;">MESSAGE- {{message}}</span>
+  
 	<div class="profile-container">
-		<span class="nes-pointer"><a href="{% url 'situation' %}" style="text-decoration: none; color:#006bb3; !important;">PLAY AGAIN!</a></span>
+    <a href="{% url 'situation' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PLAY AGAIN</a>
+
 	</div>
 </div>
 

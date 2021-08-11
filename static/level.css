@@ -172,6 +172,7 @@ p#question-text.question{
     position: relative;
     color: white;
     font-size: 20px;
+    font-weight: bolder !important;
     /* filter:brightness(200%); */
 }
 

@@ -1,0 +1,55 @@
+
+  div.navbar{
+    padding: 0px 0px !important;
+    width: 100% !important;
+  }
+  ul.navbar-list{
+    width: 100% !important;
+  }
+  div.container{
+    margin-top: 100px !important;
+  }
+  p {
+    font-family: "VT323";
+    font-size: 3.2em;
+    text-align: center;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes example {
+    0% {
+      color: red;
+      text-shadow: 0 0 20px red;
+    }
+    25% {
+      color: red;
+      text-shadow: 2px 2px 2px red;
+      transform: translate(-2px, 1px);
+    }
+    40% {
+      color: red;
+      text-shadow: none;
+      transform: translate(0, 0);
+    }
+    50% {
+      color: red;
+      text-shadow: 5px 5px 2px blue, -5px -5px 2px red;
+      transform: translate(0px, 5px);
+    }
+    70% {
+      color: red;
+      text-shadow: none;
+      transform: translate(0, 0);
+    }
+    80% {
+      color: red;
+      text-shadow: 0 0 10px red;
+      transform: translate(-2px, 1px);
+    }
+    100% {
+      color: red;
+      text-shadow: none;
+    }
+  }
