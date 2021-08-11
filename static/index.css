@@ -11,7 +11,7 @@ html{
 }
 
 
-.social-btns .btn,
+/* .social-btns .btn,
 .social-btns .btn:before,
 .social-btns .btn .fa {
   -webkit-transition: all 0.35s;
@@ -27,36 +27,14 @@ html{
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
 }
-.social-btns .btn.facebook:before {
-  background-color: #3b5998;
-}
-.social-btns .btn.facebook .fa {
-  color: #3b5998;
-}
-.social-btns .btn.twitter:before {
-  background-color: #3cf;
-}
-.social-btns .btn.twitter .fa {
-  color: #3cf;
-}
+
 .social-btns .btn.google:before {
   background-color: #dc4a38;
 }
 .social-btns .btn.google .fa {
   color: #dc4a38;
 }
-.social-btns .btn.dribbble:before {
-  background-color: #f26798;
-}
-.social-btns .btn.dribbble .fa {
-  color: #f26798;
-}
-.social-btns .btn.skype:before {
-  background-color: #00aff0;
-}
-.social-btns .btn.skype .fa {
-  color: #00aff0;
-}
+
 .social-btns .btn:focus:before,
 .social-btns .btn:hover:before {
   top: -10%;
@@ -78,7 +56,6 @@ html{
   display: inline-block;
   background-color: #fff;
   width: 90px;
-  /* min-width: 90px; */
   height: 90px;
   line-height: 70px;
   margin: 0 10px;
@@ -100,9 +77,9 @@ html{
 .social-btns .btn .fa {
   font-size: 38px;
   vertical-align: middle !important;
-}
+} */
 
-/* 
+
 .button {
   width: 250px;
   margin-left: 41%;
@@ -115,9 +92,9 @@ html{
 }
 .button:hover {
   text-decoration: none;
-} */
+}
 
-/* .button--social-login {
+.button--social-login {
   margin-bottom: 12px;
   margin-right: 12px;
   color: white;
@@ -172,7 +149,7 @@ html{
 }
 .button--github:hover {
   background-color: #262626;
-} */
+} 
 h1.ml11 {
   font-family: Zekton !important;
 }
@@ -305,10 +282,16 @@ svg.mobile {
   margin-top: 50px;
   /* margin-left: 40%; */
 }
-
-.row .social-btns {
+a.social-button{
+  margin-right:16px !important;
+}
+.rows{
+  display: inline-block;
+}
+.row .social-button {
   margin: 20px auto;
 }
+
 
 #breathing-button {
   width: 180px;
@@ -372,3 +355,10 @@ svg.mobile {
     transform: scale(0.9);
   }
 }
+
+/* i.fa.fa-google::before{
+  display: none;
+}
+i.fa.fa-github::before{
+  display: none;
+} */

@@ -5,19 +5,21 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css"> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 <link rel="stylesheet" href="{% static 'subjective.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 {% endblock %}
 
 {% block content %}
-{% include "components/navbar.html" %}
 <small id="timepassed" hidden>{{ timepassed }}</small>
 <div class="timer">
     <span class="hours" id="hours">00</span> : <span class="minutes" id="minutes">00</span> : <span class="seconds"
         id="seconds">00</span>
 </div>
 
-<div class="container">
+<!-- <div class="container"> -->
     {% if status %}
     <div class="nes-container is-dark with-title" id="error">
         <p class="title" style="color: red;">Game's Message:</p>
@@ -27,20 +29,21 @@
         localStorage.setItem('unsolved', 1);
     </script>
     {% endif %}
-    <div class="container">
+    <div class="containers">
         <form id="ans" method="post" action="{% url 'situation' %}">
             {% csrf_token %}
-            <div>
+           
                 <label for="name_field" id="question-text">{{ sitn.text }}</label>
                 <br><br>
                 <input name="ans" type="text" id="name_field" class="nes-input">
                 
-            </div>
+       
             
             <button type="submit" class="nes-btn" style="float: 50%;">Submit!</button>
         </form>
+        </div>
     </div>
-</div>
+<!-- </div> -->
 {% endblock %}
 
 {% block js %}

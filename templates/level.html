@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 	<link rel="stylesheet" href="{% static 'level.css' %}">
 	<link href="{% static 'navbar.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.0/dialog-polyfill.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -26,7 +28,26 @@
 			height: 300px!important;
 			overflow: auto !important;
 		}
+		.navbar-icon {
+			display: block;
+			color: white;
+			position: absolute;
+			margin-top: 0px !important;
+			right: 8% !important;
+			border-radius: 50%;
+			height: 4rem;
+			width: 4rem;
+			background-position: center;
+			transition: background 0.8s;
+		  }
+		  i.fa.fa-toggle-on::before{
+			margin-top: 0px !important;
+		}
+		div.navbar-icon.nes-pointer{
+			margin: 0px 0px !important;
+		}
 	}
+	
 	
 	label#question-text{
 		font-weight: bold;
@@ -41,8 +62,7 @@
 </style>
 <body>
 	{% include "components/navbar.html" %}
-	<!-- <br><br><br><br> -->
-	<div id="main"></div>
+	<!-- <div id="main"></div> -->
 	<form method="POST" id="form-main" action="{% url 'situation' %}">
 		{% csrf_token %}
 		<input id="mainForm" type="text" value="hello" name="op_no" hidden>

@@ -1,6 +1,6 @@
 body {
-  background-color: black;
-  /* opacity: 0.7 !important; */
+  /* background-color: black;
+  opacity: 0.7 !important; */
   /* background: rgba(1,1,1,0.7) !important; */
   color: white;
   /* overflow: hidden; */
@@ -9,6 +9,7 @@ body {
   /* font-family: "Press Start 2P", cursive; */
   font-family: "Zekton", cursive;
 }
+
 li.profile.nes-pointer{
   font-size: 17px !important;
 }
@@ -20,7 +21,7 @@ h1{
   font-weight: bold !important;
 }
 .navbar {
-  position: fixed;
+  
   top: 0%;
   width: 100%;
 }
@@ -30,6 +31,9 @@ h1{
   margin-left: 30%;
 }
 
+/* div.navbar{
+  background: rgba(1,1,1,0.5) !important;
+} */
 .navbar .navbar-list {
   display: flex;
   justify-content: center;
@@ -48,8 +52,8 @@ h1{
 } */
 
 .navbar ul {
-  padding: 20px;
-  background: black;
+  padding: 15px 20px;
+  background: rgba(1,1,1,0.8) !important;
 }
 
 .navbar ul li {
@@ -74,7 +78,8 @@ h1{
   display: none;
   color: white;
   position: absolute;
-  right: 10%;
+  margin-top: 10px;
+  right: 8% !important;
   border-radius: 50%;
   height: 4rem;
   width: 4rem;
@@ -115,11 +120,13 @@ h1{
   /* body.bodypad{
     margin-top: 50px !important;
   } */
-
+  ul.navbar-list{
+    background: rgba(1,1,1,0.8) !important;
+  }
   .navbar .navbar-list {
     visibility: hidden;
     flex-direction: column;
-    background: rgb(1,1,1) !important;
+    
   }
   .underline {
     display: none;

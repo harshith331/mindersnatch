@@ -56,7 +56,7 @@ html, body {
     position: relative;
 }
 
-#main:after {
+/* #main:after {
     content: "";
     display: block;
     position: absolute;
@@ -67,9 +67,8 @@ html, body {
     background-position: center;
     width: 100%;
     height: 100vh;
-    /*     filter: opacity(50%); */
     z-index: -1;
-}
+} */
 
 hr.upperline {
     position: absolute;
