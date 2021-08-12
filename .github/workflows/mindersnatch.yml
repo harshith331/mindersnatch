@@ -54,3 +54,4 @@ jobs:
             python manage.py collectstatic --noinput
             deactivate
             sudo systemctl restart gunicorn.service
+            echo "Deployment finished :)"
