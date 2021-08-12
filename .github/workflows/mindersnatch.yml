@@ -51,6 +51,6 @@ jobs:
             source venv/bin/activate
             python manage.py makemigrations
             python manage.py migrate --run-syncdb
-            python manage.py collectstatic
+            python manage.py collectstatic --noinput
             deactivate
             sudo systemctl restart gunicorn.service
