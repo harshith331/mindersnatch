@@ -31,7 +31,8 @@
 	{% include "components/svg.desktop.html" %}
 	{% include "components/svg.mobile.html" %}
 	{% if frozen == True %}
-		<p style="width: 70%;margin: auto;text-align: center;border: 2px solid red;color: seashell;"  id="breathing-button">The Event has ended ,The Leaderboard has been frozen <br>However you can still explore the game:)</p>
+	<p style="width: 70%;margin: auto;text-align: center;border: 2px solid red;color: seashell;" id="breathing-button">
+		The Event has ended ,The Leaderboard has been frozen <br>However you can still explore the game:)</p>
 	{% endif %}
 	<h1 class="ml11">
 		<span class="text-wrapper">
@@ -47,22 +48,22 @@
 	</div>
 	{% else %}
 	<div class="row">
-		<a type="button" href="{% url 'social:begin' 'facebook' %}" class="social-button nes-btn dark" data-inline="true"><i
-				class="nes-icon github is-small"></i> Login with Github</a>
-		<a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error" data-inline="true"><i
-				class="nes-icon google is-small"></i> Login with Google</a>
+		<a type="button" href="{% url 'social:begin' 'github' %}" class="social-button nes-btn dark"
+			data-inline="true"><i class="nes-icon github is-small"></i> Login with Github</a>
+		<a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"
+			data-inline="true"><i class="nes-icon google is-small"></i> Login with Google</a>
 	</div>
-	
+
 	<!-- <div class="social-btns">
 		<button class="btn google" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google" /></button>
 		<button class="btn github" href="#"><i class="fa fa-github" /></button>
 	</div> -->
 
-	
-	
-      
+
+
+
 	<br>
-	
+
 	{% endif %}
 </div>
 
