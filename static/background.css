@@ -7,13 +7,14 @@ body {
   /* background-color: black!important; */
   background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
   font-family: "Zekton" !important;
-  /* animation: breath 60s linear infinite; */
+  animation: breath 60s linear infinite;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   min-height: 100vh;
   padding: 0;
   margin: 0;
 }
+
 
 @keyframes breath {
   0% {
