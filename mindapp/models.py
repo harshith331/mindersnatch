@@ -32,7 +32,7 @@ class Player(models.Model):
     level = models.IntegerField(default=1)
 
     completed_or_dead = models.BooleanField(default=False)
-    visited_nodes = models.CharField(max_length=1000, default="")
+    visited_nodes = models.CharField(max_length=1000, default="", blank=True)
 
     def __str__(self):
         return self.name
