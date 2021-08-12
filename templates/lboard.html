@@ -1,91 +1,4 @@
 {% load static %}
-<style>
-    tbody{
-        border: 1px solid grey;
-        
-    }
-    @font-face {
-        font-family: Zekton;
-        src: url("../static/zekton_rg.ttf");
-      }
-
-    body {
-        /* background-color: black!important; */
-        background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
-        font-family: "Zekton" !important;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 0;
-        margin: 0;
-      }
-
-.jumbotron h2 {margin-top:0;}
-.jumbotron {
-  position:relative;
-  padding-top:50px;
-  
-  padding-bottom:50px;
-}
-.jumbotron .container {
-  position:relative;
-  z-index:2;
-}
-
-@media screen and (max-width: 768px) {
-  .jumbotron {
-    padding-top:20px;
-    padding-bottom:20px;
-  }
-}
-div.footer {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding-bottom: 10px;
-  }
-  
-  a{
-    font-size: 17px !important;
-  }
-  li.profile.nes-pointer{
-    font-size: 17px !important;
-  }
-  .footer h1 {
-    margin-left: 15px;
-    margin-top: 10px;
-    font-size: 22.4px !important;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    /* font-family: "Press Start 2P", cursive; */
-    font-family: "Zekton";
-  }
-  
-  .footer img {
-    height: 70px;
-    width: auto;
-    /* width: 50px; */
-    border-radius: 50%;
-    margin: auto;
-  }
-
-@media screen and (max-width: 500px) {
-.footer .row h1 {
-font-size: 0.9rem;
-}
-i.fa.fa-toggle-on::before{
-  height: 36px !important;
-			width: 32px !important;
-}
-
-}
-
-
-
-
-</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,6 +9,7 @@ i.fa.fa-toggle-on::before{
 	<title>MinderSnatch</title>
     <link href="{% static 'navbar.css' %}" rel="stylesheet">
     <link href="{% static 'footer.css' %}" rel="stylesheet">
+    <link href="{% static 'lboard.css' %}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
@@ -105,52 +19,103 @@ i.fa.fa-toggle-on::before{
 </head>
 {% include "components/navbar.html" %}
 <body class="bodypad" style="background-color: black;">
+  <div class="container">
+    <div class="center jumbotron" style="background: rgba(1,1,1,0.6);">
+      <div class="top3">
+        {% for player in players %}
+        {% if forloop.counter < 4 %}
+          {% if forloop.counter == 2 %}
+        <div class="two item">
+          <div class="pos">
+            2
+          </div>
+          <div class="pic" style="background-image: url(&#39;{{player.image}};)"></div>
+          <div class="name">
+            {{player.name}}
+          </div>
+          <div class="score">
+          {{player.level}} level
+          </div>
+          <div class="score">
+            {{player.score}} penalty
+            </div>
+        </div>
+        {% endif %}
+        {% if forloop.counter == 1 %}
+        <div class="one item">
+          <div class="pos">
+            1
+          </div>
+          <div class="pic" style="background-image: url(&#39;{{player.image}};)"></div>
+          <div class="name">
+            {{player.name}}
+          </div>
+          <div class="score">
+          {{player.level}} level
+          </div>
+          <div class="score">
+            {{player.score}} penalty
+            </div>
+        </div>
+        {% endif %}
+        {% if forloop.counter == 3 %}
+        <div class="three item">
+          <div class="pos">
+            3
+          </div>
+          <div class="pic" style="background-image: url(&#39;{{player.image}};)"></div>
+          <div class="name">
+            {{player.name}}
+          </div>
+          <div class="score">
+          {{player.level}} level
+          </div>
+          <div class="score">
+            {{player.score}} penalty
+            </div>
+        </div>
+        {% endif %}
+        {% endif  %}
+        {% endfor %}
+        </div>
+        <div class="list">
+          {% for player in players %}
+          {% if forloop.counter > 3 %}
+          <div class="item">
+            <div class="pos" style="font-size: 2rem;">
+              {{forloop.counter}}
+            </div>
+            <div class="pic" style="background-image: url(&#39;{{player.image}};)"></div>
+            <div class="name" style="font-size: 1.5rem;">
+            {{player.name}}
+            </div>
+            <div class="score" style="font-size: 2rem;">
+              {{player.score}} penalty
+            </div>
+            <div class="score" style="font-size: 2rem;">
+              {{player.level}} level
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+    </div>   
+  </div>
+  <br>
   
+<!-- <div class="footer">
+  <a href="https://nitdgplug.org/" target="_blank" style="text-align: center;"><img
+          src="https://raw.githubusercontent.com/romitkarmakar/digitalfortress_frontend/master/src/images/glug.png"
+          alt=""></a>
+  <h1>GNU Linux Users' Group, NIT Durgapur</h1>
+</div>   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 
-    <div class="lboard">
-        <!-- <a href="/"><button type="button" class="btn btn-success btn-lg " style="margin-top:10px;margin-left: 20px;">Go Back</button></a> -->
-        <h1 class="text-center" style="color: white;text-align: center;">Leaderboard</h1>
-        <br>
-        
-            <div class="col-lg-8 col-lg-offset-2" style="margin:auto;width: 100%;height: 100%;">
-            {% if players %}
-            <div class="container" style="margin: auto;">
-                <div class="jumbotron" style="background: rgba(1,1,1,0.5);">
-                <div style="border: none;" class="table-responsive">
-                <table  class="table  "  style="font-weight:bold;box-shadow: 0px 0px 8px #000;margin: auto;">
-                    <tr style="background-color:#001933; color:#fff; font-size:18px"> 
-                        <th>#</th><th >Player Name</th><th>Level</th><th>Penalty</th>
-                    </tr>
-                    {% for player in players %}
-                    <tr style="color:#A9EAA9;">
-                        <td>{{forloop.counter }}</td><td>{{ player.name }}</td>    <td> {{player.level}} </td>    <td> {{player.score}}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                    <strong>There are no players present.</strong>
-                {% endif %}
-                </table>
-                </div>
-            </div>
-            </div>
-            </div>
-            </div>
-
-    
-    <br>
-   
-    <div class="footer">
-        <a href="https://nitdgplug.org/" target="_blank" style="text-align: center;"><img
-                src="https://raw.githubusercontent.com/romitkarmakar/digitalfortress_frontend/master/src/images/glug.png"
-                alt=""></a>
-        <h1>GNU Linux Users' Group, NIT Durgapur</h1>
-    </div>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
-	
-	<script src="{% static 'timer.js' %}"></script> 
-    <script src="{% static 'navbar.js' %}"></script> 
-   
+<script src="{% static 'timer.js' %}"></script> 
+<script src="{% static 'navbar.js' %}"></script> 
 
 </body>
+
 </html>

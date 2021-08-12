@@ -28,7 +28,7 @@ if (length > 2) {
     $("hr.upperline").css("bottom", "87px");
 }
 
-$(".options li").click(function() {
+$("li").click(function() {
     let id = $(this).data("id");
     document.getElementById("mainForm").value = id;
     console.log($("#mainForm").val());

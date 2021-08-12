@@ -9,6 +9,7 @@
 	<!-- <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css"> -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 	<link rel="stylesheet" href="{% static 'level.css' %}">
+	<link rel="stylesheet" href="{% static 'a.css' %}">
 	<link href="{% static 'navbar.css' %}" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -16,18 +17,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
-	body{
-		background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
-		font-family: 'Gill Sans', cursive !important;
-		background-repeat: no-repeat;
-		background-size: cover;
-
-	}
+	
 	@media screen and (max-width: 500px){
-		.jumbotron{
-			height: 300px!important;
-			overflow: auto !important;
-		}
+		
 		.navbar-icon {
 			display: block;
 			color: white;
@@ -61,6 +53,20 @@
 	  }
 </style>
 <body>
+	<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+
 	{% include "components/navbar.html" %}
 	<!-- <div id="main"></div> -->
 	<form method="POST" id="form-main" action="{% url 'situation' %}">
@@ -68,6 +74,7 @@
 		<input id="mainForm" type="text" value="hello" name="op_no" hidden>
 		<!-- <input type="submit" value="Submit" hidden> -->
 	</form>
+	<br><br><br><br>
 	<div class="container">
 		<div class="jumbotron" style="background: rgba(1,1,1,0.4);color: white">
 			<p class="question" id="question-text" style="opacity: 1; text-align: center;"> {{sitn.text}}</p>
@@ -77,15 +84,55 @@
 		</a>
 		</div>
 	</div>
-	<br><br><br><br><br>
+	<!-- <br><br><br><br><br> -->
 	
-	<ul class="options">
+	<!-- <ul class="options"> -->
+		<!-- <div class="row">
 		{% for option in options %}
-			<li data-id="{{ option.id }}">
+			{% if forloop.counter|divisibleby:2 %}
+			<div class="col">
+				<li class="opt" data-id="{{ option.id }}">
+					<h1 style="color: red;">{{forloop.counter}}</h1>
+					{{ option.text }}
+				</li>
+			</div>
+			{% else %}
+			<div class="w-100"></div>
+			<div class="col">
+			<li class="opt" data-id="{{ option.id }}">
+				<h1 style="color: red;">{{forloop.counter}}</h1>
 				{{ option.text }}
 			</li>
-		{% endfor %}
-	</ul>
+			</div>
+			{% endif %}
+			
+		{% endfor %} -->
+
+
+		<!-- <div class="container">
+			<div class="card-columns">
+				{% for option in options %}
+					<li class="opt" data-id="{{ option.id }}">
+						{{ option.text }}
+					</li>&nbsp;
+				{% endfor %}
+				</div>
+		</div> -->
+		<div class="container">
+			<div class="row">
+				{% for option in options %}
+				<div class="column">
+					<li class="opt" data-id="{{ option.id }}">
+						{{ option.text }}
+					</li>&nbsp;
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+
+		<!-- <br><br><br><br> -->
+	<!-- </ul> -->
 	<!-- <ul class="options">
 		{% if sitn.option_1 %}
 		<li class="nes-pointer" data-id="{{ sitn.option_1.id }}">
@@ -103,7 +150,7 @@
 		</li>
 		{% endif %}
 	</ul> -->
-	<hr class="upperline" />
+	<!-- <hr class="upperline" /> -->
 	
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

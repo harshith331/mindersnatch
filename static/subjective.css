@@ -29,7 +29,7 @@ div.timer {
   font-size: 1.5rem;
   position: absolute;
     right: 5%;
-    top: 30%;
+    bottom: 30%;
 }
 
 .nes-btn {
