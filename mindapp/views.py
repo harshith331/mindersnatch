@@ -125,7 +125,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                player.visited_nodes += f"{sitn.situation_no} "
+                # player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -158,7 +158,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                player.visited_nodes += f"{sitn.situation_no} "
+                # player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -186,6 +186,9 @@ def ans_nonpost(request):
     try:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
+        player.visited_nodes += f"{sitn.situation_no} "
+        player.save()
+
         if sitn.sub == True:
             timer = SituationTimer.objects.get_or_create(
                 player=player, situation=sitn)
@@ -299,9 +302,13 @@ def graph_and_player_path(request):
     # visited nodes of the current player
     visited = player.visited_nodes.split(" ")[0: -1]
 
+    # for i in range(len(visited)):
+    #     visited[i] = int(visited[i])
+
     # creating the graph based on the database
-    situations = Situation.objects.all()
+    situations = Situation.objects.all().order_by("situation_no")
     graph = {}
+
 
     for situation in situations:
         graph[situation.situation_no] = []
@@ -309,14 +316,16 @@ def graph_and_player_path(request):
     for situation in situations:
         if situation.sub == True:
             # Situation has a subjective answer
-            graph[situation.situation_no].append(situation.next_sitn)
+            graph[situation.situation_no].append(str(situation.next_sitn))
             # graph[situation.next_sitn].append(situation.situation_no)
 
         else:
             # There are options to choose from
             options = situation.options.all()
             for option in options:
-                graph[situation.situation_no].append(option.next_sit)
+                print(option.text, option.end)
+                if not option.end:
+                    graph[situation.situation_no].append(str(option.next_sit))
                 # graph[option.next_sit].append(situation.situation_no)
 
     data = {
