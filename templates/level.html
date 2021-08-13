@@ -14,13 +14,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.0/dialog-polyfill.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
-	
-	@media screen and (max-width: 500px){
-		
-	
+	@media screen and (max-width: 500px) {
 		.navbar-icon {
 			display: block;
 			color: white;
@@ -32,41 +30,46 @@
 			width: 4rem;
 			background-position: center;
 			transition: background 0.8s;
-		  }
-		  i.fa.fa-toggle-on::before{
+		}
+
+		i.fa.fa-toggle-on::before {
 			margin-top: 0px !important;
 		}
-		div.navbar-icon.nes-pointer{
+
+		div.navbar-icon.nes-pointer {
 			margin: 0px 0px !important;
 		}
 	}
-	
-	
-	label#question-text{
+
+
+	label#question-text {
 		font-weight: bold;
 	}
-	div.navbar{
+
+	div.navbar {
 		padding: 0px 0px !important;
 		width: 100% !important;
-	  }
-	  ul.navbar-list{
+	}
+
+	ul.navbar-list {
 		width: 100% !important;
-	  }
+	}
 </style>
+
 <body>
 	<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
+	<div class="firefly"></div>
 
 	{% include "components/navbar.html" %}
 	<!-- <div id="main"></div> -->
@@ -75,20 +78,20 @@
 		<input id="mainForm" type="text" value="hello" name="op_no" hidden>
 		<!-- <input type="submit" value="Submit" hidden> -->
 	</form>
-	
+
 	<div class="container">
 		<div class="jumbotron" style="background: rgba(1,1,1,0.4);color: white; margin-top: 120px;">
 			<p class="question" id="question-text" style="opacity: 1; text-align: center;"> {{sitn.text}}</p>
-		<p class="name" hidden>{{user.name}}</p>
-		<a class="thumb" href="#" data-thumb>
-			<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
-		</a>
+			<p class="name" hidden>{{user.name}}</p>
+			<a class="thumb" href="#" data-thumb>
+				<img src="{{ sitn.image.url }}" class="thumb__image" alt="">
+			</a>
 		</div>
 	</div>
 	<!-- <br><br><br><br><br> -->
-	
+
 	<!-- <ul class="options"> -->
-		<!-- <div class="row">
+	<!-- <div class="row">
 		{% for option in options %}
 			{% if forloop.counter|divisibleby:2 %}
 			<div class="col">
@@ -110,7 +113,7 @@
 		{% endfor %} -->
 
 
-		<!-- <div class="container">
+	<!-- <div class="container">
 			<div class="card-columns">
 				{% for option in options %}
 					<li class="opt" data-id="{{ option.id }}">
@@ -119,20 +122,20 @@
 				{% endfor %}
 				</div>
 		</div> -->
-		<div class="container">
-			<div class="row">
-				{% for option in options %}
-				<div class="column">
-					<li class="opt" data-id="{{ option.id }}">
-						{{ option.text }}
-					</li>&nbsp;
-				</div>
-				{% endfor %}
+	<div class="container">
+		<div class="row">
+			{% for option in options %}
+			<div class="column">
+				<li class="opt" data-id="{{ option.id }}">
+					{{ option.text }}
+				</li>&nbsp;
 			</div>
+			{% endfor %}
 		</div>
+	</div>
 
 
-		<!-- <br><br><br><br> -->
+	<!-- <br><br><br><br> -->
 	<!-- </ul> -->
 	<!-- <ul class="options">
 		{% if sitn.option_1 %}
@@ -152,11 +155,17 @@
 		{% endif %}
 	</ul> -->
 	<!-- <hr class="upperline" /> -->
-	
+
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 <script src="https://bathlamos.github.io/delaunay-triangulation/js/delaunay.js"></script>
@@ -168,19 +177,18 @@
 	window.addEventListener('popstate', function () {
 		history.pushState(null, null, document.URL);
 	});
-	var name=document.getElementsByClassName("name")[0].innerText;
-	var word= document.getElementsByClassName("question")[0].innerText.replace('{user}',name);
-	document.getElementsByClassName("question")[0].innerText=word;
+	var name = document.getElementsByClassName("name")[0].innerText;
+	var word = document.getElementsByClassName("question")[0].innerText.replace('{user}', name);
+	document.getElementsByClassName("question")[0].innerText = word;
 
 	const url = document.location.origin;
 
 	if (localStorage.getItem('beenhere') === document.getElementById("question-text").innerText) {
-		localStorage.setItem('beenhere','');
+		localStorage.setItem('beenhere', '');
 		window.location = url;
 	}
-	else
-	{
-	localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
+	else {
+		localStorage.setItem('beenhere', document.getElementById("question-text").innerText);
 	}
 </script>
 

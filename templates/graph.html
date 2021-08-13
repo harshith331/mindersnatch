@@ -55,21 +55,19 @@
         links: []
       }
 
-      var s = new Set();
       for (node in graph) {
         // console.log("node: ", node, typeof node);
 
-        graphData.nodes.push({ name: node });
+        graphData.nodes.push({ name: node }); // Eg: { name: "1" }
 
         // console.log(list, ': ', graph[list])
 
         graph[node].forEach(neighbor => {
           graphData.links.push({ source: node, target: neighbor });
-          // graphData.links.push({ source: neighbor, target: node })
         });
       }
-      console.log('reached here')
-      console.log(graphData);
+      // console.log('reached here')
+      // console.log(graphData);
 
       return { graph: graphData, visited };
     }
@@ -77,6 +75,9 @@
     const constructGraph = async () => {
       const { graph, visited } = await getGraphData();
 
+      const startingNode = parseInt(visited[0]);
+
+      console.log("Inside Construct Graph");
       console.log("graph: ", graph, "visited:", visited);
       // const visited = [];
       // let graph = {
@@ -222,13 +223,14 @@
       }
 
       visited.forEach((situation, index) => {
-        if (index == 0) {
-          nodes[situation - 1].setAttribute("href", startImageURL);
-        }
-        else {
-          nodes[situation - 1].setAttribute("href", visitedImageURL);
-        }
-      })
+        situation = parseInt(situation);
+        console.log(situation);
+        nodes[situation - 1].setAttribute("href", visitedImageURL);
+      });
+
+      // For Starting Node
+      nodes[startingNode - 1].setAttribute("href", startImageURL);
+
 
       for (let i = 0; i < visited.length - 1; i++) {
         let currentEdge = `${visited[i]} ${visited[i + 1]}`;
@@ -241,7 +243,6 @@
         }
       }
     }
-
 
     constructGraph();
 
