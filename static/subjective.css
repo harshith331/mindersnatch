@@ -11,7 +11,7 @@ label{
   font-size: 20px;
 }
 .containers{
-  margin-top: 200px;
+  margin-top: 100px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -24,12 +24,15 @@ div.container {
   padding: 15px;
 }
 
+div.footer{
+  display: none !important;
+}
 div.timer {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
   position: absolute;
     right: 5%;
-    bottom: 30%;
+    bottom: 10%;
 }
 
 .nes-btn {
@@ -45,10 +48,11 @@ div.timer {
   padding-bottom: 10px;
 }
 .containers{
-  margin-top: 50px;
+  margin-top: 0px !important;
 }
   div.timer {
   font-size: 1rem;
+  bottom: 0px !important;
 }
   .nes-field label {
     font-size: 1rem;
