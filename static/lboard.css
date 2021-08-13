@@ -34,7 +34,7 @@ body {
     margin: 0;
   }
 body, html {
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   overflow: hidden;
   background: #4B4168;
@@ -49,7 +49,9 @@ body, html {
   z-index: 10;
   font-family: "Zekton", sans-serif;
 }
-
+div.center.jumbotron{
+  position: fixed !important;
+}
 @media screen and (max-width: 500px)
 {
     .top3 .item {
@@ -70,7 +72,7 @@ body, html {
   .top3 .item .pic {
     position: absolute;
     top: -2rem !important;
-    left: 2.5rem !important;
+    left: 5rem !important;
     width: 4rem !important;
     height: 4rem !important;
     border-radius: 50%;
@@ -224,7 +226,7 @@ div.score{
   opacity: 0.8;
 }
 .center {
-  position: absolute;
+  position: fixed !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -232,9 +234,9 @@ div.score{
   font-family: "Zekton", sans-serif;
 }
 
-/* div.jumbotron{
-  margin-top: 10px !important;
-} */
+div.center.jumbotron{
+  position: fixed !important;
+}
 
 @media screen and (max-width: 500px)
 {
@@ -311,7 +313,7 @@ div.score{
 .top3 .item .pic {
   position: absolute;
   top: -4rem;
-  left: 3.3rem;
+  left: 4.3rem;
   width: 6.5rem;
   height: 6.5rem;
   border-radius: 50%;
