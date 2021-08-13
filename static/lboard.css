@@ -142,6 +142,7 @@ body, html {
 .top3 .item .score {
   color: black !important;
 }
+
 div.score{
   color: black !important;
 }
@@ -231,8 +232,16 @@ div.score{
   font-family: "Zekton", sans-serif;
 }
 
+/* div.jumbotron{
+  margin-top: 10px !important;
+} */
+
 @media screen and (max-width: 500px)
 {
+
+  div.jumbotron{
+    margin-top: 0px !important;
+  }
     .top3 .item {
     box-sizing: border-box;
     position: relative;
@@ -251,7 +260,7 @@ div.score{
   .top3 .item .pic {
     position: absolute;
     top: -2rem !important;
-    left: 2.5rem !important;
+    left: 3rem !important;
     width: 4rem !important;
     height: 4rem !important;
     border-radius: 50%;

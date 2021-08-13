@@ -4,7 +4,7 @@ div.footer {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0px !important;
   /* padding-bottom: 10px; */
   margin-bottom: 0px !important;
