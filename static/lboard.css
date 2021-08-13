@@ -63,6 +63,11 @@ div.center.jumbotron{
     overflow-y: scroll;
   }
 
+  /* div.pic{
+    margin: 0px 0px 0px 0px !important;
+    left: 0px !important;
+  } */
+
     .top3 .item {
     box-sizing: border-box;
     position: relative;
@@ -205,7 +210,7 @@ div.score{
   opacity: 0.6;
   transition: opacity 200ms ease-in-out;
 }
-.list .item .pic {
+.list .item .pics {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -228,12 +233,12 @@ div.score{
   
   opacity: 0.5;
 }
-.list .item:hover {
+/* .list .item:hover {
   transform: scale(1.05);
-}
-.list .item:hover .pos {
+} */
+/* .list .item:hover .pos {
   opacity: 0.8;
-}
+} */
 .center {
   position: fixed !important;
   top: 50%;
@@ -249,11 +254,21 @@ div.center.jumbotron{
 
 @media screen and (max-width: 500px)
 {
+  .list .item .pics {
+    width: 5rem !important;
+    height: 5rem !important;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 1rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 0 1rem 1rem -0.5rem rgba(0, 0, 0, 0.3);
+  }
+
   div.score{
     font-size: 15px !important;
   }
   div.item{
-    padding: 10px 10px;
+    padding: 25px 0px;
   }
   div.two.item,div.one.item,div.three.item{
     width: 13rem !important;
@@ -400,7 +415,7 @@ div.center.jumbotron{
   opacity: 0.6;
   transition: opacity 200ms ease-in-out;
 }
-.list .item .pic {
+.list .item .pics {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -423,9 +438,9 @@ div.center.jumbotron{
   /* content: "penalty"; */
   opacity: 0.5;
 }
-.list .item:hover {
+/* .list .item:hover {
   transform: scale(1.05);
-}
-.list .item:hover .pos {
+} */
+/* .list .item:hover .pos {
   opacity: 0.8;
-}
+} */
