@@ -34,25 +34,25 @@
 </div>
 
 <!-- <div class="container"> -->
-    {% if status %}
-    <div class="nes-container is-dark with-title" id="error">
-        <p class="title" style="color: red;">Game's Message:</p>
-        <p style="color: red;">You gave the wrong answer!!</p>
-    </div>
-    <script>
-        localStorage.setItem('unsolved', 1);
-    </script>
-    {% endif %}
     <div class="containers">
         <form id="ans" method="post" action="{% url 'situation' %}">
+            <div class="containss">
+                {% if status %}
+            
+                <div class="nes-container is-dark with-title" id="error">
+                    <p class="title" style="color: red;">Game's Message:</p>
+                    <p style="color: red;">You gave the wrong answer!!</p>
+                </div>
+        <script>
+            localStorage.setItem('unsolved', 1);
+        </script>
+        {% endif %}
+            </div>
             {% csrf_token %}
            
                 <label for="name_field" id="question-text">{{ sitn.text }}</label>
                 <br><br>
                 <input name="ans" type="text" id="name_field" class="nes-input">
-                
-       
-            
             <button type="submit" class="nes-btn" style="float: 50%;">Submit!</button>
         </form>
         </div>
@@ -83,15 +83,6 @@
             return valString;
         }
     }
-
-    $(".timer").hover(function () {
-        anime({
-            targets: ".timer",
-            translateY: ["-100%", "50%"],
-            duration: 1000,
-            delay: 200
-        })
-    })
 
     var fade_out = function () {
         $("#error").fadeOut().empty();

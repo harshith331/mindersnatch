@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Situation - Mindersmatch</title>
-	<!-- <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css"> -->
+	<link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 	<link rel="stylesheet" href="{% static 'level.css' %}">
 	<link rel="stylesheet" href="{% static 'a.css' %}">
@@ -16,13 +16,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.0/dialog-polyfill.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+
+	</head>
 <style>
 	@media screen and (max-width: 500px) {
 		.navbar-icon {
 			display: block;
 			color: white;
-			position: absolute;
 			margin-top: 0px !important;
 			right: 8% !important;
 			border-radius: 50%;
@@ -32,12 +32,8 @@
 			transition: background 0.8s;
 		}
 
-		i.fa.fa-toggle-on::before {
-			margin-top: 0px !important;
-		}
-
-		div.navbar-icon.nes-pointer {
-			margin: 0px 0px !important;
+		div.navbar-icon.nes-pointer{
+			top: 1% !important;
 		}
 	}
 

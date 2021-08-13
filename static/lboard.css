@@ -58,7 +58,7 @@ div.center.jumbotron{
 {
   div.center.jumbotron{
     width: 98%;
-    margin-top: 40px !important;
+    margin-top: 80px !important;
     height: 60vh;
     overflow-y: scroll;
   }
@@ -444,3 +444,16 @@ div.center.jumbotron{
 /* .list .item:hover .pos {
   opacity: 0.8;
 } */
+
+@media screen and (max-width: 500px) {
+  
+
+  div.navbar-icon.nes-pointer{
+    top: 1% !important;
+   
+  }
+  i.fa.fa-toggle-on{
+    font-size: 33px !important;
+  
+  }
+}

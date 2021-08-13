@@ -4,6 +4,11 @@
       background-color: black;
   }
   
+  @font-face {
+    font-family: Zekton;
+    src: url("../static/zekton_rg.ttf");
+  }
+
   .wrap {
       display: -webkit-box;
       display: flex;
@@ -18,7 +23,7 @@
   
   .time-to {
       text-align: center;
-      font-family: "Press Start 2P";
+      font-family: "Zekton" !important;
       color: white;
       font-size: 25px;
       letter-spacing: 2px;
