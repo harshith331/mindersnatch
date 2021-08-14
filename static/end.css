@@ -9,7 +9,7 @@
   div.container{
     margin-top: 100px !important;
   }
-  p {
+  p.over {
     font-family: "VT323";
     font-size: 3.2em;
     text-align: center;
