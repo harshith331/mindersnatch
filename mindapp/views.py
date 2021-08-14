@@ -205,6 +205,7 @@ def ans_nonpost(request):
 # Page functions -------------/
 
 
+
 def index(request):
     config = Config.objects.all().first()
     if activeTime(request) == 2:
@@ -214,6 +215,7 @@ def index(request):
                 player = Player.objects.get(user=request.user)
                 return render(request, 'index.html', {'user': player, 'frozen': frozen})
             except Exception as e:
+                print(e)
                 return render(request, '404.html', {'message': "Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:

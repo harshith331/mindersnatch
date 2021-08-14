@@ -28,7 +28,7 @@ if (length > 2) {
     $("hr.upperline").css("bottom", "87px");
 }
 
-$("li").click(function() {
+$("li.opt").click(function() {
     let id = $(this).data("id");
     document.getElementById("mainForm").value = id;
     console.log($("#mainForm").val());
@@ -57,15 +57,16 @@ pts.push([0, height * delaunay_multiplier * 0.5]);
 pts.push([width * delaunay_multiplier, height * delaunay_multiplier * 0.5]);
 
 for (var i = Math.floor(numPoints); i > 0; i--) {
-    if (window.CP.shouldStopExecution(0)) break;
+    // if (window.CP.shouldStopExecution(0)) break;
     // Multiply the points by a constant factor to avoid numerical imprecision
     pts.push([(5 + Math.random() * (width - 10)) * delaunay_multiplier, (5 + Math.random() * (height - 10)) * delaunay_multiplier]);
-} window.CP.exitedLoop(0);
+} 
+// window.CP.exitedLoop(0);
 
 var d = new Delaunay(pts);
 var faces = d.triangulate();
 const imageurl = $target.attr('src');
-console.log(faces);
+// console.log(faces);
 
 function addFace(faces, i) {
     var svg = document.createElementNS(svgNS, "svg");
@@ -101,9 +102,10 @@ function addFace(faces, i) {
 
 
 for (i = 0; i < faces.length; i += 3) {
-    if (window.CP.shouldStopExecution(1)) break;
+    // if (window.CP.shouldStopExecution(1)) break;
     addFace(faces, i);
-} window.CP.exitedLoop(1);
+} 
+// window.CP.exitedLoop(1);
 
 let depth = 700;
 $thumb.hover(() => {

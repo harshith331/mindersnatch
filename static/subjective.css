@@ -38,6 +38,7 @@ div.timer {
   position: absolute;
     right: 5%;
     bottom: 5% !important;
+    position: fixed !important;
 }
 span#hours.hours,span#minutes.minutes,span#seconds.seconds{
   background: rgba(1,1,1,0.7);
@@ -51,7 +52,7 @@ span#hours.hours,span#minutes.minutes,span#seconds.seconds{
 
 }
 form#ans{
-  margin-top: 180px !important;
+  margin-top: 220px !important;
 }
 
 label#question-text{
@@ -63,7 +64,7 @@ label#question-text{
 }
 
 .containss{
-  min-height: 100px !important;
+  min-height: 110px !important;
 }
 @media screen and (max-width: 500px) {
   .question {
@@ -72,7 +73,7 @@ label#question-text{
   padding-bottom: 10px;
 }
 form#ans{
-  margin-top: 150px !important;
+  margin-top: 50px !important;
 }
 /* label#question-text{
   margin-top: 300px !important;
@@ -89,8 +90,47 @@ div.containers{
   div.timer {
   font-size: 1.7rem;
   bottom: 20px !important;
+  position: fixed !important;
 }
   .nes-field label {
     font-size: 1rem;
   }
 }
+
+
+
+
+.message_container {
+  filter: drop-shadow(0 0 8px cyan);
+}
+.message_container .message {
+  background: rgba(1,1,1,0.9) !important;
+  --aug-border: 2px;
+  --aug-border-bg: #A9EAA9 !important;
+  width: calc(100% - 20px);
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.message_container .message .title {
+  display: inline-block;
+  padding: 0.5em 2em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  --aug-inset: .25em;
+  --aug-inset-bg: #ff0;
+  --aug-br: .75em;
+}
+.message_container .message p {
+  color: #fff;
+  padding: 1em;
+  margin: 0;
+  display: block;
+  line-height: 1.4em;
+  text-align: justify;
+  max-height: 10em;
+}
+
