@@ -25,6 +25,7 @@ h1{
   position: fixed !important;
   top: 0%;
   width: 100%;
+  border-radius: 10px !important;
 }
 
 .logout_button {
