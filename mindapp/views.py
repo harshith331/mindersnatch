@@ -1,11 +1,9 @@
-import sys
 import csv
 from django.http.response import JsonResponse
 from django.urls.conf import path
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
 from time import process_time, timezone
@@ -112,6 +110,7 @@ def ans_post(request, cur_level, tot_level):
 
                 # Activate the graph feature
                 player.completed_or_dead = True
+
                 player.save()
                 updateLeaderboard()
                 message = option_c.message
@@ -299,16 +298,14 @@ def privacy_policy_fb(request):
 def graph_and_player_path(request):
     player = Player.objects.get(user=request.user)
 
+    if player.completed_or_dead == False:
+        return JsonResponse({})
     # visited nodes of the current player
     visited = player.visited_nodes.split(" ")[0: -1]
-
-    # for i in range(len(visited)):
-    #     visited[i] = int(visited[i])
 
     # creating the graph based on the database
     situations = Situation.objects.all().order_by("situation_no")
     graph = {}
-
 
     for situation in situations:
         graph[situation.situation_no] = []
@@ -317,7 +314,6 @@ def graph_and_player_path(request):
         if situation.sub == True:
             # Situation has a subjective answer
             graph[situation.situation_no].append(str(situation.next_sitn))
-            # graph[situation.next_sitn].append(situation.situation_no)
 
         else:
             # There are options to choose from
@@ -326,7 +322,6 @@ def graph_and_player_path(request):
                 print(option.text, option.end)
                 if not option.end:
                     graph[situation.situation_no].append(str(option.next_sit))
-                # graph[option.next_sit].append(situation.situation_no)
 
     data = {
         'visited': visited,
@@ -334,11 +329,13 @@ def graph_and_player_path(request):
     }
 
     response = JsonResponse(data)
-
     print(response.content)
-
     return JsonResponse(data)
 
 
+@login_required(login_url="/")
 def graph(request):
-    return render(request, "graph.html")
+    player = Player.objects.get(user=request.user)
+    if player.completed_or_dead == True:
+        return render(request, "graph.html")
+    return redirect("/")
