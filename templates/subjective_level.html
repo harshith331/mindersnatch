@@ -4,6 +4,7 @@
 {% block stylesheet %}
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css"> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
+<link rel="stylesheet" href="https://unpkg.com/augmented-ui@1.1.2/augmented.css" />
 <link rel="stylesheet" href="{% static 'subjective.css' %}" />
 <link rel="stylesheet" href="{% static 'a.css' %}" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -34,27 +35,33 @@
 </div>
 
 <!-- <div class="container"> -->
-    {% if status %}
-    <div class="nes-container is-dark with-title" id="error">
-        <p class="title" style="color: red;">Game's Message:</p>
-        <p style="color: red;">You gave the wrong answer!!</p>
-    </div>
-    <script>
-        localStorage.setItem('unsolved', 1);
-    </script>
-    {% endif %}
     <div class="containers">
         <form id="ans" method="post" action="{% url 'situation' %}">
+            <div class="containss">
+                {% if status %}
+                <div class="message_container" id="error">
+                    <div class="message" augmented-ui="exe tl-clip br-clip">
+                      <div class="title" augmented-ui="exe tl-clip br-clip" style="color: red;">Game's Message</div>
+                      <p style="color: red;">Sorry ! You gave the wrong answer!!</p>
+                    </div>
+                  </div>
+                <!-- <div class="nes-container is-dark with-title" id="error">
+                    <p class="title" style="color: red;">Game's Message:</p>
+                    <p style="color: red;">You gave the wrong answer!!</p>
+                </div> -->
+        <script>
+            localStorage.setItem('unsolved', 1);
+        </script>
+        {% endif %}
+            </div>
             {% csrf_token %}
            
                 <label for="name_field" id="question-text">{{ sitn.text }}</label>
                 <br><br>
                 <input name="ans" type="text" id="name_field" class="nes-input">
-                
-       
-            
             <button type="submit" class="nes-btn" style="float: 50%;">Submit!</button>
         </form>
+        <br><br><br><br>
         </div>
     </div>
 <!-- </div> -->
@@ -83,15 +90,6 @@
             return valString;
         }
     }
-
-    $(".timer").hover(function () {
-        anime({
-            targets: ".timer",
-            translateY: ["-100%", "50%"],
-            duration: 1000,
-            delay: 200
-        })
-    })
 
     var fade_out = function () {
         $("#error").fadeOut().empty();

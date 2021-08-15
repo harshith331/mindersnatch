@@ -1,28 +1,57 @@
-<div class="navbar">
+<style>
+  .active {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  a.nav-link.active{
+    color: black;
+  }
+ 
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<div id="navbar" class="navbar">
   <div class="navbar-icon nes-pointer">
     <i class="fa fa-toggle-on"></i>
   </div>
-    <ul class="navbar-list">
-      <li>
-        <a href="{% url 'index' %}" class="active">HOME</a>
-      </li>
-      <li>
-        <a href="{% url 'rules' %}">RULES</a>
-      </li>
-      <li><a href="{% url 'leaderboard' %}">LEADERBOARD</a></li>
-      {% if user.name %}
-      <li class="profile nes-pointer" onclick="$('#dialog-dark-rounded')[0].showModal();"><img src="{{ user.image }}" alt=""> {{ user.name }}</li>
-      {% endif %}
-    </ul>
-  </div>
+  <ul class="navbar-list">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'index' %}">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'rules' %}">RULES</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'leaderboard' %}">LEADERBOARD</a>
+    </li>
+    {% if user.name %}
+    <li
+      class="profile nes-pointer"
+      onclick="$('#dialog-dark-rounded')[0].showModal();"
+    >
+      <img src="{{ user.image }}" alt="" /> {{ user.name }}
+    </li>
+    {% endif %}
+  </ul>
+</div>
 
-  <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
-    <form method="dialog">
-      <p class="title">Penalty: {{ user.score }}</p>
-      <p>Level: {{ user.level }}</p>
-      <menu class="dialog-menu">
-        <button class="nes-btn">Cancel</button>
-        <a class="nes-btn is-primary" href="/logout">Log out</a>
-      </menu>
-    </form>
-  </dialog>
+<dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+  <form method="dialog">
+    <p class="title">Penalty: {{ user.score }}</p>
+    <p>Level: {{ user.level }}</p>
+    <menu class="dialog-menu">
+      <button class="nes-btn">Cancel</button>
+      <a class="nes-btn is-primary" href="/logout">Log out</a>
+    </menu>
+  </form>
+</dialog>
+<script>
+  let current_url = document.location;
+  console.log(current_url);
+  document.querySelectorAll(".navbar .nav-link").forEach(function (e) {
+    console.log(e.href);
+    if (e.href == current_url) {
+      e.classList += " active";
+    }
+  });
+</script>

@@ -1,12 +1,17 @@
+@font-face {
+  font-family: Zekton;
+  src: url("../static/zekton_rg.ttf");
+}
 body {
   background-color: black;
   color: white;
-  font-family: 'Gill Sans', cursive;
-  height: 100vh;
+  font-family: 'Zekton', cursive;
+  height: 100vh !important;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 label{
   font-size: 20px;
 }
@@ -16,8 +21,8 @@ label{
   margin-right: 20px;
 }
 div.container {
-  width: 90%;
-  height: auto;
+  width: 70% !important;
+  /* height: auto; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -28,11 +33,17 @@ div.footer{
   display: none !important;
 }
 div.timer {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.5rem;
+  font-family: 'Zekton', cursive;
+  font-size: 2.7rem;
   position: absolute;
     right: 5%;
-    bottom: 10%;
+    bottom: 5% !important;
+    position: fixed !important;
+}
+span#hours.hours,span#minutes.minutes,span#seconds.seconds{
+  background: rgba(1,1,1,0.7);
+  padding: 10px 10px;
+  border-radius: 20px;
 }
 
 .nes-btn {
@@ -40,21 +51,86 @@ div.timer {
   background-color: #A9EAA9;
 
 }
+form#ans{
+  margin-top: 220px !important;
+}
 
+label#question-text{
+  font-weight: bolder !important;
+}
 
+.nes-container{
+  background: rgba(1,1,1,1) !important;
+}
+
+.containss{
+  min-height: 110px !important;
+}
 @media screen and (max-width: 500px) {
   .question {
+    font-weight: bolder !important;
   font-size: 0.9rem;
   padding-bottom: 10px;
 }
-.containers{
+form#ans{
+  margin-top: 50px !important;
+}
+/* label#question-text{
+  margin-top: 300px !important;
+  font-weight: bolder !important;
+} */
+.nes-container{
+
   margin-top: 0px !important;
 }
+/* 
+div.containers{
+  margin-top: 0px !important;
+} */
   div.timer {
-  font-size: 1rem;
-  bottom: 0px !important;
+  font-size: 1.7rem;
+  bottom: 20px !important;
+  position: fixed !important;
 }
   .nes-field label {
     font-size: 1rem;
   }
 }
+
+
+
+
+.message_container {
+  filter: drop-shadow(0 0 8px cyan);
+}
+.message_container .message {
+  background: rgba(1,1,1,0.9) !important;
+  --aug-border: 2px;
+  --aug-border-bg: #A9EAA9 !important;
+  width: calc(100% - 20px);
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.message_container .message .title {
+  display: inline-block;
+  padding: 0.5em 2em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  --aug-inset: .25em;
+  --aug-inset-bg: #ff0;
+  --aug-br: .75em;
+}
+.message_container .message p {
+  color: #fff;
+  padding: 1em;
+  margin: 0;
+  display: block;
+  line-height: 1.4em;
+  text-align: justify;
+  max-height: 10em;
+}
+

@@ -21,9 +21,11 @@ h1{
   font-weight: bold !important;
 }
 .navbar {
-  
+  z-index:1 !important;
+  position: fixed !important;
   top: 0%;
   width: 100%;
+  border-radius: 10px !important;
 }
 
 .logout_button {
@@ -117,6 +119,8 @@ h1{
   .navbar-icon {
     display: block;
   }
+ 
+  
   /* body.bodypad{
     margin-top: 50px !important;
   } */

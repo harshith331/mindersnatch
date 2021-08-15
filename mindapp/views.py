@@ -167,7 +167,8 @@ def ans_post(request, cur_level, tot_level):
                                                                          start_time=t.now())
                         return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed': new_timer[0].timepassed()})
                     else:
-                        return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                        options = sitn.options.all()
+                        return render(request, 'level.html', {'user': player, 'sitn': sitn,'options' : options})
                 elif player.level <= tot_level and player.level > cur_level:
                     return render(request, "pls_wait.html", {'user': player, })
                 else:
@@ -204,6 +205,7 @@ def ans_nonpost(request):
 # Page functions -------------/
 
 
+
 def index(request):
     config = Config.objects.all().first()
     if activeTime(request) == 2:
@@ -213,6 +215,7 @@ def index(request):
                 player = Player.objects.get(user=request.user)
                 return render(request, 'index.html', {'user': player, 'frozen': frozen})
             except Exception as e:
+                print(e)
                 return render(request, '404.html', {'message': "Try Logging Again!!"})
         return render(request, 'index.html')
     elif activeTime(request) == 1:
