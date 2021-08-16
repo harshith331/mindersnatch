@@ -1,11 +1,9 @@
-import sys
 import csv
 from django.http.response import JsonResponse
 from django.urls.conf import path
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 from mindapp.models import *
 from time import process_time, timezone
@@ -113,6 +111,7 @@ def ans_post(request, cur_level, tot_level):
 
                 # Activate the graph feature
                 player.completed_or_dead = True
+
                 player.save()
                 updateLeaderboard()
                 message = option_c.message
@@ -126,7 +125,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                # player.visited_nodes += f"{sitn.situation_no} "
+                player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -159,7 +158,7 @@ def ans_post(request, cur_level, tot_level):
                 player.level = sitn.level
 
                 # Appending the next situation to the visited string
-                # player.visited_nodes += f"{sitn.situation_no} "
+                player.visited_nodes += f"{sitn.situation_no} "
 
                 player.save()
                 updateLeaderboard()
@@ -188,7 +187,7 @@ def ans_nonpost(request):
     try:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
-        print("visssiteddddddddddddddddddddddddd")
+        print("visited !!!!")
         print(sitn.situation_no)
         player.visited_nodes += f"{sitn.situation_no} "
         player.save()
@@ -305,16 +304,14 @@ def privacy_policy_fb(request):
 def graph_and_player_path(request):
     player = Player.objects.get(user=request.user)
 
+    if player.completed_or_dead == False:
+        return JsonResponse({})
     # visited nodes of the current player
     visited = player.visited_nodes.split(" ")[0: -1]
-
-    # for i in range(len(visited)):
-    #     visited[i] = int(visited[i])
 
     # creating the graph based on the database
     situations = Situation.objects.all().order_by("situation_no")
     graph = {}
-
 
     for situation in situations:
         graph[situation.situation_no] = []
@@ -323,7 +320,6 @@ def graph_and_player_path(request):
         if situation.sub == True:
             # Situation has a subjective answer
             graph[situation.situation_no].append(str(situation.next_sitn))
-            # graph[situation.next_sitn].append(situation.situation_no)
 
         else:
             # There are options to choose from
@@ -332,7 +328,6 @@ def graph_and_player_path(request):
                 print(option.text, option.end)
                 if not option.end:
                     graph[situation.situation_no].append(str(option.next_sit))
-                # graph[option.next_sit].append(situation.situation_no)
 
     data = {
         'visited': visited,
@@ -340,64 +335,43 @@ def graph_and_player_path(request):
     }
 
     response = JsonResponse(data)
-
     print(response.content)
-
     return JsonResponse(data)
 
 
+@login_required(login_url="/")
 def graph(request):
-    return render(request, "graph.html")
+    player = Player.objects.get(user=request.user)
+    if player.completed_or_dead == True:
+        return render(request, "graph.html")
+    return redirect("/")
 
-def graphs(request):
-    g = Graph(
-    'G',
-    format='svg',
-    engine='twopi',
-    )
-    g.node('root', shape='rectangle', width='1.5')
-    g.node('red')
-    g.node('blue')
-
-    g.edge('root', 'red', label='to_red')
-    g.edge('root', 'blue', label='to_blue')
-
-    context_data['my_chart'] = g.pipe().decode('utf-8')
-    return render(request, "graphs.html", context_data)
-
+@login_required(login_url="/")
 def graphy(request):
     player = Player.objects.get(user=request.user)
+    if player.completed_or_dead == False:
+        return redirect("/")
     visited = player.visited_nodes.split(" ")[0: -1]
     graph = graphviz.Digraph(format='svg')
     situations = Situation.objects.all()
     for situation in situations:
         if situation.sub == True:
-            # Situation has a subjective answer
             j=str(situation.situation_no)
             i=str(situation.next_sitn)
-            graph.edge(j,i)
-            # graph[situation.situation_no].append(str(situation.next_sitn))
-            # graph[situation.next_sitn].append(situation.situation_no)
-
+            graph.edge(j,i,color='#A9EAA9',fillcolor='#A9EAA9', style='filled')
         else:
-            # There are options to choose from
             options = situation.options.all()
             for option in options:
                 print(option.text, option.end)
                 if not option.end:
                     i=str(situation.situation_no)
                     j=str(option.next_sit)
-                    graph.edge(i,j)
-                    # graph[situation.situation_no].append(str(option.next_sit))
-                # graph[option.next_sit].append(situation.situation_no)
-    # graph.edge('1', '2')
-    # graph.edge('1', '3')
-    # graph.edge('1', '4')
-    # graph.edge('2', '5')
-    # graph.edge('3', '5')
-    # graph.edge('4', '5')
+                    graph.edge(i,j,color='#A9EAA9',fillcolor='#A9EAA9', style='filled')
+        graph.node(str(situation.situation_no),color='white', fontcolor='black',fillcolor='white', style='filled')
     print(visited)
     for v in visited:
-        graph.node(v,color='red')
+        sitn = Situation.objects.get(situation_no=v)
+        text = sitn.text
+        graph.node(v,color='#A9EAA9',fillcolor='#A9EAA9', style='filled',tooltip=text, fontcolor='black')
     graph = graph.pipe().decode('utf-8')
     return render(request,"graphy.html",{ 'graph': graph })
