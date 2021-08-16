@@ -12,7 +12,8 @@ from time import process_time, timezone
 from django.utils import timezone as t
 from django.http import HttpResponse
 from decouple import config
-
+from graphviz import Graph
+import graphviz
 curr_leaderboard = None
 
 # Helper functions -------------/
@@ -135,7 +136,7 @@ def ans_post(request, cur_level, tot_level):
                             player=player, situation=sitn)
                         return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                     else:
-                        return render(request, 'level.html', {'user': player, 'sitn': sitn})
+                        return render(request, 'level.html', {'user': player, 'sitn': sitn, 'options': options})
                 elif player.level <= tot_level and player.level > cur_level:
                     return render(request, "pls_wait.html", {'user': player})
                 else:
@@ -187,6 +188,8 @@ def ans_nonpost(request):
     try:
         player = Player.objects.get(user=request.user)
         sitn = Situation.objects.get(situation_no=player.current_sitn)
+        print("visssiteddddddddddddddddddddddddd")
+        print(sitn.situation_no)
         player.visited_nodes += f"{sitn.situation_no} "
         player.save()
 
@@ -345,3 +348,56 @@ def graph_and_player_path(request):
 
 def graph(request):
     return render(request, "graph.html")
+
+def graphs(request):
+    g = Graph(
+    'G',
+    format='svg',
+    engine='twopi',
+    )
+    g.node('root', shape='rectangle', width='1.5')
+    g.node('red')
+    g.node('blue')
+
+    g.edge('root', 'red', label='to_red')
+    g.edge('root', 'blue', label='to_blue')
+
+    context_data['my_chart'] = g.pipe().decode('utf-8')
+    return render(request, "graphs.html", context_data)
+
+def graphy(request):
+    player = Player.objects.get(user=request.user)
+    visited = player.visited_nodes.split(" ")[0: -1]
+    graph = graphviz.Digraph(format='svg')
+    situations = Situation.objects.all()
+    for situation in situations:
+        if situation.sub == True:
+            # Situation has a subjective answer
+            j=str(situation.situation_no)
+            i=str(situation.next_sitn)
+            graph.edge(j,i)
+            # graph[situation.situation_no].append(str(situation.next_sitn))
+            # graph[situation.next_sitn].append(situation.situation_no)
+
+        else:
+            # There are options to choose from
+            options = situation.options.all()
+            for option in options:
+                print(option.text, option.end)
+                if not option.end:
+                    i=str(situation.situation_no)
+                    j=str(option.next_sit)
+                    graph.edge(i,j)
+                    # graph[situation.situation_no].append(str(option.next_sit))
+                # graph[option.next_sit].append(situation.situation_no)
+    # graph.edge('1', '2')
+    # graph.edge('1', '3')
+    # graph.edge('1', '4')
+    # graph.edge('2', '5')
+    # graph.edge('3', '5')
+    # graph.edge('4', '5')
+    print(visited)
+    for v in visited:
+        graph.node(v,color='red')
+    graph = graph.pipe().decode('utf-8')
+    return render(request,"graphy.html",{ 'graph': graph })
