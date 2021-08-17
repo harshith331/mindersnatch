@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+<link rel="stylesheet" href="{% static 'a.css' %}">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'timer.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+
+<div class="container">
+  <!-- {% include "components/svg.desktop.html" %} -->
+  <!-- {% include "components/svg.mobile.html" %} -->
+  {% if frozen == True %}
+  <p style="width: 70%;margin: auto;text-align: center;border: 2px solid red;color: seashell;" id="breathing-button">
+    The Event has ended ,The Leaderboard has been frozen <br>However you can still explore the game:)</p>
+  {% endif %}
+  <h1 class="ml11">
+    <span class="text-wrapper">
+      <span class="line line1"></span>
+      <div class='time-to'>
+        <!-- More Levels will be added in .... -->
+        Start your destiny in ...
+        <span countdown='' date='{{ time }}'>&nbsp;</span>
+      </div>
+    </span>
+  </h1>
+  {% if user.name %}
+  <div class="profile-container">
+    <!-- <img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;"> -->
+    <span class="nes-pointer"><a href="{% url 'rules' %}"
+        style="text-decoration: none; color: white !important;">Rules</a></span>
+  </div>
+  {% else %}
+  <div class="row">
+    <a type="button" href="{% url 'social:begin' 'github' %}" class="social-button nes-btn dark" data-inline="true"><i
+        class="nes-icon github is-small"></i> Login with Github</a>
+    <a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"
+      data-inline="true"><i class="nes-icon google is-small"></i> Login with Google</a>
+  </div>
+
+  <!-- <div class="social-btns">
+		<button class="btn google" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google" /></button>
+		<button class="btn github" href="#"><i class="fa fa-github" /></button>
+	</div> -->
+
+
+  <br>
+
+  {% endif %}
+</div>
+
+<script>
+  (function () {
+    angular.module('app', []).directive('countdown', [
+      'Util',
+      '$interval',
+      function (Util,
+        $interval) {
+        return {
+          restrict: 'A',
+          scope: {
+            date: '@'
+          },
+
+          link: function (scope,
+            element) {
+            var future;
+            future = new Date(scope.date);
+            $interval(function () {
+              var diff;
+              diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+              return element.text(Util.dhms(diff));
+            },
+              1000);
+          }
+        };
+
+      }]).
+      factory('Util', [
+        function () {
+          return {
+            dhms: function (t) {
+              var days,
+                hours,
+                minutes,
+                seconds;
+              days = Math.floor(t / 86400);
+              t -= days * 86400;
+              hours = Math.floor(t / 3600) % 24;
+              t -= hours * 3600;
+              minutes = Math.floor(t / 60) % 60;
+              t -= minutes * 60;
+              seconds = t % 60;
+              return [days + 'd',
+              hours + 'h',
+              minutes + 'm',
+              seconds + 's'].join(' ');
+            }
+          };
+
+        }]);
+
+
+  }).call(this);
+</script>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
