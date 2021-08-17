@@ -1,16 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mindersnatch</title>
+  <style>
+		@font-face {
+			font-family: Zekton;
+			src: url("../static/zekton_rg.ttf");
+		}
+	</style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
   <link rel="stylesheet" href="{% static 'timer.css' %}">
   <link rel="stylesheet" href="{% static 'footer.css' %}">
   <link rel="stylesheet" href="{% static 'a.css' %}">
@@ -38,8 +45,8 @@
     </div>
    <br><br>
     {% if user.email %}
-	<div class="profile-container"></div>
-		<img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
+    <div class="profile-container"></div>
+    <img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
     <span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{ user.name }}</a></span>
     <a href="/rule" class="rules" style="margin-top: 70px;text-align: center;">RULES</a>
 	</div>
@@ -62,56 +69,60 @@
   </div>
   {% include "components/footer.html" %}
 </body>
+
 </html>
 
 <script>
-(function () {
-  angular.module('app', []).directive('countdown', [
-  'Util',
-  '$interval',
-  function (Util,
-  $interval) {
-    return {
-      restrict: 'A',
-      scope: {
-        date: '@' },
+  (function () {
+    angular.module('app', []).directive('countdown', [
+      'Util',
+      '$interval',
+      function (Util,
+        $interval) {
+        return {
+          restrict: 'A',
+          scope: {
+            date: '@'
+          },
 
-      link: function (scope,
-      element) {
-        var future;
-        future = new Date(scope.date);
-        $interval(function () {
-          var diff;
-          diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
-          return element.text(Util.dhms(diff));
-        },
-        1000);
-      } };
+          link: function (scope,
+            element) {
+            var future;
+            future = new Date(scope.date);
+            $interval(function () {
+              var diff;
+              diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+              return element.text(Util.dhms(diff));
+            },
+              1000);
+          }
+        };
 
-  }]).
-  factory('Util', [
-  function () {
-    return {
-      dhms: function (t) {
-        var days,
-        hours,
-        minutes,
-        seconds;
-        days = Math.floor(t / 86400);
-        t -= days * 86400;
-        hours = Math.floor(t / 3600) % 24;
-        t -= hours * 3600;
-        minutes = Math.floor(t / 60) % 60;
-        t -= minutes * 60;
-        seconds = t % 60;
-        return [days + 'd',
-        hours + 'h',
-        minutes + 'm',
-        seconds + 's'].join(' ');
-      } };
+      }]).
+      factory('Util', [
+        function () {
+          return {
+            dhms: function (t) {
+              var days,
+                hours,
+                minutes,
+                seconds;
+              days = Math.floor(t / 86400);
+              t -= days * 86400;
+              hours = Math.floor(t / 3600) % 24;
+              t -= hours * 3600;
+              minutes = Math.floor(t / 60) % 60;
+              t -= minutes * 60;
+              seconds = t % 60;
+              return [days + 'd',
+              hours + 'h',
+              minutes + 'm',
+              seconds + 's'].join(' ');
+            }
+          };
 
-  }]);
+        }]);
 
 
-}).call(this);
+  }).call(this);
 </script>

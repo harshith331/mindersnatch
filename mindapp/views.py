@@ -135,6 +135,8 @@ def ans_post(request, cur_level, tot_level):
                             player=player, situation=sitn)
                         return render(request, 'subjective_level.html', {'user': player, 'sitn': sitn, 'timepassed': timer[0].timepassed()})
                     else:
+                        # Adding options here
+                        options = sitn.options.all()
                         return render(request, 'level.html', {'user': player, 'sitn': sitn, 'options': options})
                 elif player.level <= tot_level and player.level > cur_level:
                     return render(request, "pls_wait.html", {'user': player})
