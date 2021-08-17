@@ -358,7 +358,10 @@ def graphy(request):
         if situation.sub == True:
             j=str(situation.situation_no)
             i=str(situation.next_sitn)
-            graph.edge(j,i,color='#A9EAA9',fillcolor='#A9EAA9', style='filled')
+            if i in visited and j in visited:
+                graph.edge(j,i,color='red')
+            else:
+                graph.edge(j,i,color='#A9EAA9')
         else:
             options = situation.options.all()
             for option in options:
@@ -366,7 +369,10 @@ def graphy(request):
                 if not option.end:
                     i=str(situation.situation_no)
                     j=str(option.next_sit)
-                    graph.edge(i,j,color='#A9EAA9',fillcolor='#A9EAA9', style='filled')
+                    if i in visited and j in visited:
+                        graph.edge(i,j,color='red')
+                    else:
+                        graph.edge(i,j,color='#A9EAA9')
         graph.node(str(situation.situation_no),color='white', fontcolor='black',fillcolor='white', style='filled')
     print(visited)
     for v in visited:
