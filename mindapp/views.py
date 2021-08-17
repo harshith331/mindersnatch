@@ -380,4 +380,4 @@ def graphy(request):
         text = sitn.text
         graph.node(v,color='#A9EAA9',fillcolor='#A9EAA9', style='filled',tooltip=text, fontcolor='black')
     graph = graph.pipe().decode('utf-8')
-    return render(request,"graphy.html",{ 'graph': graph })
+    return render(request,"graphy.html",{ 'graph': graph, 'user': player })
