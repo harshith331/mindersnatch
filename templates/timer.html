@@ -13,27 +13,51 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
   <link rel="stylesheet" href="{% static 'timer.css' %}">
   <link rel="stylesheet" href="{% static 'footer.css' %}">
+  <link rel="stylesheet" href="{% static 'a.css' %}">
 </head>
+
 <body>
+  <div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
   <div class='wrap' ng-app='app'>
     <div class='time-to'>
-      More Levels will be added in ....
+      Start your destiny in ...
       <span countdown='' date='{{ time }}'>&nbsp;</span>
     </div>
-   
+   <br><br>
     {% if user.email %}
 	<div class="profile-container"></div>
 		<img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
     <span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{ user.name }}</a></span>
-    <a href="/rule" style="margin-top: 70px;font-size: 20px;text-align: center;">RULES</a>
+    <a href="/rule" class="rules" style="margin-top: 70px;text-align: center;">RULES</a>
 	</div>
 	{% else %}
-    <div class="row">
+  <div class="row">
+		<a type="button" href="{% url 'social:begin' 'github' %}" class="social-button nes-btn dark"
+			data-inline="true"><i class="nes-icon github is-small"></i> Login with Github</a>
+		<a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"
+			data-inline="true"><i class="nes-icon google is-small"></i> Login with Google</a>
+	</div>
+    <!-- <div class="row">
   <a type="button" href="{% url 'social:begin' 'facebook' %}" class="social-button nes-btn is-primary"><i class="nes-icon facebook is-small"></i> Login in with Facebook</a>
   <a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"><i class="nes-icon google is-small"></i> Login in with Google</a>
-</div>
-<a href="/rule" style="margin-top: 70px;font-size: 20px;text-align: center;">RULES</a>
-  {% endif %}
+</div> -->
+<br><br>
+<a href="/rule" class="rules">RULES</a>
+
+{% endif %}
 
   </div>
   {% include "components/footer.html" %}
@@ -91,5 +115,3 @@
 
 }).call(this);
 </script>
-
-

@@ -1,14 +1,106 @@
-  @import "//fonts.googleapis.com/css?family=Bangers";
-  body {
-      margin: 0;
-      background-color: black;
-  }
-  
+@import "//fonts.googleapis.com/css?family=Bangers";  
   @font-face {
     font-family: Zekton;
     src: url("../static/zekton_rg.ttf");
   }
-
+  body{
+    background-image: url("https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    font-family: "Zekton" !important;
+    min-height: 100vh;
+    }
+    img.nes-avatar.profile{
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+    }
+    .button {
+        width: 250px;
+        margin-left: 41%;
+        display: inline;
+        padding: 0 18px 0 6px;
+        border: 0 none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 250ms linear;
+      }
+      .button:hover {
+        text-decoration: none;
+      }
+      
+      .button--social-login {
+        margin-bottom: 12px;
+        margin-right: 12px;
+        color: white;
+        height: 50px;
+        line-height: 46px;
+        position: relative;
+        text-align: left;
+      }
+      .button--social-login .icon {
+        margin-right: 12px;
+        font-size: 24px;
+        line-height: 24px;
+        width: 42px;
+        height: 24px;
+        text-align: center;
+        display: inline-block;
+        position: relative;
+        top: 4px;
+      }
+      .button--social-login .icon:before {
+        display: inline-block;
+        width: 40px;
+      }
+      .button--social-login .icon:after {
+        content: "";
+      }
+      
+      .button--googleplus {
+        background-color: #DD4B39;
+        border: 1px solid #c23321;
+      }
+      .button--googleplus .icon {
+        border-right: 1px solid #c23321;
+      }
+      .button--googleplus .icon:after {
+        border-right: 1px solid #e47365;
+      }
+      .button--googleplus:hover {
+        background-color: #d73925;
+      }
+      
+      
+      .button--github {
+        background-color: #333;
+        border: 1px solid #1a1a1a;
+      }
+      .button--github .icon {
+        border-right: 1px solid #1a1a1a;
+      }
+      .button--github .icon:after {
+        border-right: 1px solid #4d4d4d;
+      }
+      .button--github:hover {
+        background-color: #262626;
+      } 
+      .row {
+        /* width: 100%;
+        position: absolute;
+        top: 68%; */
+        color: white;
+        display: inline-block;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+        /* margin-left: 40%; */
+      }
+      /* .row .social-button {
+        margin: 40px auto;
+      } */
+      
   .wrap {
       display: -webkit-box;
       display: flex;
@@ -17,7 +109,7 @@
       -webkit-box-pack: center;
       justify-content: center;
       height: 80vh;
-      background: black;
+       
       flex-direction: column;
   }
   
@@ -26,35 +118,73 @@
       font-family: "Zekton" !important;
       color: white;
       font-size: 25px;
-      letter-spacing: 2px;
+      letter-spacing: 2px;   
+       text-align: center;
+      padding: 20px 20px;
+      border-radius: 20px;
+      background: rgba(1,1,1,0.7);
+      font-family: sans-serif;
+      font-weight: lighter;
   }
   
   .time-to span {
       display: block;
       font-size: 60px;
-      color: red;
+      border: solid 1px black;
+      font-size: 3em;
+      font-weight: 100;
+      color: white;
+      text-shadow: 0 0 20px #48C8FF;
   }
 
-  .row {
+  /* .row {
       display: flex;
       flex-direction: column;
       margin-top: 50px;
   }
-
+  
   .row a {
       margin: 20px 0px;
+  } */
+  a.social-button{
+    margin-right:16px !important;
   }
-
-  @media screen and (max-width: 500px) {
+  a.rules{
+    background: rgba(1,1,1,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+  @media screen and (max-width: 700px) {
       .time-to span {
           font-size: 40px;
       }
-
-      .row {
+      .time-to{
+          font-size: 20px !important;
+      }
+      a.rules{
+        font-size: 20px;
+    }
+    a.rules{
+        background: rgba(1,1,1,0.4);
+        padding: 10px 10px;
+        border-radius: 10px;
+    }
+      /* .row {
       margin-top: 10px;
+  } */
+
+      /* .row a {
+      margin: 5px 0px; */
+  /* } */
   }
 
-      .row a {
-      margin: 5px 0px;
+  /* a{
+      color: white !important;
+  } */
+
+  a.rules{
+      font-weight: bolder !important;
+      font-size: 25px;
+      color: white;
   }
-  }
+  

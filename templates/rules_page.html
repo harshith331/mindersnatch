@@ -8,66 +8,67 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Rules</title>
 	<link rel="stylesheet" href="https://unpkg.com/nes.css@latest/css/nes.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gill+Sans&amp;display=sans-serif" />
 	<link rel="stylesheet" href="{% static 'rules.css' %}">
 	<link href="{% static 'navbar.css' %}" rel="stylesheet">
-	<link href="{% static 'background.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<!-- <link href="{% static 'background.css' %}" rel="stylesheet"> -->
 </head>
 
 <body class="bodypad">
 
-	<div class="navbar">
-		<div class="navbar-icon nes-pointer">
-			<i class="snes-jp-logo"></i>
-		</div>
-		<ul class="navbar-list">
-			<li>
-				<a href="{% url 'index' %}" class="active">HOME</a>
-			</li>
-		</ul>
+	{% include "components/navbar.html" %}
+	<!-- <div class="container"> -->
+		<div class="parallax">
+		<section class="et-hero-tabs">
+			<h1>RULES</h1>
+			<h3>How you can save all of us!!</h3>
+			<div class="et-hero-tabs-container">
+				<a class="et-hero-tab" href="#tab-rule1">Rule 1</a>
+				<a class="et-hero-tab" href="#tab-rule2">Rule 2</a>
+				<a class="et-hero-tab" href="#tab-rule3">Rule 3</a>
+				<a class="et-hero-tab" href="#tab-rule4">Rule 4</a>
+				<a class="et-hero-tab" href="#tab-rule5">Rule 5</a>
+				<span class="et-hero-tab-slider"></span>
+			</div>
+		</section>
+	
+		<main class="et-main">
+			<section class="et-slide" id="tab-rule1">
+				<div class="container">
+				<h1>Rule 1</h1>
+				<h3>
+					Participants are to traverse a mission story line by choosing options at every point of the story. They will have to answer some subjective questions as well to ensure that they can move ahead.
+				</h3>
+			</div>
+			</section>
+			<section class="et-slide" id="tab-rule2">
+				<div class="container">
+				<h1>Rule 2</h1>
+				<h3>The story is based on a mission to eliminate the threat of the pandemic and eliminate the virus. Your mission can either go towards an optimal path and you reach the objective of saving the planet or you encounter a dead node on taking incorrect decisions.
+				</h3>
+			</div>
+			</section>
+			<section class="et-slide" id="tab-rule3">
+				<h1>Rule 3</h1>
+				<h3>For every node traversed you get a penalty of +1. This means the more number of times you reach dead nodes and retry, the more penalties you accumulate. In case you reach the optimal node, you will be shown a page congratulating you for your successful mission. Least number of nodes should be taken to reach this.
+				</h3>
+			</section>
+			<section class="et-slide" id="tab-rule4">
+				<h1>Rule 4</h1>
+				<h3>You will be penalised based on the number of nodes you have traversed and the level you are on. For
+					subjective questions, you get a penalty of +1 for solving it under 5 minutes and +2 for under 10 and +4
+					otherwise.</h3>
+			</section>
+			<section class="et-slide" id="tab-rule5">
+				<h1>Rule 5</h1>
+				<h3>P.S This game is entirely fictitious and intended for fun only during this testing time.<b> Stay Home ! Stay Safe !</b></h3>
+			</section>
+		</main>
 	</div>
-
-	<section class="et-hero-tabs">
-		<h1>RULES</h1>
-		<h3>How you can save all of us!!</h3>
-		<div class="et-hero-tabs-container">
-			<a class="et-hero-tab" href="#tab-rule1">Rule 1</a>
-			<a class="et-hero-tab" href="#tab-rule2">Rule 2</a>
-			<a class="et-hero-tab" href="#tab-rule3">Rule 3</a>
-			<a class="et-hero-tab" href="#tab-rule4">Rule 4</a>
-			<a class="et-hero-tab" href="#tab-rule5">Rule 5</a>
-			<span class="et-hero-tab-slider"></span>
-		</div>
-	</section>
-
-	<main class="et-main">
-		<section class="et-slide" id="tab-rule1">
-			<h1>Rule 1</h1>
-			<h3>
-				Participants are to traverse a mission story line by choosing options at every point of the story. They will have to answer some subjective questions as well to ensure that they can move ahead.
-			</h3>
-		</section>
-		<section class="et-slide" id="tab-rule2">
-			<h1>Rule 2</h1>
-			<h3>The story is based on a mission to eliminate the threat of the pandemic and eliminate the virus. Your mission can either go towards an optimal path and you reach the objective of saving the planet or you encounter a dead node on taking incorrect decisions.
-			</h3>
-		</section>
-		<section class="et-slide" id="tab-rule3">
-			<h1>Rule 3</h1>
-			<h3>For every node traversed you get a penalty of +1. This means the more number of times you reach dead nodes and retry, the more penalties you accumulate. In case you reach the optimal node, you will be shown a page congratulating you for your successful mission. Least number of nodes should be taken to reach this.
-			</h3>
-		</section>
-		<section class="et-slide" id="tab-rule4">
-			<h1>Rule 4</h1>
-			<h3>You will be penalised based on the number of nodes you have traversed and the level you are on. For
-				subjective questions, you get a penalty of +1 for solving it under 5 minutes and +2 for under 10 and +4
-				otherwise.</h3>
-		</section>
-		<section class="et-slide" id="tab-rule5">
-			<h1>Rule 5</h1>
-			<h3>P.S This game is entirely fictitious and intended for fun only during this testing time.<b> Stay Home ! Stay Safe !</b></h3>
-		</section>
-	</main>
+	<!-- </div> -->
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
 	<script src="{% static 'rules.js' %}"></script>
