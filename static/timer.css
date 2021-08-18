@@ -126,6 +126,14 @@
         padding: 10px 10px;
         border-radius: 10px;
     }
+    .row {
+      color: white;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin-top: 50px;
+    }
   }
   a.rules{
       font-weight: bolder !important;
