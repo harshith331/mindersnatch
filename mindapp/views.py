@@ -286,7 +286,8 @@ def rules(request):
 
 
 def rule(request):
-    return render(request, "rules_page.html")
+    player = Player.objects.get(user=request.user)
+    return render(request, "rules_page.html",{'user':player})
 
 
 def logout_view(request):

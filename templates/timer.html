@@ -21,9 +21,13 @@
   <link rel="stylesheet" href="{% static 'timer.css' %}">
   <link rel="stylesheet" href="{% static 'footer.css' %}">
   <link rel="stylesheet" href="{% static 'a.css' %}">
+  <link rel="stylesheet" href="{% static 'navbar.css' %}">
 </head>
 
 <body>
+  {% if user.name %}
+  {% include "components/nav.html" %}
+  {% endif %}
   <div class="firefly"></div>
 <div class="firefly"></div>
 <div class="firefly"></div>
@@ -38,6 +42,10 @@
 <div class="firefly"></div>
 <div class="firefly"></div>
 <div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<div class="firefly"></div>
+<!-- <br><br> -->
   <div class='wrap' ng-app='app'>
     <div class='time-to'>
       Start your destiny in ...
@@ -48,7 +56,7 @@
     <div class="profile-container"></div>
     <img class="nes-avatar profile" src="{{ user.image }}" style="image-rendering: pixelated;">
     <span class="nes-pointer"><a href="/" style="text-decoration: none; color: white !important;margin-top: 50px;">{{ user.name }}</a></span>
-    <a href="/rule" class="rules" style="margin-top: 70px;text-align: center;">RULES</a>
+    <!-- <a href="/rule" class="rules" style="margin-top: 70px;text-align: center;">RULES</a> -->
 	</div>
 	{% else %}
   <div class="row">
@@ -62,12 +70,16 @@
   <a type="button" href="{% url 'social:begin' 'google-oauth2' %}" class="social-button nes-btn is-error"><i class="nes-icon google is-small"></i> Login in with Google</a>
 </div> -->
 <!-- <br><br> -->
-<a href="/rule" class="rules">RULES</a>
+<!-- <a href="/rule" class="rules">RULES</a> -->
 
 {% endif %}
 
   </div>
   {% include "components/footer.html" %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+	<script src="{% static 'rules.js' %}"></script>
+	<script src="{% static 'navbar.js' %}"></script>
 </body>
 
 </html>

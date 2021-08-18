@@ -57,49 +57,15 @@
         content: "";
       }
       
-      .button--googleplus {
-        background-color: #DD4B39;
-        border: 1px solid #c23321;
-      }
-      .button--googleplus .icon {
-        border-right: 1px solid #c23321;
-      }
-      .button--googleplus .icon:after {
-        border-right: 1px solid #e47365;
-      }
-      .button--googleplus:hover {
-        background-color: #d73925;
-      }
       
-      
-      .button--github {
-        background-color: #333;
-        border: 1px solid #1a1a1a;
-      }
-      .button--github .icon {
-        border-right: 1px solid #1a1a1a;
-      }
-      .button--github .icon:after {
-        border-right: 1px solid #4d4d4d;
-      }
-      .button--github:hover {
-        background-color: #262626;
-      } 
       .row {
-        /* width: 100%;
-        position: absolute;
-        top: 68%; */
         color: white;
         display: inline-block;
         flex-direction: column;
         justify-content: center;
         text-align: center;
         margin-top: 50px;
-        /* margin-left: 40%; */
       }
-      /* .row .social-button {
-        margin: 40px auto;
-      } */
       
   .wrap {
       display: -webkit-box;
@@ -137,15 +103,6 @@
       text-shadow: 0 0 20px #48C8FF;
   }
 
-  /* .row {
-      display: flex;
-      flex-direction: column;
-      margin-top: 50px;
-  }
-  
-  .row a {
-      margin: 20px 0px;
-  } */
   a.social-button{
     margin-right:16px !important;
   }
@@ -169,19 +126,7 @@
         padding: 10px 10px;
         border-radius: 10px;
     }
-      /* .row {
-      margin-top: 10px;
-  } */
-
-      /* .row a {
-      margin: 5px 0px; */
-  /* } */
   }
-
-  /* a{
-      color: white !important;
-  } */
-
   a.rules{
       font-weight: bolder !important;
       font-size: 25px;
